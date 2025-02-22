@@ -39,7 +39,7 @@ function read_hero(event) {
 	fetch(`http://127.0.0.1:8000/hero/${heroName}`)
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('API request failed')
+				throw new Error('API request failed.')
 			}
 
 			return response.json()
@@ -48,15 +48,7 @@ function read_hero(event) {
 			outputElement.innerHTML = JSON.stringify(data)
 		})
 		.catch(error => {
-			console.error('Error:', error)
+			console.error(error)
+			outputElement.innerHTML = `'${heroName}' not found.`
 		});
 }
-
-/**
- * {
-				"id": hero.id,
-				"name": hero.name,
-				"secret_name": hero.secret_name,
-				"name": hero.name
-			}
- */
