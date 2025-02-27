@@ -21,6 +21,7 @@ pip install -r requirements
 Two branches
 - Master: Plain HTML and JS
 - react-nextjs-chakraUI-frontend: Using react
+  - Have to modify the ButtonAPI.jsx file's API Link to get different data (for right now)
 
 ## Set up `react-nextjs-chakraUI-frontend` branch
 
