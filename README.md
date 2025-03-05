@@ -26,4 +26,6 @@ Start up API
 fastapi dev .\api\api.py
 ```
 
-- just open the `./index.html` file in dir `./frontend`
+Open website
+
+just open the `./index.html` file in dir `./frontend`
