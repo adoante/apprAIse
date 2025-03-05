@@ -29,4 +29,3 @@ fastapi dev .\api\api.py
 Open website
 
 just open the `./index.html` file in dir `./frontend` using a web browser
-adadadgfdd
