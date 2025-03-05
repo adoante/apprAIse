@@ -40,7 +40,7 @@ time, mark, audio, video {
 body {
     color: var(--text-color);
     margin: 0 auto;
-    max-width: 75ch;
+    /*max-width: 75ch;*/
     padding: 0 0.5rem;
 }
 body, input {
@@ -177,7 +177,7 @@ sup { font-size: 80%; vertical-align: top; }
     }
     :root {
         --text-color: #fff;
-        --link-color: orange;
+        --link-color: #fff;
         --link-color-alt: yellow;
         --primary-color: orange;
         --primary-color-light: dimgrey;
@@ -185,3 +185,29 @@ sup { font-size: 80%; vertical-align: top; }
         --tertiary-color: #2d2d2d;
     }
 }
+
+ul {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline;
+  }
+
+  .navMenu{
+    color:#ffffff;
+    text-decoration: none;
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+
+  .navMenu.title{
+    text-decoration: dashed;
+  }
+
+  .title{
+    display: inline;
+  }
