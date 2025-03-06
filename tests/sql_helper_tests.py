@@ -29,3 +29,9 @@ from database.sql_helper import *
 # 	session.commit()
 # print(get_favorite(0))
 
+# Test get_chipset()
+with Session(engine) as session:
+	chipset = Chipset(chipset_id=0, name="chipset-name", manufacturer="man", version="1.0")
+	session.add(chipset)
+	session.commit()
+print(get_chipset(0))
