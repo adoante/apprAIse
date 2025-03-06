@@ -37,9 +37,19 @@ from database.sql_helper import *
 # print(get_chipset(0))
 
 # Test get_model()
-# with Session(engine) as session:
-# 	model = Model()
-# 	session.add(model)
-# 	session.commit()
-# print(get_model(0))
+with Session(engine) as session:
+	model = Model(
+		model_id=0,
+		name="name",
+		github_link="link",
+		hugging_face_link="link",
+		research_paper_link="link",
+		model_end_point="endpoint",
+		input_resolution="ir",
+		parameters='param',
+		model_size="size"
+	)
+	session.add(model)
+	session.commit()
+print(get_model(0))
 
