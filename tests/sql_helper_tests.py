@@ -67,17 +67,17 @@ from database.sql_helper import *
 # print(get_device(0))
 
 # Test get_benchmark()
-with Session(engine) as session:
-	benchmark = Benchmark(
-		benchmark_id=0,
-		benchmark_est_inf_time=0,
-		benchmark_est_peak_mem=0,
-		benchmark_first_load_time=0,
-		benchmark_first_load_mem=0,
-		benchmark_warm_load_time=0,
-		benchmark_warm_load_mem=0,
-		model_id=0
-	)
-	session.add(benchmark)
-	session.commit()
-print(get_benchmark(0))
+# with Session(engine) as session:
+# 	benchmark = Benchmark(
+# 		benchmark_id=0,
+# 		benchmark_est_inf_time=0,
+# 		benchmark_est_peak_mem=0,
+# 		benchmark_first_load_time=0,
+# 		benchmark_first_load_mem=0,
+# 		benchmark_warm_load_time=0,
+# 		benchmark_warm_load_mem=0,
+# 		model_id=0
+# 	)
+# 	session.add(benchmark)
+# 	session.commit()
+# print(get_benchmark(0))
