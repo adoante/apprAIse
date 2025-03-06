@@ -44,3 +44,10 @@ def get_device(device_id: int):
 		statement = select(Device).where(Device.device_id == device_id)
 		device = session.exec(statement).first()
 	return device
+
+# Get all data from specific device by DEVICE_ID
+def get_benchmark(benchmark_id: int):
+	with Session(engine) as session:
+		statement = select(Benchmark).where(Benchmark.benchmark_id == benchmark_id)
+		benchmark = session.exec(statement).first()
+	return benchmark

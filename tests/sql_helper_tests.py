@@ -53,15 +53,31 @@ from database.sql_helper import *
 # 	session.commit()
 # print(get_model(0))
 
-#Test get_device()
+# Test get_device()
+# with Session(engine) as session:
+# 	device = Device(
+# 		device_id=0,
+# 		device_name="name",
+# 		device_industry="industry",
+# 		device_company="company",
+# 		chipset_id=0
+# 	)
+# 	session.add(device)
+# 	session.commit()
+# print(get_device(0))
+
+# Test get_benchmark()
 with Session(engine) as session:
-	device = Device(
-		device_id=0,
-		device_name="name",
-		device_industry="industry",
-		device_company="company",
-		chipset_id=0
+	benchmark = Benchmark(
+		benchmark_id=0,
+		benchmark_est_inf_time=0,
+		benchmark_est_peak_mem=0,
+		benchmark_first_load_time=0,
+		benchmark_first_load_mem=0,
+		benchmark_warm_load_time=0,
+		benchmark_warm_load_mem=0,
+		model_id=0
 	)
-	session.add(device)
+	session.add(benchmark)
 	session.commit()
-print(get_device(0))
+print(get_benchmark(0))
