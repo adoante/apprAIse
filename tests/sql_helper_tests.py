@@ -30,8 +30,16 @@ from database.sql_helper import *
 # print(get_favorite(0))
 
 # Test get_chipset()
-with Session(engine) as session:
-	chipset = Chipset(chipset_id=0, name="chipset-name", manufacturer="man", version="1.0")
-	session.add(chipset)
-	session.commit()
-print(get_chipset(0))
+# with Session(engine) as session:
+# 	chipset = Chipset(chipset_id=0, name="chipset-name", manufacturer="man", version="1.0")
+# 	session.add(chipset)
+# 	session.commit()
+# print(get_chipset(0))
+
+# Test get_model()
+# with Session(engine) as session:
+# 	model = Model()
+# 	session.add(model)
+# 	session.commit()
+# print(get_model(0))
+
