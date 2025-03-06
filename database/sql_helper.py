@@ -45,7 +45,7 @@ def get_device(device_id: int):
 		device = session.exec(statement).first()
 	return device
 
-# Get all data from specific device by DEVICE_ID
+# Get all data from specific benchmark by BENCHMARK_ID
 def get_benchmark(benchmark_id: int):
 	with Session(engine) as session:
 		statement = select(Benchmark).where(Benchmark.benchmark_id == benchmark_id)
