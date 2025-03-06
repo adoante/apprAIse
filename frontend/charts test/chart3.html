@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart 3 - Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h2>pie chart</h2>
+    <canvas id="chart3" width="200" height="100"></canvas>
+
+    <script>
+        var ctx3 = document.getElementById('chart3').getContext('2d');
+        var chart3 = new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: ["Company A", "Company B", "Company C", "Company D"],
+                datasets: [{
+                    label: "Market Share",
+                    data: [30, 25, 20, 25], // Percentage values
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Market Share Distribution"
+                }
+            }
+        });
+    </script>
+
+    <!-- Navigation Buttons -->
+    <br>
+    <button onclick="window.location.href='testdex.html'">🏠 Back to Homepage</button>
+    <button onclick="window.location.href='chart2.html'">⬅ Back to Chart 2</button>
+    
+
+</body>
+</html>
