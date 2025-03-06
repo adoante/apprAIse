@@ -30,3 +30,10 @@ def get_chipset(chipset_id: int):
 		statement = select(Chipset).where(Chipset.chipset_id == chipset_id)
 		chipset = session.exec(statement).first()
 	return chipset
+
+# Get all data from specific model by MODEL_ID
+def get_model(model_id: int):
+	with Session(engine) as session:
+		statement = select(Model).where(Model.model_id == model_id)
+		model = session.exec(statement).first()
+	return model
