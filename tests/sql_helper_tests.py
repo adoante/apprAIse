@@ -22,5 +22,10 @@ from database.sql_helper import *
 # 	session.commit()
 # print(get_customization(0))
 
-
+# Test get_favorite()
+# with Session(engine) as session:
+# 	favorite = Favorite(favorites_id=0, user_id=0, model_id=0)
+# 	session.add(favorite)
+# 	session.commit()
+# print(get_favorite(0))
 
