@@ -37,3 +37,10 @@ def get_model(model_id: int):
 		statement = select(Model).where(Model.model_id == model_id)
 		model = session.exec(statement).first()
 	return model
+
+# Get all data from specific device by DEVICE_ID
+def get_device(device_id: int):
+	with Session(engine) as session:
+		statement = select(Device).where(Device.device_id == device_id)
+		device = session.exec(statement).first()
+	return device
