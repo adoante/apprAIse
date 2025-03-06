@@ -17,9 +17,16 @@ def get_customization(customization_id: int):
 		customization = session.exec(statement).first()
 	return customization
 
-# Get all data from specific favorite by Favorite_ID
+# Get all data from specific favorite by FAVORITE_ID
 def get_favorite(favorites_id: int):
 	with Session(engine) as session:
 		statement = select(Favorite).where(Favorite.favorites_id == favorites_id)
 		favorite = session.exec(statement).first()
 	return favorite
+
+# Get all data from specific chipset by CHIPSET_ID
+def get_chipset(chipset_id: int):
+	with Session(engine) as session:
+		statement = select(Chipset).where(Chipset.chipset_id == chipset_id)
+		chipset = session.exec(statement).first()
+	return chipset
