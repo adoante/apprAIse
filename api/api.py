@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import database.database_getters as database
+import database.sql_helper as database
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
