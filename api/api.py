@@ -39,105 +39,60 @@ def read_root():
 
 # get specific user by id
 @app.get("/user/{user_id}")
-def read_user(user_id: int):
+def read_user(user_id: int) -> database.User:
     user = database.get_user(user_id)
 
     if user == None:
         raise HTTPException(status_code = 404, detail = "User not found.")
     
-    response = JSONResponse(
-        status_code = 200,
-        content = {
-            "user_id": user.user_id,
-            "user_name": user.user_name,
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.email,
-            "password_hash": user.password_hash,
-            "qai_hub_api_token": user.qai_hub_api_token,
-            "customization_id": user.customization_id
-        }
-    )
-
-    return response
+    return user
 
 # get specific customization by customization id
 @app.get("/customization/{customization_id}")
-def read_customization(customization_id: int):
+def read_customization(customization_id: int) -> database.Customization:
     customization = database.get_customization(customization_id)
 
     if customization == None:
         raise HTTPException(status_code = 404, detail = "Customization not found.")
     
-    response = JSONResponse(
-        status_code = 200,
-        content = {
-            "customization_id": customization.customization_id,
-            "favorite_id": customization.favorite_id
-        }
-    )
-    
-    return response
+    return customization
 
 # get specific favorites by favorites id
 @app.get("/favorite/{favorites_id}")
-def read_favorite(favorites_id: int):
+def read_favorite(favorites_id: int) -> database.Favorite:
     favorite = database.get_favorite(favorites_id)
     
     if favorite == None:
         raise HTTPException(status_code = 404, detail = "Favorite not found.")
     
-    response = JSONResponse(
-        status_code = 200,
-        content = {
-            "favorites_id": favorite.favorites_id,
-            "user_id": favorite.user_id,
-            "model_id": favorite.model_id
-        }
-    )
-    
-    return response
+    return favorite
 
 # get specific chipset by chipset id
 @app.get("/chipset/{chipset_id}")
-def read_chipset(chipset_id: int):
+def read_chipset(chipset_id: int) -> database.Chipset:
     chipset = database.get_chipset(chipset_id)
     
     if chipset == None:
         raise HTTPException(status_code = 404, detail = "Chipset not found.")
     
-    response = JSONResponse(
-        status_code = 200,
-        content = {
-            "chipset_id": chipset.chipset_id,
-            "name": chipset.name,
-            "manufacturer": chipset.manufacturer,
-            "version": chipset.version
-        }
-    )
-    
-    return response
+    return chipset
 
+# get specific model by chipset id
 @app.get("/model/{model_id}")
-def read_model(model_id: int):
+def read_model(model_id: int) -> database.Model:
     model = database.get_model(model_id)
     
     if model == None:
         raise HTTPException(status_code = 404, detail = "Model not found.")
     
-    response = JSONResponse(
-        status_code = 200,
-        content = {
-            "model_id": model.model_id,
-            "name": model.name,
-            "github_link": model.github_link,
-            "hugging_face_link": model.hugging_face_link,
-            "research_paper_link": model.research_paper_link,
-            "model_end_point": model.model_end_point,
-            "input_resolution": model.input_resolution,
-            "parameters": model.parameters,
-            "model_size": model.model_size
-        }
-    )
+    return model
+
+# get specific device by device id
+@app.get("/device/{device_id}")
+def read_device(device_id: int) -> database.Device:
+    device = database.get_device(device_id)
     
-    return response
+    if device == None:
+        raise HTTPException(status_code = 404, detail = "Device not found.")
+    
+    return device
