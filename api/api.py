@@ -61,6 +61,7 @@ def read_user(user_id: int):
 
     return response
 
+# get specific customization by customization id
 @app.get("/customization/{customization_id}")
 def read_customization(customization_id: int):
     customization = database.get_customization(customization_id)
@@ -78,6 +79,7 @@ def read_customization(customization_id: int):
     
     return response
 
+# get specific favorites by favorites id
 @app.get("/favorite/{favorites_id}")
 def read_favorite(favorites_id: int):
     favorite = database.get_favorite(favorites_id)
@@ -91,6 +93,50 @@ def read_favorite(favorites_id: int):
             "favorites_id": favorite.favorites_id,
             "user_id": favorite.user_id,
             "model_id": favorite.model_id
+        }
+    )
+    
+    return response
+
+# get specific chipset by chipset id
+@app.get("/chipset/{chipset_id}")
+def read_chipset(chipset_id: int):
+    chipset = database.get_chipset(chipset_id)
+    
+    if chipset == None:
+        raise HTTPException(status_code = 404, detail = "Chipset not found.")
+    
+    response = JSONResponse(
+        status_code = 200,
+        content = {
+            "chipset_id": chipset.chipset_id,
+            "name": chipset.name,
+            "manufacturer": chipset.manufacturer,
+            "version": chipset.version
+        }
+    )
+    
+    return response
+
+@app.get("/model/{model_id}")
+def read_model(model_id: int):
+    model = database.get_model(model_id)
+    
+    if model == None:
+        raise HTTPException(status_code = 404, detail = "Model not found.")
+    
+    response = JSONResponse(
+        status_code = 200,
+        content = {
+            "model_id": model.model_id,
+            "name": model.name,
+            "github_link": model.github_link,
+            "hugging_face_link": model.hugging_face_link,
+            "research_paper_link": model.research_paper_link,
+            "model_end_point": model.model_end_point,
+            "input_resolution": model.input_resolution,
+            "parameters": model.parameters,
+            "model_size": model.model_size
         }
     )
     
