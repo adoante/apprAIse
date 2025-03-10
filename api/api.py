@@ -75,7 +75,23 @@ def read_customization(customization_id: int):
             "favorite_id": customization.favorite_id
         }
     )
+    
+    return response
 
-    print(response)
-
+@app.get("/favorite/{favorites_id}")
+def read_favorite(favorites_id: int):
+    favorite = database.get_favorite(favorites_id)
+    
+    if favorite == None:
+        raise HTTPException(status_code = 404, detail = "Favorite not found.")
+    
+    response = JSONResponse(
+        status_code = 200,
+        content = {
+            "favorites_id": favorite.favorites_id,
+            "user_id": favorite.user_id,
+            "model_id": favorite.model_id
+        }
+    )
+    
     return response
