@@ -21,11 +21,11 @@ from database.sql_helper import *
 # print(get_user(0))
 
 # Test get_customization()
-with Session(engine) as session:
-	customization = Customization(customization_id=0)
-	session.add(customization)
-	session.commit()
-print(get_customization(0))
+# with Session(engine) as session:
+# 	customization = Customization(customization_id=0)
+# 	session.add(customization)
+# 	session.commit()
+# print(get_customization(0))
 
 # Test get_favorite()
 # with Session(engine) as session:
