@@ -18,25 +18,6 @@ app.add_middleware(
 def read_root():
     return {'message': 'Hello World'}
 
-# Example endpoint
-
-# @app.get("/hero/{name}")
-# def read_hero(name: str):
-#     hero = database.get_hero(name)
-    
-#     if hero == None:
-#         raise HTTPException(status_code=404, detail="Hero not found.")
-    
-#     response = JSONResponse(
-#         status_code=200, content={
-# 				"id": hero.id,
-# 				"name": hero.name,
-# 				"secret_name": hero.secret_name,
-# 				"name": hero.name
-# 			})
-
-#     return response
-
 # get specific user by id
 @app.get("/user/{user_id}")
 def read_user(user_id: int) -> database.User:
