@@ -83,6 +83,6 @@ def read_benchmark(benchmark_id: int) -> database.Benchmark:
     benchmark = database.get_benchmark(benchmark_id)
 
     if benchmark == None:
-        raise HTTPException(status_code = 404, detail = "Benchmark not found")
+        raise HTTPException(status_code = 404, detail = "Benchmark not found.")
     
     return benchmark
