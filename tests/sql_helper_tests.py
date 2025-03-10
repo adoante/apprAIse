@@ -1,5 +1,10 @@
 from database.sql_helper import *
 
+# You can uncomment the whole file to add dummy test data.
+# You only need to run it once or you'll get an error b/c the
+# dummy data was already added. You can also just uncomment the parts
+# you need to test.
+
 # Test get_user()
 # with Session(engine) as session:
 # 	user = User(
@@ -16,11 +21,11 @@ from database.sql_helper import *
 # print(get_user(0))
 
 # Test get_customization()
-# with Session(engine) as session:
-# 	customization = Customization(customization_id=0)
-# 	session.add(customization)
-# 	session.commit()
-# print(get_customization(0))
+with Session(engine) as session:
+	customization = Customization(customization_id=0)
+	session.add(customization)
+	session.commit()
+print(get_customization(0))
 
 # Test get_favorite()
 # with Session(engine) as session:
