@@ -96,3 +96,12 @@ def read_device(device_id: int) -> database.Device:
         raise HTTPException(status_code = 404, detail = "Device not found.")
     
     return device
+
+@app.get("/benchmark/{benchmark_id}")
+def read_benchmark(benchmark_id: int) -> database.Benchmark:
+    benchmark = database.get_benchmark(benchmark_id)
+
+    if benchmark == None:
+        raise HTTPException(status_code = 404, detail = "Benchmark not found")
+    
+    return benchmark
