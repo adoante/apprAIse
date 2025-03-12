@@ -52,3 +52,22 @@ function read_hero(event) {
 			outputElement.innerHTML = `'${heroName}' not found.`
 		});
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	const dropdownBtn = document.querySelector(".dropdown-btn");
+	const dropdownContent = document.querySelector(".dropdown-content");
+
+	// Toggle dropdown on button click
+	dropdownBtn.addEventListener("click", function (event) {
+		event.stopPropagation(); // Prevent click from closing immediately
+		dropdownContent.classList.toggle("show");
+	});
+
+	// Close dropdown when clicking outside
+	window.addEventListener("click", function (event) {
+		if (!dropdownBtn.contains(event.target)) {
+			dropdownContent.classList.remove("show");
+		}
+	});
+});
