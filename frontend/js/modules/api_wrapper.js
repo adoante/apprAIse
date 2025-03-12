@@ -35,7 +35,8 @@ async function fetchData(endpoint, id = "") {
         const response = await fetch(url);
 
         if (!response.ok) {
-            throw new Error(`${endpoint.slice(1)} not found: ${response.statusText} (${response.status})`);
+			let endpoint_name = endpoint.slice(1).charAt(0).toUpperCase() + endpoint.slice(2)
+            throw new Error(`${endpoint_name} ${response.statusText} (${response.status})`);
         }
 
         return await response.json();
