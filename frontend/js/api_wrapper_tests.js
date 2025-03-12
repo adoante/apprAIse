@@ -3,7 +3,7 @@ Understanding '.then()':
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
 */
 
-import api from './api_wrapper.js';
+import api from './modules/api_wrapper.js';
 
 // Always passes - Root API test
 api.read_root()
