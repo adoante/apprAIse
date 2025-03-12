@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="LeaderboardScript.js"></script>
-	<link rel="stylesheet" href="LeaderboardStyle.css">
 	<link rel="stylesheet" href="..\vanilla.css">
+	<link rel="stylesheet" href="LeaderboardStyle.css">
 	<title>Proof of Concept</title>
 </head>
 <body>
@@ -26,8 +26,14 @@
 		</div>
 		<div class="dropdowns">
 			<div class="dropdown">
-				<button onclick="activateDropDown()" class="dropdown-btn">Devices ▼</button>
+				<button onclick="activateDropDown('devices')" class="dropdown-btn">Devices ▼</button>
 				<div class="dropdown-content" id="devices">
+					<a href="#">Snapdragon 8 Elite QRD</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button onclick="activateDropDown('libraries')" class="dropdown-btn">Libraries ▼</button>
+				<div class="dropdown-content" id="libraries">
 					<a href="#">Snapdragon 8 Elite QRD</a>
 				</div>
 			</div>

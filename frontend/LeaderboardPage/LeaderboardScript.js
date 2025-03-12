@@ -1,5 +1,5 @@
-function activateDropDown(){
-    document.getElementById("devices").classList.toggle("show")
+function activateDropDown(id){
+    document.getElementById(id).classList.toggle("show")
 }
 
 window.onclick = function(event) {
