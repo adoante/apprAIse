@@ -1,18 +1,18 @@
 ## Set up
 
-First create a virtual environment
+### First create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate environment (Windows Powershell)
+### Activate environment (Windows Powershell)
 
 ```bash
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install requirements
+### Install requirements
 
 ```bash
 pip install -r requirements
@@ -20,12 +20,18 @@ pip install -r requirements
 
 ## Run app
 
-Start up API
+### Start up API
 
 ```bash
 fastapi dev .\api\api.py
 ```
 
-Open website
+### Open website
 
-just open the `./index.html` file in dir `./frontend` using a web browser
+cd into dir .\frontend
+
+```bash
+python -m http.server -7800
+```
+
+Go to http://localhost:PORT
