@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript" src="LeaderboardScript.js"></script>
 	<link rel="stylesheet" href="..\vanilla.css">
 	<link rel="stylesheet" href="LeaderboardStyle.css">
 	<title>Proof of Concept</title>
@@ -11,7 +10,7 @@
 <body>
 
 	<div class="navbarCustom">
-		<h1 class="title"><a class="navMenu title" href="./index.html">ApprAIse</a></h1>
+		<h1 class="title"><a class="navMenu title" href="../HomePage/index.html">ApprAIse</a></h1>
 
 		<ul>
 			<li><a class="navMenu" href="../AboutPage/About.html">About</a></li>
@@ -26,15 +25,23 @@
 		</div>
 		<div class="dropdowns">
 			<div class="dropdown">
-				<button onclick="activateDropDown('devices')" class="dropdown-btn">Devices ▼</button>
-				<div class="dropdown-content" id="devices">
-					<a href="#">Snapdragon 8 Elite QRD</a>
+				<button class="dropdown-btn">Dropdown 1</button>
+				<div class="dropdown-content">
+					<p>Content for dropdown 1.</p>
 				</div>
 			</div>
+		
 			<div class="dropdown">
-				<button onclick="activateDropDown('libraries')" class="dropdown-btn">Libraries ▼</button>
-				<div class="dropdown-content" id="libraries">
-					<a href="#">Snapdragon 8 Elite QRD</a>
+				<button class="dropdown-btn">Dropdown 2</button>
+				<div class="dropdown-content">
+					<p>Content for dropdown 2.</p>
+				</div>
+			</div>
+		
+			<div class="dropdown">
+				<button class="dropdown-btn">Dropdown 3</button>
+				<div class="dropdown-content">
+					<p>Content for dropdown 3.</p>
 				</div>
 			</div>
 		</div>
@@ -54,4 +61,5 @@
 	</div>
 
 </body>
+<script type="text/javascript" src="LeaderboardScript.js"></script>
 </html>

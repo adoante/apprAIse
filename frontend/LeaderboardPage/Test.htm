@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .dropdown {
+            width: 300px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-btn {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            outline: none;
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #f1f1f1;
+            padding: 0 10px;
+        }
+
+        .dropdown-content p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dropdown">
+        <button class="dropdown-btn">Dropdown 1</button>
+        <div class="dropdown-content">
+            <p>Content for dropdown 1.</p>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropdown-btn">Dropdown 2</button>
+        <div class="dropdown-content">
+            <p>Content for dropdown 2.</p>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropdown-btn">Dropdown 3</button>
+        <div class="dropdown-content">
+            <p>Content for dropdown 3.</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll(".dropdown-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                let content = this.nextElementSibling;
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null; // Close dropdown
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px"; // Open dropdown
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
