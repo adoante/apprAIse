@@ -1,0 +1,38 @@
+.exampleImg {
+    border-radius: 50%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    float: right;
+}
+
+.exampleClassification {
+    /*margin-left: 15vw;*/
+}
+
+.title.home {
+    display: block;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 9vw;
+    font-weight: 400;
+    text-align: center;
+}
+
+.TitleAndExample {
+    margin-top: 200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 1000px;
+}
+
+.subtext {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+    font-size: 2vw;
+    font-style: italic;
+}
