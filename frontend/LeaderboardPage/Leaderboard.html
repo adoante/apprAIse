@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="..\vanilla.css">
 	<link rel="stylesheet" href="LeaderboardStyle.css">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 	<title>Proof of Concept</title>
 </head>
+
 <body>
 
 	<div class="navbarCustom">
@@ -25,36 +28,41 @@
 		</div>
 		<div class="dropdowns">
 			<div class="dropdown">
-				<button class="dropdown-btn">Dropdown 1</button>
+				<button class="dropdown-btn">Devices</button>
 				<div class="dropdown-content">
-					<p>Content for dropdown 1.</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
 				</div>
 			</div>
-		
+
 			<div class="dropdown">
-				<button class="dropdown-btn">Dropdown 2</button>
+				<button class="dropdown-btn">Libraries</button>
 				<div class="dropdown-content">
-					<p>Content for dropdown 2.</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">ONNX Runtime</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm© AI Engine Direct</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
 				</div>
 			</div>
-		
 			<div class="dropdown">
-				<button class="dropdown-btn">Dropdown 3</button>
+				<button class="dropdown-btn">Sort By</button>
 				<div class="dropdown-content">
-					<p>Content for dropdown 3.</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Accuracy</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Peak Memory</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Memory Usage</p>
 				</div>
 			</div>
 		</div>
 		<div>
 			<table>
-				<tr>
-					<th>Rank</th>
+				<tr class="header">
+					<th class="topLeft">Rank</th>
 					<th>Model Name</th>
 					<th>Accuracy</th>
 					<th>Peak Memory</th>
 					<th>Memory Usage</th>
-					<th>Inference Time</th>
-					
+					<th class="topRight">Inference Time</th>
+
 				</tr>
 			</table>
 		</div>
@@ -62,4 +70,5 @@
 
 </body>
 <script type="text/javascript" src="LeaderboardScript.js"></script>
+
 </html>
