@@ -1,0 +1,201 @@
+.exampleImg {
+    border-radius: 50%;
+    max-width: clamp(50px, 30vw, 600px);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4/ span 9;
+    grid-row: 1/ span 8;
+    z-index: -1;
+}
+
+.title.home {
+    display: block;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 8vw;
+    font-weight: 400;
+    text-align: center;
+}
+
+.TitleAndExample {
+    margin-top: 200px;
+    margin-bottom: 200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+}
+
+.exampleClassification {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.subtext {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.LeaderboardBtn {
+    background-color: #E566FF;
+    padding: 7px 25px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.LeaderboardBtn a {
+    text-decoration: none;
+}
+
+.progress-container {
+    width: 300px;
+    /* Adjust as needed */
+    height: 15px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    border: 1px black;
+}
+
+.progress-bar {
+    height: 100%;
+
+    border-radius: 15px;
+    /* Default percentage */
+
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-bar.tiger {
+    width: 75%;
+    background-color: #F346FF;
+}
+
+.progress-bar.Leopard {
+    width: 22%;
+    background-color: #35BFFF;
+}
+
+.progress-bar.Cheetah {
+    width: 3%;
+    background-color: #FFA449;
+}
+
+.progress-label {
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.predictionBar {
+    padding: 10px 20px;
+    padding-top: 5px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.predictionBar.tiger {
+    grid-column: 2/ span 4;
+    grid-row: 6/ span 1;
+    box-shadow: 5px 5px rgba(243, 70, 255, 0.5);
+}
+
+.predictionBar.Leopard {
+    grid-column: 3/ span 4;
+    grid-row: 7/ span 1;
+    box-shadow: 5px 5px rgba(53, 191, 255, 0.5);
+}
+
+.predictionBar.Cheetah {
+    grid-column: 4/ span 4;
+    grid-row: 8/ span 1;
+    box-shadow: 5px 5px rgba(255, 164, 73, 0.5);
+}
+
+.predictionLabel {
+    color: black;
+    margin: 0;
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+
+.barAndPrecent {
+    display: flex;
+}
+
+.precentage {
+    display: inline;
+    margin: 0px;
+    margin-left: 3px;
+    font-size: 10px;
+    color: black;
+}
+
+.Services {
+    background-color: #2D2D2D;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 50px;
+    margin-bottom: 100px;
+    padding: 50px;
+}
+
+.serviceBlock {
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.serviceBlock.Customization {
+    box-shadow: 5px 5px rgba(243, 70, 255, 0.5);
+}
+
+.serviceBlock.Search {
+    box-shadow: 5px 5px rgba(53, 191, 255, 0.5);
+}
+
+.serviceBlock.Catalog {
+    box-shadow: 5px 5px rgba(255, 164, 73, 0.5);
+}
+
+.serviceBlock.Leaderboard {
+    box-shadow: 5px 5px rgba(243, 70, 255, 0.5);
+}
+
+.serviceBlock.Comparison {
+    box-shadow: 5px 5px rgba(53, 191, 255, 0.5);
+}
+
+.serviceBlock.CaP {
+    box-shadow: 5px 5px rgba(255, 164, 73, 0.5);
+}
+
+.serviceImg {
+    width: 50px;
+    height: auto;
+    margin: 0;
+}
+
+.serviceTitle {
+    margin: 0;
+    font-weight: 500;
+}
+
+.serviceDes {
+    margin: 0;
+}

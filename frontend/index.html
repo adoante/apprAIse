@@ -7,20 +7,109 @@
 	<script type="text/javascript" src="scripts.js"></script>
 	<script type="module" src="js/modules/api_wrapper.js"></script>
 	<script type="module" src="js/api_wrapper_tests.js"></script>
+	<link rel="stylesheet" href="indexStyle.css">
 	<link rel="stylesheet" href="vanilla.css">
 	<title>ApprAIse</title>
 </head>
 
 <body>
 
-	<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
 
-	<ul>
-		<li><a class="navMenu" href="About.html">About</a></li>
-		<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
-		<li><a class="navMenu" href="Models.html">Models</a></li>
-		<li><a class="navMenu edge" href="Login.html">Login</a></li>
-	</ul>
+		<ul>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+	</div>
+	<div class="page">
+		<div class="TitleAndExample">
+			<div>
+				<h1 class="title home">ApprAIse</h1>
+				<p class="subtext">Evaluating and comparing Image Classification AI Models </p>
+				<button class="LeaderboardBtn"><a href="Leaderboard.html">Leaderboard</a></button>
+			</div>
+			<div class="exampleClassification">
+				<img class="exampleImg" src="images/HomePagePic_Tiger2.jpg">
+				<div class="predictionBar tiger">
+					<p class="predictionLabel">Tiger</p>
+					<div class="barAndPrecent">
+						<div class="progress-container">
+							<div class="progress-bar tiger" id="progress-bar"></div>
+						</div>
+						<p class="precentage">75%</p>
+					</div>
+				</div>
+
+				<div class="predictionBar Leopard">
+					<p class="predictionLabel">Leopard</p>
+					<div class="barAndPrecent">
+						<div class="progress-container">
+							<div class="progress-bar Leopard" id="progress-bar"></div>
+						</div>
+						<p class="precentage">22%</p>
+					</div>
+				</div>
+
+				<div class="predictionBar Cheetah">
+					<p class="predictionLabel">Cheetah</p>
+					<div class="barAndPrecent">
+						<div class="progress-container">
+							<div class="progress-bar Cheetah" id="progress-bar"></div>
+						</div>
+						<p class="precentage">3%</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="pageTitle">
+			<h1 class="title">Services</h1>
+		</div>
+
+		<div class="Services">
+			<div class="serviceBlock Customization">
+				<img class="serviceImg" src="Images/color-selection.png" alt="">
+				<h2 class="serviceTitle">Customization</h2>
+				<p class="serviceDes">Customizable graphs, tables, colors, and certain UI elements.</p>
+			</div>
+
+			<div class="serviceBlock Search">
+				<img class="serviceImg" src="Images/search.png" alt="">
+				<h2 class="serviceTitle">Search</h2>
+				<p class="serviceDes">Simple and effect model filtering and searching.</p>
+			</div>
+
+			<div class="serviceBlock Catalog">
+				<img class="serviceImg" src="Images/catalogue.png" alt="">
+				<h2 class="serviceTitle">Catalog</h2>
+				<p class="serviceDes">A catalog of QAI Hub’s Image Classification models.</p>
+			</div>
+
+			<div class="serviceBlock Leaderboard">
+				<img class="serviceImg" src="Images/podium.png" alt="">
+				<h2 class="serviceTitle">Leaderboard</h2>
+				<p class="serviceDes">A ranked leaderboard of all image classification models on QAI Hub.</p>
+			</div>
+
+			<div class="serviceBlock Comparison">
+				<img class="serviceImg" src="Images/balance.png" alt="">
+				<h2 class="serviceTitle">Comparison </h2>
+				<p class="serviceDes">Easy and visual compare and contrasting of user selected models.</p>
+			</div>
+
+			<div class="serviceBlock CaP">
+				<img class="serviceImg" src="Images/code-file.png" alt="">
+				<h2 class="serviceTitle">Code and Paper</h2>
+				<p class="serviceDes">Links to AI Models code on GitHub, Hugging Face and to models paper.</p>
+			</div>
+		</div>
+
+
+	</div>
 
 </body>
 
