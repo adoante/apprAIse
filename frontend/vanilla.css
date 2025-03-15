@@ -109,7 +109,7 @@ body {
     color: var(--text-color);
     margin: 0 auto;
     /*max-width: 75ch;*/
-    padding: 0 0.5rem;
+    /*padding: 0 0.5rem;*/
 }
 
 body,
@@ -448,10 +448,10 @@ li {
     margin-bottom: 50px;
 }
 
-.page {
+/*.page {
     padding-left: 4vw;
     padding-right: 4vw;
-}
+}*/
 
 
 /*564AFF*/
