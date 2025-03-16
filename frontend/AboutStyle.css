@@ -36,6 +36,7 @@
     font-size: 30px;
     display: flex;
     align-items: center;
+    margin-bottom: 75px;
 }
 
 .repoBtn {
@@ -43,7 +44,7 @@
     text-align: center;
     align-items: center;
     font-size: 20px;
-    padding: 5px;
+    padding: 10px;
     cursor: pointer;
     margin-left: 50px;
     min-width: 255px;
@@ -69,4 +70,73 @@
     margin-left: 25px;
     width: 30px;
     height: 30px;
+}
+
+.teamMembers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 50px;
+    padding: 75px;
+    background-color: #2D2D2D;
+}
+
+.memberCard {
+    background-color: white;
+    display: flex;
+    border-radius: 15px;
+}
+
+.memberPic {
+    display: flex;
+    max-width: 200px;
+    margin: 32px;
+}
+
+.memberText {
+    align-items: center;
+    margin: auto;
+}
+
+.Name {
+    margin: 0;
+    color: #000000;
+}
+
+.jobTitle {
+    margin: 0;
+    color: #000000
+}
+
+.icons {
+    display: flex;
+}
+
+.icon {
+    width: 30px;
+    margin: 0;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.TextBar4 {
+    text-align: center;
+    padding: 100px;
+    font-size: 40px;
+}
+
+.partners {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.partnerImg {
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.pageTitle.mtt {
+    margin-bottom: 75px;
 }
