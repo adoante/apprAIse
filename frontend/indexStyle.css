@@ -152,6 +152,8 @@
     row-gap: 50px;
     margin-bottom: 100px;
     padding: 50px;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .serviceBlock {
