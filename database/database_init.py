@@ -55,6 +55,8 @@ class Benchmark(SQLModel, table=True):
     benchmark_first_load_mem: int
     benchmark_warm_load_time: int
     benchmark_warm_load_mem: int
+    benchmark_accuracy_top1: float
+    benchmark_accuracy_top2: float
     model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
 
 #hero_1 = Hero(name="Deadpond", secret_name="Dive Wilson")
