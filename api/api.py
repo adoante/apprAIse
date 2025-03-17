@@ -3,6 +3,8 @@ import database.sql_helper as database
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
+from typing import List, Optional
+from enum import Enum
 
 app = FastAPI()
 
@@ -78,42 +80,53 @@ def read_device(device_id: int) -> database.Device:
     
     return device
 
+class SortMetric(str, Enum):
+    accuracy_top1 = "accuracy_top1"
+    accuracy_top5 = "accuracy_top5"
+    inference_time = "inference_time"
+    memory_usage = "memory_usage"
+    npu_layers = "npu_layers"
+
+class SortOrder(str, Enum):
+    asc = "asc"
+    desc = "desc"
+
 @app.get("/benchmark/")
 def read_all_benchmarks(
-        device: str | None = None, library: str | None = None, sort: str | None = None
-    ) -> dict[str, list[database.Benchmark]]:
+        device: Optional[str] = None,
+        library: Optional[str] = None,
+        sort: Optional[SortMetric] = None,
+        order: SortOrder = SortOrder.asc,
+    ) -> dict[str, List[database.Benchmark]]:
     
     benchmarks = database.get_all_benchmarks()
-
+    
     if not benchmarks:
         raise HTTPException(status_code = 404, detail = "Benchmarks not found.")
 
     # Filter by device
-    if device != None:
+    if device:
         device = device.lower()
-        filtered_benchmarks = []
-        for benchmark in benchmarks:
-            device_name = database.get_device(benchmark.device_id).device_name.lower()
-            if device_name == device:
-                filtered_benchmarks.append(benchmark)
-        benchmarks = filtered_benchmarks
+        benchmarks = [
+            benchmark for benchmark in benchmarks 
+            if database.get_device(benchmark.device_id).device_name.lower() == device
+        ]
 
     # Filter by library
-    if library != None:
+    if library:
         library = library.lower()
-        filtered_benchmarks = []
-        for benchmark in benchmarks:
-            library_name = database.get_library(benchmark.library_id).library_name.lower()
-            if library_name == library:
-                filtered_benchmarks.append(benchmark)
-        benchmarks = filtered_benchmarks
+        benchmarks = [
+            benchmark for benchmark in benchmarks 
+            if database.get_library(benchmark.library_id).library_name.lower() == library
+        ]
 
     # Sort by metric
-    if sort == "accuracy_top1":
-        benchmarks = sorted(benchmarks, key = lambda x: x.accuracy_top1, reverse = True)
-    elif sort == "accuracy_top5":
-        benchmarks = sorted(benchmarks, key = lambda x: x.accuracy_top5, reverse = True)
-
+    if sort:
+        reverse_order = order == SortOrder.desc
+        benchmarks = sorted(
+            benchmarks, key=lambda x: getattr(x, sort.value, 0), reverse=reverse_order
+        )
+    
     return {"benchmarks": benchmarks}
 
 @app.get("/benchmark/{benchmark_id}")
