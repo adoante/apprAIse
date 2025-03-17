@@ -55,7 +55,7 @@ def get_benchmark(benchmark_id: int):
 # Get all data from specific device by LIBRARY_ID
 def get_library(library_id: int):
 	with Session(engine) as session:
-		statement = select(Device).where(Library.library_id == library_id)
+		statement = select(Library).where(Library.library_id == library_id)
 		library = session.exec(statement).first()
 	return library
 
