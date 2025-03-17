@@ -4,22 +4,119 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript" src="scripts.js"></script>
+	<script type="text/javascript" src="ModelsScript.js"></script>
+	<link rel="stylesheet" href="ModelsStyle.css">
 	<link rel="stylesheet" href="vanilla.css">
 	<title>Models</title>
 </head>
 
 <body>
 
-	<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
 
-	<ul>
-		<li><a class="navMenu" href="About.html">About</a></li>
-		<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
-		<li><a class="navMenu" href="Models.html">Models</a></li>
-		<li><a class="navMenu edge" href="Login.html">Login</a></li>
-	</ul>
-	<h1>Model</h1>
+		<ul>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+	</div>
+	<div class="page">
+		<div class="pageTitle">
+			<h1 class="title">Models</h1>
+		</div>
+		<div class="dropdowns">
+			<div class="dropdown">
+				<button class="dropdown-btn">Devices</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropdown-btn">Libraries</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">ONNX Runtime</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm© AI Engine Direct</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropdown-btn">Metric</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Accuracy</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Peak Memory</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Memory Usage</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropdown-btn">Dataset</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Imagenet</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button class="dropdown-btn">Model Size</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Accuracy</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Peak Memory</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Memory Usage</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="models">
+			<a href="ExampleModel.html">
+				<div class="model blue">
+					<div class="modelColor blue"></div>
+					<img class="modelImg" src="Images/DoveModel.PNG" alt="">
+					<p class="modelTitle">Beit</p>
+					<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+				</div>
+			</a>
+
+			<div class="model green">
+				<div class="modelColor green"></div>
+				<img class="modelImg" src="Images/BallonModel.PNG" alt="">
+				<p class="modelTitle">ConvNext-Base</p>
+				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+			</div>
+
+			<div class="model pink">
+				<div class="modelColor pink"></div>
+				<img class="modelImg" src="Images/BallonModel.PNG" alt="">
+				<p class="modelTitle">ConvNext-Tiny</p>
+				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+			</div>
+
+			<div class="model purple">
+				<div class="modelColor purple"></div>
+				<img class="modelImg" src="Images/BallonModel.PNG" alt="">
+				<p class="modelTitle">ConvNext-Tiny-W8A16-Quantized</p>
+				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+			</div>
+
+			<div class="model red">
+				<div class="modelColor red"></div>
+				<img class="modelImg" src="Images/KolaModel.PNG" alt="">
+				<p class="modelTitle">DenseNet-121</p>
+				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+			</div>
+
+			<div class="model orange">
+				<div class="modelColor orange"></div>
+				<img class="modelImg" src="Images/KolaModel.PNG" alt="">
+				<p class="modelTitle">DenseNet-121-Quantized</p>
+				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 
