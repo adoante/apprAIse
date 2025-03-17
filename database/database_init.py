@@ -52,6 +52,9 @@ class Benchmark(SQLModel, table=True):
 	benchmark_id: Optional[int] = Field(default=None, primary_key=True)
 	accuracy_top1: float
 	accuracy_top5: float
+	inference_time: float
+	memory_usage: int
+	npu_layers: int
 	device_id: Optional[int] = Field(default=None, foreign_key="device.device_id")
 	model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
 	library_id: Optional[int] = Field(default=None, foreign_key="library.library_id")
@@ -132,15 +135,22 @@ library_data = [
 ]
 
 
-# accuracy_top1, accuracy_top5, device_id, model_id, library_id
+# accuracy_top1,
+# accuracy_top5,
+# inference_time: float
+# memory_usage: int
+# npu_layers: int
+# device_id,
+# model_id,
+# library_id
 
 benchmark_data = [
-	(77.12, 99.33, "Samsung Galaxy S24", "wideresnet50", "tflite"),
-	(79.94, 94.78, "Samsung Galaxy S24", "vit", "tflite"),
-	(79.18, 94.5, "Samsung Galaxy S24", "swin_tiny", "tflite"),
-	(81.98, 95.88, "Samsung Galaxy S24", "swin_small", "tflite"),
-	(81.9, 95.97, "Samsung Galaxy S24", "swin_base", "tflite"),
-	(54.83, 78.11, "Samsung Galaxy S24", "squeezenet1_1", "tflite"),
+	(77.12, 99.33, 3.40, 88, 79,"Samsung Galaxy S24", "wideresnet50", "tflite"),
+	(79.94, 94.78, 7.09, 282, 1579,"Samsung Galaxy S24", "vit", "tflite"),
+	(79.18, 94.5, 5.69, 154, 837,"Samsung Galaxy S24", "swin_tiny", "tflite"),
+	(81.98, 95.88, 11.8, 258, 1563,"Samsung Galaxy S24", "swin_small", "tflite"),
+	(81.9, 95.97, 14.5, 375, 1568,"Samsung Galaxy S24", "swin_base", "tflite"),
+	(54.83, 78.11, 0.413, 18, 41,"Samsung Galaxy S24", "squeezenet1_1", "tflite"),
 ]
 
 # model_name: str
@@ -320,17 +330,21 @@ with Session(engine) as session:
 				   parameters=model[7],
 				   model_size=model[8])
 		session.add(ai_model)
-# accuracy_top1, accuracy_top5, device_id, model_id, library_id
+
 	# Add benchmarks
 	for benchmark in benchmark_data:
-		library = session.exec(select(Library).where(Library.library_name == benchmark[4])).first().library_id
-		model = session.exec(select(Model).where(Model.model_name == benchmark[3])).first().model_id
-		device = session.exec(select(Device).where(Device.device_name == benchmark[2])).first().device_id
+		library = session.exec(select(Library).where(Library.library_name == benchmark[7])).first().library_id
+		model = session.exec(select(Model).where(Model.model_name == benchmark[6])).first().model_id
+		device = session.exec(select(Device).where(Device.device_name == benchmark[5])).first().device_id
 		ai_benchmark = Benchmark(
 			accuracy_top1=benchmark[0],
 			accuracy_top5=benchmark[1],
+			inference_time=benchmark[2],
+			memory_usage=benchmark[3],
+			npu_layers=benchmark[4],
 			device_id=device,
 			model_id=model,
 			library_id=library)
 		session.add(ai_benchmark)
+		
 	session.commit()
