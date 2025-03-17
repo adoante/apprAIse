@@ -126,7 +126,10 @@ devices_data = [
     ("Xiaomi 12 Pro", "mobile", "Xiaomi", 7)
 ]
 
-
+library_data = [
+    "tflite",
+    "onnx"
+]
 
 engine = create_engine("sqlite:///database.db")
 
@@ -143,4 +146,10 @@ with Session(engine) as session:
     for device_name, device_industry, device_company, chipset_id in devices_data:
         device = Device(device_name= device_name, device_industry= device_industry, device_company= device_company, chipset_id= chipset_id)
         session.add(device)
+
+    # Add libraries
+    for library_name in library_data:
+        library = Library(library_name=library_name)
+        session.add(library)
+        
     session.commit()
