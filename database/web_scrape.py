@@ -105,7 +105,7 @@ def extract_model_details():
 # Open CSV file for writing
 with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
-    header = ["Model URL", "Inference Time", "Input resolution", "Layers", "Memory Usage", "Model checkpoint", "Model size", "Number of parameters"]
+    header = ["Model URL", "Activations (M)", "GMACs", "Inference Time", "Input resolution", "Layers", "Memory Usage", "Model checkpoint", "Model size", "Number of parameters"]
 
     # Write header only if there's data
     writer.writerow(header)
