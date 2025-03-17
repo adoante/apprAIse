@@ -46,6 +46,35 @@ async function fetchData(endpoint, id = "") {
     }
 }
 
+async function filter_benchmarks(endpoint, device = "", library = "", sort = "", order = "") {
+    try {
+        let url = `${baseURL}${endpoint}/`;
+        let params = new URLSearchParams();
+
+        if (device) params.append("device", device);
+        if (library) params.append("library", library);
+        if (sort) params.append("sort", sort);
+        if (order) params.append("order", order);
+
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+
+        let response = await fetch(url);
+        
+        if (!response.ok) {
+            let endpoint_name = endpoint.charAt(1).toUpperCase() + endpoint.slice(2);
+            throw new Error(`${endpoint_name} ${response.statusText} (${response.status})`);
+        }
+
+        return await response.json(); // Returning fetched data
+
+    } catch (error) {
+        console.error(`Error fetching ${endpoint.slice(1)}:`, error);
+        throw error;
+    }
+}
+
 // each endpoint function uses an arrow function.
 // shorthand way of writing functions
 const api = {
@@ -57,6 +86,7 @@ const api = {
     read_model: (model_id) => fetchData("/model", model_id),
     read_device: (device_id) => fetchData("/device", device_id),
     read_benchmark: (benchmark_id) => fetchData("/benchmark", benchmark_id),
+    filter_benchmarks: (device, library, sort, order) => filter_benchmarks("/benchmark", device, library, sort, order)
 };
 
 export default api
