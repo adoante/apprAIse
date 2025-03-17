@@ -53,24 +53,96 @@
 }
 
 .models {
+    background-color: #2d2d2d;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    column-gap: 75px;
+    row-gap: 50px;
+    padding: 75px 5vw;
 }
 
 .model {
     background-color: white;
     color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    flex: 1 1 250px;
 }
+
+.model.blue {
+    box-shadow: 5px 5px rgba(53, 191, 255, 0.5);
+}
+
+.model.green {
+    box-shadow: 5px 5px rgba(35, 134, 54, 0.5);
+}
+
+.model.pink {
+    box-shadow: 5px 5px rgba(252, 105, 255, 0.5);
+}
+
+.model.purple {
+    box-shadow: 5px 5px rgba(151, 71, 255, 0.5);
+}
+
+.model.red {
+    box-shadow: 5px 5px rgba(255, 105, 105, 0.5);
+}
+
+.model.orange {
+    box-shadow: 5px 5px rgba(255, 157, 0, 0.5);
+}
+
 
 .modelTitle {
     text-align: center;
     font-weight: bold;
     margin: 0;
+    grid-row: 8/span 1;
+    grid-column: 1/span 5;
 }
 
 .modelDes {
     text-align: center;
     margin: 0;
-    padding: 0vw 2vw;
+    grid-row: 9/span 1;
+    grid-column: 2/ span 3;
+}
+
+.modelImg {
+    border-radius: 50%;
+    grid-column: 2/span 3;
+    grid-row: 3/span 5;
+}
+
+.modelColor {
+    grid-row: 1/ span 5;
+    grid-column: 1/span 5;
+    border-radius: 15px;
+}
+
+.modelColor.blue {
+    background-color: #35BFFF;
+}
+
+.modelColor.green {
+    background-color: #238636;
+}
+
+.modelColor.pink {
+    background-color: #FC69FF;
+}
+
+.modelColor.purple {
+    background-color: #9747FF;
+}
+
+.modelColor.red {
+    background-color: #FF6969;
+}
+
+.modelColor.orange {
+    background-color: #FF9D00;
 }
