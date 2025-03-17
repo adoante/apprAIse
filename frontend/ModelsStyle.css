@@ -1,19 +1,14 @@
 .dropdowns {
-    transition: show 0.3s ease-in-out;
-    margin: 0 auto;
-    /* Auto margins center the block */
-    /* Center text inside */
     margin-bottom: 50px;
-    display: grid;
-    column-gap: 25px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    justify-content: center;
-    padding: 0px 50px;
+    justify-content: space-evenly;
+    display: flex;
+    gap: 5vw; /* Adjusts spacing dynamically */
+    flex-wrap: wrap; /* Allows items to stack if needed */
 }
 
 .dropdown {
-    width: 100%;
-    margin: 10px 0;
+    max-width: 200px;
+    width: 200px;
     overflow: hidden;
 }
 
@@ -24,10 +19,17 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-    width: 100%;
+    max-width: 200px;
     border-radius: 20px;
     outline: none;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-btn p{
+    margin: 0;
+    white-space: nowrap;
 }
 
 .dropdown-content {
@@ -145,4 +147,14 @@
 
 .modelColor.orange {
     background-color: #FF9D00;
+}
+
+.arrow{
+    width: 25px;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+    transform: rotateX(180deg);
 }
