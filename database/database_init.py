@@ -34,6 +34,7 @@ class Model(SQLModel, table=True):
     github_link: str
     hugging_face_link: str
     research_paper_link: str
+    qai_hub_link: str
     model_end_point: str
     input_resolution: str
     parameters: str
@@ -49,15 +50,15 @@ class Device(SQLModel, table=True):
 
 class Benchmark(SQLModel, table=True):
     benchmark_id: Optional[int] = Field(default=None, primary_key=True)
-    benchmark_est_inf_time: int
-    benchmark_est_peak_mem: int
-    benchmark_first_load_time: int
-    benchmark_first_load_mem: int
-    benchmark_warm_load_time: int
-    benchmark_warm_load_mem: int
-    benchmark_accuracy_top1: float
-    benchmark_accuracy_top2: float
+    accuracy_top1: float
+    accuracy_top5: float
+    device_id: Optional[int] = Field(default=None, foreign_key="device.device_id")
     model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
+    library_id: Optional[int] = Field(default=None, foreign_key="library.library_id")
+
+class Library(SQLModel, table=True):
+    library_id: Optional[int] = Field(default=None, primary_key=True)
+    library_name: str
 
 #hero_1 = Hero(name="Deadpond", secret_name="Dive Wilson")
 #hero_2 = Hero(name="Spider-Boy", secret_name="Pedro Parqueador")
