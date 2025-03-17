@@ -1,5 +1,67 @@
-from database.database_init import *
-from sqlmodel import Session, select
+from typing import Optional
+from sqlmodel import Field, Session, SQLModel, create_engine, select
+
+class User(SQLModel, table=True):
+	user_id:Optional[int] = Field(default=None, primary_key=True)
+	user_name: str
+	first_name: str
+	last_name: str
+	email: str
+	password_hash: str
+	qai_hub_api_token: str
+	customization_id: Optional[int] = Field(default=None, foreign_key="customization.customization_id")
+
+class Customization(SQLModel, table=True):
+	customization_id: Optional[int] = Field(default=None, primary_key=True)
+	favorite_id: Optional[int]= Field(default=None, foreign_key="favorite.favorites_id")
+
+class Favorite(SQLModel, table=True):
+	favorites_id: Optional[int] = Field(default=None, primary_key =True)
+	user_id: int
+	model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
+
+class Chipset(SQLModel, table=True):
+	chipset_id:Optional[int] = Field(default=None, primary_key=True)
+	chipset_name: str
+	manufacturer: str
+	version: str
+
+class Model(SQLModel, table=True):
+	model_id: Optional[int] = Field(default=None, primary_key=True)
+	model_name: str
+	github_link: str
+	hugging_face_link: str
+	research_paper_link: str
+	qai_hub_link: str
+	model_end_point: str
+	input_resolution: str
+	parameters: str
+	model_size: str
+
+
+class Device(SQLModel, table=True):
+	device_id: Optional[int] = Field(default=None, primary_key=True)
+	device_name: str
+	device_industry: str
+	device_company: str
+	chipset_id: Optional[int] = Field(default=None, foreign_key="chipset.chipset_id")
+
+class Benchmark(SQLModel, table=True):
+	benchmark_id: Optional[int] = Field(default=None, primary_key=True)
+	accuracy_top1: float
+	accuracy_top5: float
+	inference_time: float
+	memory_usage: int
+	npu_layers: int
+	device_id: Optional[int] = Field(default=None, foreign_key="device.device_id")
+	model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
+	library_id: Optional[int] = Field(default=None, foreign_key="library.library_id")
+
+class Library(SQLModel, table=True):
+	library_id: Optional[int] = Field(default=None, primary_key=True)
+	library_name: str
+
+engine = create_engine("sqlite:///database.db")
 
 # Get all data from specific data entry by ID
 
