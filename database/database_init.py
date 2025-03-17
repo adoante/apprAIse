@@ -1,78 +1,22 @@
-import pandas as pd
-from typing import Optional
-from sqlmodel import Field, Session, SQLModel, create_engine
-
-# Database Models
-class User(SQLModel, table=True):
-    user_id: Optional[int] = Field(default=None, primary_key=True)
-    user_name: str
-    first_name: str
-    last_name: str
-    email: str
-    password_hash: str
-    qai_hub_api_token: str
-    customization_id: Optional[int] = Field(default=None, foreign_key="customization.customization_id")
-
-class Customization(SQLModel, table=True):
-    customization_id: Optional[int] = Field(default=None, primary_key=True)
-    favorite_id: Optional[int] = Field(default=None, foreign_key="favorite.favorites_id")
-
-class Favorite(SQLModel, table=True):
-    favorites_id: Optional[int] = Field(default=None, primary_key=True)
-    user_id: int
-    model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
-
-class Chipset(SQLModel, table=True):
-    chipset_id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    manufacturer: str
-    version: str
-
-class Model(SQLModel, table=True):
-    model_id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    github_link: str
-    hugging_face_link: str
-    research_paper_link: str
-    model_end_point: str
-    input_resolution: str
-    parameters: str
-    model_size: str
-
-class Device(SQLModel, table=True):
-    device_id: Optional[int] = Field(default=None, primary_key=True)
-    device_name: str
-    device_industry: str
-    device_company: str
-    chipset_id: Optional[int] = Field(default=None, foreign_key="chipset.chipset_id")
-
-class Benchmark(SQLModel, table=True):
-    benchmark_id: Optional[int] = Field(default=None, primary_key=True)
-    benchmark_est_inf_time: int
-    benchmark_est_peak_mem: int
-    benchmark_first_load_time: int
-    benchmark_first_load_mem: int
-    benchmark_warm_load_time: int
-    benchmark_warm_load_mem: int
-    model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
+from database.sql_helper import *
 
 # Chipset Data
 chipsets_data = [
-    ("Qualcomm Snapdragon 845", "Qualcomm", "845"),
-    ("Qualcomm Snapdragon 670", "Qualcomm", "670"),
-    ("Qualcomm Snapdragon 855", "Qualcomm", "855"),
-    ("Qualcomm Snapdragon 730G", "Qualcomm", "730G"),
-    ("Qualcomm Snapdragon 765G", "Qualcomm", "765G"),
-    ("Qualcomm Snapdragon 888", "Qualcomm", "888"),
-    ("Qualcomm Snapdragon 8 Gen 1", "Qualcomm", "8 Gen 1"),
-    ("Qualcomm Snapdragon 8 Gen 2", "Qualcomm", "8 Gen 2"),
-    ("Qualcomm Snapdragon 8 Gen 3", "Qualcomm", "8 Gen 3"),
-    ("Qualcomm 8 Elite", "Qualcomm", "8 Elite")
+	("Qualcomm Snapdragon 845", "Qualcomm", "845"),
+	("Qualcomm Snapdragon 670", "Qualcomm", "670"),
+	("Qualcomm Snapdragon 855", "Qualcomm", "855"),
+	("Qualcomm Snapdragon 730G", "Qualcomm", "730G"),
+	("Qualcomm Snapdragon 765G", "Qualcomm", "765G"),
+	("Qualcomm Snapdragon 888", "Qualcomm", "888"),
+	("Qualcomm Snapdragon 8 Gen 1", "Qualcomm", "8 Gen 1"),
+	("Qualcomm Snapdragon 8 Gen 2", "Qualcomm", "8 Gen 2"),
+	("Qualcomm Snapdragon 8 Gen 3", "Qualcomm", "8 Gen 3"),
+	("Qualcomm 8 Elite", "Qualcomm", "8 Elite")
 ]
 
 # Device Data
-devices_data = [
-    ("google pixel 3", "mobile", "Google", 1),
+devices_data = [     
+	("google pixel 3", "mobile", "Google", 1),
     ("google pixel 3a", "mobile", "Google", 2),
     ("google pixel 3a XL", "mobile", "Google", 2),
     ("google pixel 4", "mobile", "Google", 3),
@@ -96,25 +40,222 @@ devices_data = [
     ("Xiaomi 12 Pro", "mobile", "Xiaomi", 7)
 ]
 
-# Initialize Database
-engine = create_engine("sqlite:///database.db")
+library_data = [
+	"tflite",
+	"onnx"
+]
+
+
+# accuracy_top1,
+# accuracy_top5,
+# inference_time: float
+# memory_usage: int
+# npu_layers: int
+# device_id,
+# model_id,
+# library_id
+
+benchmark_data = [
+	(77.12, 99.33, 3.40, 88, 79,"Samsung Galaxy S24", "wideresnet50", "tflite"),
+	(79.94, 94.78, 7.09, 282, 1579,"Samsung Galaxy S24", "vit", "tflite"),
+	(79.18, 94.5, 5.69, 154, 837,"Samsung Galaxy S24", "swin_tiny", "tflite"),
+	(81.98, 95.88, 11.8, 258, 1563,"Samsung Galaxy S24", "swin_small", "tflite"),
+	(81.9, 95.97, 14.5, 375, 1568,"Samsung Galaxy S24", "swin_base", "tflite"),
+	(54.83, 78.11, 0.413, 18, 41,"Samsung Galaxy S24", "squeezenet1_1", "tflite"),
+	(56.2, 78.47, 0.366, 21, 159, "Samsung Galaxy S24", "shufflenet_v2", "tflite")
+]
+
+# model_name: str
+# github_link: str
+# hugging_face_link: str
+# research_paper_link: str
+# qai_hub_link: str
+# model_end_point: str
+# input_resolution: str
+# parameters: str
+# model_size: str
+
+model_data = [
+	(
+		"wideresnet50_quantized",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/wideresnet50_quantized",
+		"https://huggingface.co/qualcomm/WideResNet50-Quantized",
+		"https://arxiv.org/abs/1605.07146",
+		"https://aihub.qualcomm.com/models/wideresnet50_quantized?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"68.9 M",
+		"66.6 MB"
+	),
+	(
+		"wideresnet50",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/wideresnet50",
+		"https://huggingface.co/qualcomm/WideResNet50",
+		"https://arxiv.org/abs/1605.07146",
+		"https://aihub.qualcomm.com/models/wideresnet50?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"68.8 M",
+		"263 MB"
+	),
+	(
+		"vit",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/vit",
+		"https://huggingface.co/qualcomm/VIT",
+		"https://arxiv.org/abs/2010.11929",
+		"https://aihub.qualcomm.com/models/vit?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"86.6 M",
+		"330 MB"
+	),
+	(
+		"swin_tiny",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/swin_tiny",
+		"https://huggingface.co/qualcomm/Swin-Tiny",
+		"https://arxiv.org/abs/2103.14030",
+		"https://aihub.qualcomm.com/models/swin_tiny?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"28.8 M",
+		"110 MB"
+	),
+	(
+		"swin_small",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/swin_small",
+		"https://huggingface.co/qualcomm/Swin-Small",
+		"https://arxiv.org/abs/2103.14030",
+		"https://aihub.qualcomm.com/models/swin_small?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"50.4 M",
+		"193 MB"
+	),
+	(
+		"swin_base",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/swin_base",
+		"https://huggingface.co/qualcomm/Swin-Base",
+		"https://arxiv.org/abs/2103.14030",
+		"https://aihub.qualcomm.com/models/swin_base?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"88.8 M",
+		"339 MB",
+	),
+	(
+		"squeezenet1_1_quantized",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/squeezenet1_1_quantized",
+		"https://huggingface.co/qualcomm/SqueezeNet-1_1Quantized",
+		"https://arxiv.org/abs/1602.07360",
+		"https://aihub.qualcomm.com/models/squeezenet1_1_quantized?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"1.24 M",
+		"1.30 MB",
+	),
+	(
+		"squeezenet1_1",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/squeezenet1_1",
+		"https://huggingface.co/qualcomm/SqueezeNet-1_1",
+		"https://arxiv.org/abs/1602.07360",
+		"https://aihub.qualcomm.com/models/squeezenet1_1?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"1.24 M",
+		"4.73 MB",
+	),
+	(
+		"shufflenet_v2_quantized",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/shufflenet_v2_quantized",
+		"https://huggingface.co/qualcomm/Shufflenet-v2Quantized",
+		"https://arxiv.org/abs/1807.11164",
+		"https://aihub.qualcomm.com/models/shufflenet_v2_quantized?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"1.37 M",
+		"4.42 MB",
+	),
+	(
+		"shufflenet_v2",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/shufflenet_v2",
+		"https://huggingface.co/qualcomm/Shufflenet-v2",
+		"https://arxiv.org/abs/1807.11164",
+		"https://aihub.qualcomm.com/models/shufflenet_v2?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"1.36 M",
+		"5.25 MB",
+	),
+	(
+		"resnext50_quantized",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/resnext50_quantized",
+		"https://huggingface.co/qualcomm/ResNeXt50Quantized",
+		"https://arxiv.org/abs/1611.05431",
+		"https://aihub.qualcomm.com/models/resnext50_quantized?domain=Computer+Vision&useCase=Image+Classification",
+		"Imagenet",
+		"224x224",
+		"88.7 M",
+		"87.3 MB",
+	),
+	(
+		"resnext50",
+		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/resnext50",
+		"https://huggingface.co/qualcomm/ResNeXt50",
+		"https://arxiv.org/abs/1611.05431",
+		"https://aihub.qualcomm.com/jobs/jpr6wjd9p",
+		"Imagenet",
+		"224x224",
+		"25.0 M",
+		"95.4 MB",
+	)
+]
+
 SQLModel.metadata.create_all(engine)
 
 # Insert Data
 with Session(engine) as session:
-    try:
-        # Insert Chipsets
-        chipset_objects = [Chipset(name=name, manufacturer=manufacturer, version=version) for name, manufacturer, version in chipsets_data]
-        session.bulk_save_objects(chipset_objects)
+	#Add all of the chipsets to the database
+	for chipset_name, chipset_manufacturer, chipset_version in chipsets_data:
+		chipset = Chipset(chipset_name=chipset_name, manufacturer=chipset_manufacturer, version=chipset_version)
+		session.add(chipset)
 
-        # Insert Devices
-        device_objects = [Device(device_name=name, device_industry=industry, device_company=company, chipset_id=chipset_id) for name, industry, company, chipset_id in devices_data]
-        session.bulk_save_objects(device_objects)
+	#Add all of the devices to the database
+	for device_name, device_industry, device_company, chipset_id in devices_data:
+		device = Device(device_name= device_name, device_industry= device_industry, device_company= device_company, chipset_id= chipset_id)
+		session.add(device)
 
-        # Commit all changes
-        session.commit()
-        print("Database successfully populated.")
+	# Add libraries
+	for library_name in library_data:
+		library = Library(library_name=library_name)
+		session.add(library)
 
-    except Exception as e:
-        session.rollback()
-        print(f"Error occurred: {e}")
+	# Add models
+	for model in model_data:
+		ai_model = Model(model_name=model[0],
+				   github_link=model[1],
+				   hugging_face_link=model[2],
+				   research_paper_link=model[3],
+				   qai_hub_link=model[4],
+				   model_end_point=model[5],
+				   input_resolution=model[6],
+				   parameters=model[7],
+				   model_size=model[8])
+		session.add(ai_model)
+
+	# Add benchmarks
+	for benchmark in benchmark_data:
+		library = session.exec(select(Library).where(Library.library_name == benchmark[7])).first().library_id
+		model = session.exec(select(Model).where(Model.model_name == benchmark[6])).first().model_id
+		device = session.exec(select(Device).where(Device.device_name == benchmark[5])).first().device_id
+		ai_benchmark = Benchmark(
+			accuracy_top1=benchmark[0],
+			accuracy_top5=benchmark[1],
+			inference_time=benchmark[2],
+			memory_usage=benchmark[3],
+			npu_layers=benchmark[4],
+			device_id=device,
+			model_id=model,
+			library_id=library)
+		session.add(ai_benchmark)
+		
+	session.commit()
