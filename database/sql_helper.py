@@ -51,3 +51,18 @@ def get_benchmark(benchmark_id: int):
 		statement = select(Benchmark).where(Benchmark.benchmark_id == benchmark_id)
 		benchmark = session.exec(statement).first()
 	return benchmark
+
+# Get all data from specific device by LIBRARY_ID
+def get_library(library_id: int):
+	with Session(engine) as session:
+		statement = select(Device).where(Library.library_id == library_id)
+		library = session.exec(statement).first()
+	return library
+
+# Get ALL records form each table
+
+def get_all_benchmarks():
+	with Session(engine) as session:
+		statement = select(Benchmark)
+		benchmarks = session.exec(statement)
+		return list(benchmarks)
