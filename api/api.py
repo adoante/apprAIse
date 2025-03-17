@@ -78,6 +78,44 @@ def read_device(device_id: int) -> database.Device:
     
     return device
 
+@app.get("/benchmark/")
+def read_all_benchmarks(
+        device: str | None = None, library: str | None = None, sort: str | None = None
+    ) -> dict[str, list[database.Benchmark]]:
+    
+    benchmarks = database.get_all_benchmarks()
+
+    if not benchmarks:
+        raise HTTPException(status_code = 404, detail = "Benchmarks not found.")
+
+    # Filter by device
+    if device != None:
+        device = device.lower()
+        filtered_benchmarks = []
+        for benchmark in benchmarks:
+            device_name = database.get_device(benchmark.device_id).device_name.lower()
+            if device_name == device:
+                filtered_benchmarks.append(benchmark)
+        benchmarks = filtered_benchmarks
+
+    # Filter by library
+    if library != None:
+        library = library.lower()
+        filtered_benchmarks = []
+        for benchmark in benchmarks:
+            library_name = database.get_library(benchmark.library_id).library_name.lower()
+            if library_name == library:
+                filtered_benchmarks.append(benchmark)
+        benchmarks = filtered_benchmarks
+
+    # Sort by metric
+    if sort == "accuracy_top1":
+        benchmarks = sorted(benchmarks, key = lambda x: x.accuracy_top1, reverse = True)
+    elif sort == "accuracy_top5":
+        benchmarks = sorted(benchmarks, key = lambda x: x.accuracy_top5, reverse = True)
+
+    return {"benchmarks": benchmarks}
+
 @app.get("/benchmark/{benchmark_id}")
 def read_benchmark(benchmark_id: int) -> database.Benchmark:
     benchmark = database.get_benchmark(benchmark_id)
