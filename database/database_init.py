@@ -88,7 +88,6 @@ benchmark_data = [
 	(81.98, 95.88, 11.8, 258, 1563,"Samsung Galaxy S24", "swin_small", "tflite"),
 	(81.9, 95.97, 14.5, 375, 1568,"Samsung Galaxy S24", "swin_base", "tflite"),
 	(54.83, 78.11, 0.413, 18, 41,"Samsung Galaxy S24", "squeezenet1_1", "tflite"),
-	(56.38, 78.44, 0.366, 21, 159,'Samsung Galaxy S24', 'shufflenet_v2', 'tflite')
 ]
 
 # model_name: str
