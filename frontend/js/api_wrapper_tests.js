@@ -5,6 +5,23 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 import api from './modules/api_wrapper.js';
 
+async function getAllBenchmarks() {
+    try {
+		const device = "";
+        const library = "";
+        const sort = "";
+        const order = ""; // or "asc"
+
+        const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+        console.log("All Benchmarks:", JSON.stringify(benchmarks));
+    } catch (error) {
+        console.error("Error fetching all benchmarks:", error);
+    }
+}
+
+// Call the function
+getAllBenchmarks();
+
 // // Always passes - Root API test
 // api.read_root()
 //     .then(data => {
