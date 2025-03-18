@@ -3,21 +3,17 @@ th {
 }
 
 .dropdowns {
-    transition: show 0.3s ease-in-out;
-    margin: 0 auto;
-    /* Auto margins center the block */
-    /* Center text inside */
     margin-bottom: 50px;
+    justify-content: space-evenly;
     display: flex;
-    justify-content: center;
+    gap: 5vw; /* Adjusts spacing dynamically */
+    flex-wrap: wrap; /* Allows items to stack if needed */
 }
 
 .dropdown {
-    width: 12vw;
-    margin: 10px 0;
+    max-width: 200px;
+    width: 200px;
     overflow: hidden;
-    margin-left: 50px;
-    margin-right: 50px;
 }
 
 .dropdown-btn {
@@ -27,10 +23,17 @@ th {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    width: 12vw;
+    max-width: 200px;
     border-radius: 20px;
     outline: none;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-btn p{
+    margin: 0;
+    white-space: nowrap;
 }
 
 .dropdown-content {
@@ -53,4 +56,14 @@ th {
 
 .dropdownItem:hover {
     background-color: #d1d1d1;
+}
+
+.arrow{
+    width: 25px;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+    transform: rotateX(180deg);
 }
