@@ -1,3 +1,5 @@
+import api from './js/modules/api_wrapper.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
@@ -38,7 +40,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".dropdownItem").forEach(button=>{
+        button.addEventListener("click", function(event){
+            dropDownSelect("Hi")
+        })
+    });
+});
 
-function dropDownSelect(id) {
-    console.log(id.textContent);
+async function dropDownSelect(id) {
+    try {
+            const device = "";
+            const library = "";
+            const sort = "";
+            const order = ""; // or "asc"
+    
+            const benchmarks =  await api.filter_benchmarks(device, library, sort, order);
+            console.log("All Benchmarks:", JSON.stringify(benchmarks));
+        } catch (error) {
+            console.error("Error fetching all benchmarks:", error);
+        }
+       console.log(id)
 }
