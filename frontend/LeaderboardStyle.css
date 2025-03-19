@@ -2,6 +2,10 @@ th {
     text-align: center;
 }
 
+td{
+    text-align: center;
+}
+
 .dropdowns {
     margin-bottom: 50px;
     justify-content: space-evenly;

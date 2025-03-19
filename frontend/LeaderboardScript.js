@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdownItem").forEach(button=>{
         button.addEventListener("click", function(event){
-            dropDownSelect("Hi")
+            dropDownSelect("Hi2")
         })
     });
 });
@@ -52,13 +52,35 @@ async function dropDownSelect(id) {
     try {
             const device = "";
             const library = "";
-            const sort = "";
-            const order = ""; // or "asc"
+            const sort = "accuracy_top1";
+            const order = "desc"; // or "asc"
     
             const benchmarks =  await api.filter_benchmarks(device, library, sort, order);
             console.log("All Benchmarks:", JSON.stringify(benchmarks));
+            console.log(benchmarks.benchmarks[0].accuracy_top1);
+            console.log(benchmarks.benchmarks[1].accuracy_top1);
+
+            populateTable(benchmarks)
         } catch (error) {
             console.error("Error fetching all benchmarks:", error);
         }
-       console.log(id)
+       console.log(id);
+}
+
+
+function populateTable(benchmarks){
+    const tableBody = document.querySelector("#Leaderboard tbody");
+    tableBody.innerHTML = "";
+    let i = 1;
+
+    benchmarks.benchmarks.forEach(benchmarks =>{
+        let row = tableBody.insertRow();
+        
+        row.insertCell(0).textContent = i;
+        row.insertCell(1).textContent = "TempName"
+        row.insertCell(2).textContent = benchmarks.accuracy_top1+"%";
+        row.insertCell(3).textContent = benchmarks.memory_usage+"MB";
+        row.insertCell(4).textContent = benchmarks.inference_time+"ms"
+        i++;
+    });
 }
