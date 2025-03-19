@@ -20,10 +20,16 @@ pip install -r requirements
 
 ## Run app
 
+### Make sure database exists (recommendation: init fresh *.db every time)
+
+```bash
+python -m database.database_init
+```
+
 ### Start up API
 
 ```bash
-fastapi dev .\api\api.py
+fastapi dev .\api\run_api.py
 ```
 
 ### Open website
