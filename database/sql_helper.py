@@ -35,8 +35,8 @@ class Model(SQLModel, table=True):
 	qai_hub_link: str
 	model_end_point: str
 	input_resolution: str
-	parameters: str
-	model_size: str
+	parameters: float # M - Million
+	model_size: float # MB - Mega Byte
 
 
 class Device(SQLModel, table=True):
@@ -128,3 +128,9 @@ def get_all_benchmarks():
 		statement = select(Benchmark)
 		benchmarks = session.exec(statement)
 		return list(benchmarks)
+	
+def get_all_models():
+	with Session(engine) as session:
+		statement = select(Model)
+		models = session.exec(statement)
+		return list(models)

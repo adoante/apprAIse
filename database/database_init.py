@@ -84,8 +84,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/wideresnet50_quantized?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"68.9 M",
-		"66.6 MB"
+		68.9,
+		66.6
 	),
 	(
 		"wideresnet50",
@@ -95,8 +95,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/wideresnet50?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"68.8 M",
-		"263 MB"
+		68.8,
+		263
 	),
 	(
 		"vit",
@@ -106,8 +106,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/vit?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"86.6 M",
-		"330 MB"
+		86.6,
+		330
 	),
 	(
 		"swin_tiny",
@@ -117,8 +117,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/swin_tiny?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"28.8 M",
-		"110 MB"
+		28.8,
+		110
 	),
 	(
 		"swin_small",
@@ -128,8 +128,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/swin_small?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"50.4 M",
-		"193 MB"
+		50.4,
+		193
 	),
 	(
 		"swin_base",
@@ -139,8 +139,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/swin_base?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"88.8 M",
-		"339 MB",
+		88.8,
+		339,
 	),
 	(
 		"squeezenet1_1_quantized",
@@ -150,8 +150,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/squeezenet1_1_quantized?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"1.24 M",
-		"1.30 MB",
+		1.24,
+		1.30,
 	),
 	(
 		"squeezenet1_1",
@@ -161,8 +161,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/squeezenet1_1?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"1.24 M",
-		"4.73 MB",
+		1.24,
+		4.73,
 	),
 	(
 		"shufflenet_v2_quantized",
@@ -172,8 +172,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/shufflenet_v2_quantized?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"1.37 M",
-		"4.42 MB",
+		1.37,
+		4.42,
 	),
 	(
 		"shufflenet_v2",
@@ -183,8 +183,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/shufflenet_v2?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"1.36 M",
-		"5.25 MB",
+		1.36,
+		5.25,
 	),
 	(
 		"resnext50_quantized",
@@ -194,8 +194,8 @@ model_data = [
 		"https://aihub.qualcomm.com/models/resnext50_quantized?domain=Computer+Vision&useCase=Image+Classification",
 		"Imagenet",
 		"224x224",
-		"88.7 M",
-		"87.3 MB",
+		88.7,
+		87.3,
 	),
 	(
 		"resnext50",
@@ -205,8 +205,8 @@ model_data = [
 		"https://aihub.qualcomm.com/jobs/jpr6wjd9p",
 		"Imagenet",
 		"224x224",
-		"25.0 M",
-		"95.4 MB",
+		25.0,
+		95.4,
 	)
 ]
 
