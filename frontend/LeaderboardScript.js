@@ -1,5 +1,14 @@
 import api from './js/modules/api_wrapper.js';
 
+var device = "Samsung Galaxy S24";
+var library = "tflite";
+var sort = "accuracy_top1";
+var order = "desc"; // or "asc"
+
+const devices = ["Samsung Galaxy S24","Google Pixel","Snapdragon 8 Elite QRD","Snapdragon X Elite CRD"]
+const libraries = ["tflite", "ONNX Runtime", "Qualcomm© AI Engine Direct"]
+const sorts = ["Accuracy Top 1","Accuracy Top 5","Memory Usage"]
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
@@ -43,28 +52,52 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdownItem").forEach(button=>{
         button.addEventListener("click", function(event){
-            dropDownSelect("Hi2")
+            dropDownSelect(button.textContent)
         })
     });
 });
 
 async function dropDownSelect(id) {
     try {
-            const device = "";
-            const library = "";
-            const sort = "accuracy_top1";
-            const order = "desc"; // or "asc"
+            var newDevice = device;
+            var newLibrary = library;
+            var newSort = sort;
+            var newOrder = order; // or "asc"
+
+            if(devices.includes(id)){
+                newDevice = id
+                device = id
+            }else if(libraries.includes(id)){
+                newLibrary = id
+                library = id
+            }else if(sorts.includes(id)){
+                if(id == "Accuracy Top 1"){
+                    newSort = "accuracy_top1"
+                    sort = "accuracy_top1"
+                    order = "desc"
+                    newOrder="desc"
+                }else if(id == "Accuracy Top 5"){
+                    newSort = "accuracy_top5"
+                    sort = "accuracy_top5"
+                    order = "desc"
+                    newOrder="desc"
+                }else if(id  == "Memory Usage"){
+                    newSort = "memory_usage"
+                    sort = "memory_usage"
+                    order = "asc"
+                    newOrder="asc"
+                }
+            }
+
+
     
-            const benchmarks =  await api.filter_benchmarks(device, library, sort, order);
-            console.log("All Benchmarks:", JSON.stringify(benchmarks));
-            console.log(benchmarks.benchmarks[0].accuracy_top1);
-            console.log(benchmarks.benchmarks[1].accuracy_top1);
+            const benchmarks =  await api.filter_benchmarks(newDevice, newLibrary, newSort, newOrder);
+            //console.log("All Benchmarks:", JSON.stringify(benchmarks));
 
             populateTable(benchmarks)
         } catch (error) {
             console.error("Error fetching all benchmarks:", error);
         }
-       console.log(id);
 }
 
 
@@ -73,14 +106,18 @@ function populateTable(benchmarks){
     tableBody.innerHTML = "";
     let i = 1;
 
-    benchmarks.benchmarks.forEach(benchmarks =>{
+    benchmarks.benchmarks.forEach(async benchmarks =>{
         let row = tableBody.insertRow();
+
+        const model =  await api.read_model(benchmarks.model_id);
+        //console.log(model)
         
         row.insertCell(0).textContent = i;
-        row.insertCell(1).textContent = "TempName"
+        row.insertCell(1).textContent = model.model_name;
         row.insertCell(2).textContent = benchmarks.accuracy_top1+"%";
-        row.insertCell(3).textContent = benchmarks.memory_usage+"MB";
-        row.insertCell(4).textContent = benchmarks.inference_time+"ms"
+        row.insertCell(3).textContent = benchmarks.accuracy_top5+"%";
+        row.insertCell(4).textContent = benchmarks.memory_usage+"MB";
+        row.insertCell(5).textContent = benchmarks.inference_time+"ms"
         i++;
     });
 }
