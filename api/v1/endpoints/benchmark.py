@@ -35,7 +35,7 @@ def read_all_benchmarks(
         device = device.lower()
         benchmarks = [
             benchmark for benchmark in benchmarks 
-            if database.get_device(benchmark.device_id).device_name.lower() == device
+            if database.get_device(benchmark.device_id).device_name.lower().find(device) > -1
         ]
 
     # Filter by library
