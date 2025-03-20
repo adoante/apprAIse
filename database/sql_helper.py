@@ -152,3 +152,9 @@ def get_all_customizations():
 		statement = select(Customization)
 		customizations = session.exec(statement)
 		return list(customizations)
+	
+def get_all_favorites():
+	with Session(engine) as session:
+		statement = select(Favorite)
+		favorites = session.exec(statement)
+		return list(favorites)
