@@ -12,3 +12,8 @@ server_address = ("", PORT)
 httpd = HTTPServer(server_address, CustomHandler)
 print(f"Serving at http://localhost:{PORT}")
 httpd.serve_forever()
+
+
+#cd workingappaise/appraise/frontend/ 
+
+#ctrl + shift + r to refresh site and see changes
