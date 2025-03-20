@@ -158,3 +158,9 @@ def get_all_favorites():
 		statement = select(Favorite)
 		favorites = session.exec(statement)
 		return list(favorites)
+
+def get_all_users():
+	with Session(engine) as session:
+		statement = select(User)
+		users = session.exec(statement)
+		return list(users)
