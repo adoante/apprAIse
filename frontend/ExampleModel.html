@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript" src="ModelsScript.js"></script>
-	<link rel="stylesheet" href="ModelsStyle.css">
+	<script type="text/javascript" src="ExampleModel.js"></script>
 	<link rel="stylesheet" href="vanilla.css">
+	<link rel="stylesheet" href="ExampleModel.css">
 	<title>Models</title>
 </head>
 
@@ -22,10 +22,97 @@
 			<li><a class="navMenu edge" href="Login.html">Login</a></li>
 		</ul>
 	</div>
-	<div class="page">
-        Model Exaample
-    </div>
 
+	<div class="page">
+		<!-- Model Title and Description -->
+		<div class="modelDescription">
+			<div class="text-container">
+				<!-- Pull the Model Name from the URL -->
+				<h1 class="title">
+					<div id="content">Loading...</div>
+				</h1>
+				<h3>Imagenet classifier and general purpose backbone.</h3>
+				<h2>Beit is a machine learning model that can classify images from the Imagenet
+					dataset. It can also be used as a backbone in building more complex models 
+					for specific use cases.
+				</h2>
+			</div>
+			<img class="model-image" src=".\Images\DoveModel.PNG" alt="Beit Model Image">
+		</div>
+		<!--Dropdown-->
+		<div class="dropdowns">
+			<div class="dropdown">
+				<button class="dropdown-btn">Devices</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropdown-btn">Libraries</button>
+				<div class="dropdown-content">
+					<p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Onxx</p>
+					<p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm AI Engine Direct</p>
+				</div>
+			</div>
+		</div>
+		<div class="page">
+			<!-- Other content -->
+		
+			<div class="colored-section">
+				<!-- This portion will have a different background color -->
+				<div class="metric-container">
+					<div class="metric-box"><p>Metric 1</p></div>
+					<div class="metric-box"><p>Metric 2</p></div>
+					<div class="metric-box"><p>Metric 3</p></div>
+					<div class="metric-box"><p>Metric 4</p></div>
+					<div class="metric-box"><p>Metric 5</p></div>
+					<div class="metric-box"><p>Metric 6</p></div>
+				</div>
+			</div>
+		
+			<!-- Other content -->
+		</div>
+		
+		<div class="text-sections">
+			<div class="text-section">
+				<p class="title-text">This is the first sentence of section 1</p>
+				<p class="sentence">Sentence line 1 for section 1</p>
+				<p class="sentence">Sentence line 2 for section 1</p>
+				<p class="sentence">Sentence line 3 for section 1</p>
+				<p class="sentence">Sentence line 4 for section 1</p>
+			</div>
+			<div class="text-section">
+				<p class="title-text">This is the first sentence of section 2</p>
+				<p class="sentence">Sentence line 1 for section 2</p>
+				<p class="sentence">Sentence line 2 for section 2</p>
+				<p class="sentence">Sentence line 3 for section 2</p>
+				<p class="sentence">Sentence line 4 for section 2</p>
+			</div>
+			<div class="text-section">
+				<p class="title-text">This is the first sentence of section 3</p>
+				<p class="sentence">Sentence line 1 for section 3</p>
+				<p class="sentence">Sentence line 2 for section 3</p>
+				<p class="sentence">Sentence line 3 for section 3</p>
+				<p class="sentence">Sentence line 4 for section 3</p>
+			</div>
+		</div>
+
+		<!-- Model Links -->
+		<div class="model-links">
+			<a class="btn" href="https://github.com/quic/ai-hub-models/blob/main/qai_hub_models/models/beit" target="_blank">GitHub</a>
+			<a class="btn" href="https://huggingface.co/qualcomm/Beit" target="_blank">Hugging Face</a>
+			<a class="btn" href="https://arxiv.org/abs/2106.08254" target="_blank">Research Paper</a>
+		</div>
+
+		<!-- Qualcomm AI Hub Link -->
+		<div class="ai-hub-link">
+			<a href="https://aihub.qualcomm.com/mobile/models/beit?domain=Computer+Vision&useCase=Image+Classification" target="_blank">Explore Beit on Qualcomm AI Hub</a>
+		</div>
+		
+	</div>
 
 </body>
 

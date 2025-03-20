@@ -1,0 +1,204 @@
+/* Style for model description section */
+.page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the model links section */
+.model-links {
+    margin-top: 20px;
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style for Qualcomm AI Hub link */
+.ai-hub-link {
+    margin-top: 30px;
+}
+
+.ai-hub-link a {
+    display: inline-block;
+    color: #007bff;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.ai-hub-link a:hover {
+    color: #005db3; /* Darker shade on hover */
+}
+
+.modelTitle {
+   max-width: 25%;
+    /* Define width */
+    margin: 0 auto;
+    /* Auto margins center the block */
+    text-align: left;
+    /* Center text inside */
+    margin-bottom: 50px;
+    margin-left: auto;
+}
+
+.modelDescription {
+	display: flex;
+    justify-content: space-between; /* Ensure space between text and image */
+	align-items: flex-start; /* Align items at the top */
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column; /* Stack text vertically */
+	justify-content: flex-start; /* Align text at the top */
+	max-width: 35%; /* Limit the width of the text section */
+	text-align: left; /* Align text to the left */
+    margin-left: auto;
+}
+
+.model-image {  
+    border-radius: 55%;
+    max-width: clamp(50px, 30vw, 600px);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4/ span 9;
+    grid-row: 1/ span 8;
+    z-index: -1;
+}
+.dropdowns {
+    transition: show 0.3s ease-in-out;
+    margin: 0 auto;
+    /* Auto margins center the block */
+    /* Center text inside */
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown {
+    width: 12vw;
+    margin: 55px 0;
+    overflow: hidden;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.dropdown-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 12vw;
+    border-radius: 20px;
+    outline: none;
+    text-align: left;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: #f1f1f1;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.dropdown-content p {
+    margin: 10px 0;
+}
+
+.dropdownItem {
+    color: #564AFF;
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: #d1d1d1;
+}
+
+.colored-section {
+    background-color: #2d2d2d;
+    padding-top: 20px;  
+    padding-bottom: 20px;
+    padding-left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.metric-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Even spacing */
+    gap: 75px;
+    row-gap: 25px;
+    margin: 120px auto;
+    max-width: 100%; /* Ensures it doesn’t stretch too much */
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.metric-box {
+    flex: 1 1 calc(33.33% - 75px); /* Ensures 3 boxes per row with space in between */
+    min-width: 120px; /* Prevents them from getting too small */
+    min-height: 160px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.text-sections {
+    display: flex;
+    justify-content: space-between; /* Ensures 3 sections are in a row */
+    gap: 30px; /* Adds space between the sections */
+    margin: 20px auto;
+    max-width: 10   0%;
+    padding:10%;
+}
+
+.text-section {
+    flex: 1;
+    padding:10px;
+    border-radius: 8px;
+}
+
+.title-text {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: underline; /* Underlines the first sentence */
+    margin-bottom: 10px;/* Adds space between the title and the lines */
+}
+
+.sentence {
+    font-size: 20px;
+    text-align:left;
+    margin-bottom: 5px;
+}
