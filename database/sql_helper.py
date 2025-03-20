@@ -134,3 +134,9 @@ def get_all_models():
 		statement = select(Model)
 		models = session.exec(statement)
 		return list(models)
+	
+def get_all_chipsets():
+	with Session(engine) as session:
+		statement = select(Chipset)
+		chipsets = session.exec(statement)
+		return list(chipsets)
