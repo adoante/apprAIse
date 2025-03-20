@@ -146,3 +146,9 @@ def get_all_devices():
 		statement = select(Device)
 		devices = session.exec(statement)
 		return list(devices)
+	
+def get_all_customizations():
+	with Session(engine) as session:
+		statement = select(Customization)
+		customizations = session.exec(statement)
+		return list(customizations)
