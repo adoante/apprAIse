@@ -140,3 +140,9 @@ def get_all_chipsets():
 		statement = select(Chipset)
 		chipsets = session.exec(statement)
 		return list(chipsets)
+	
+def get_all_devices():
+	with Session(engine) as session:
+		statement = select(Device)
+		devices = session.exec(statement)
+		return list(devices)
