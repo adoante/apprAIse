@@ -35,7 +35,7 @@
         const order = selectedMetric === "inference_time" ? "asc" : "desc"; // Sort inference time in ascending order
 
         // Fetch from the FastAPI backend
-        const response = await fetch(`http://127.0.0.1:8000/benchmark/?sort=${selectedMetric}&order=${order}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/v1/benchmark/?sort=${selectedMetric}&order=${order}`);
         const data = await response.json();
 
         console.log("Fetched Benchmarks:", data);
