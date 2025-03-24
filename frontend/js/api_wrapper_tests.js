@@ -10,7 +10,7 @@ async function getAllBenchmarks() {
 		const device = "";
         const library = "";
         const sort = "";
-        const order = ""; // or "asc"
+        const order = "desc"; // or "asc"
 
         const benchmarks = await api.filter_benchmarks(device, library, sort, order);
         console.log("All Benchmarks:", JSON.stringify(benchmarks));
@@ -21,6 +21,24 @@ async function getAllBenchmarks() {
 
 // Call the function
 getAllBenchmarks();
+
+async function getAllModels() {
+    try {
+		const name = "";
+        const end_point = "";
+        const input_resolution = ""
+        const sort = "";
+        const order = "desc"; // or "asc"
+
+        const benchmarks = await api.filter_models(name, end_point, input_resolution, sort, order);
+        console.log("All Models:", JSON.stringify(benchmarks));
+    } catch (error) {
+        console.error("Error fetching all models:", error);
+    }
+}
+
+// Call the function
+getAllModels();
 
 // // Always passes - Root API test
 // api.read_root()
