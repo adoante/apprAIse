@@ -101,23 +101,25 @@ async function dropDownSelect(id) {
 }
 
 
-function populateTable(benchmarks){
+async function populateTable(benchmarks) {
     const tableBody = document.querySelector("#Leaderboard tbody");
     tableBody.innerHTML = "";
     let i = 1;
 
-    benchmarks.benchmarks.forEach(async benchmarks =>{
+    // Use a for...of loop to handle async/await correctly
+    for (let benchmark of benchmarks.benchmarks) {
         let row = tableBody.insertRow();
 
-        const model =  await api.read_model(benchmarks.model_id);
-        //console.log(model)
-        
+        // Assuming api.read_model is an asynchronous function
+        const model = await api.read_model(benchmark.model_id);
+
         row.insertCell(0).textContent = i;
         row.insertCell(1).textContent = model.model_name;
-        row.insertCell(2).textContent = benchmarks.accuracy_top1+"%";
-        row.insertCell(3).textContent = benchmarks.accuracy_top5+"%";
-        row.insertCell(4).textContent = benchmarks.memory_usage+"MB";
-        row.insertCell(5).textContent = benchmarks.inference_time+"ms"
+        row.insertCell(2).textContent = benchmark.accuracy_top1 + "%";
+        row.insertCell(3).textContent = benchmark.accuracy_top5 + "%";
+        row.insertCell(4).textContent = benchmark.memory_usage + "MB";
+        row.insertCell(5).textContent = benchmark.inference_time + "ms";
+
         i++;
-    });
+    }
 }

@@ -71,3 +71,18 @@ td{
 .arrow.rotated {
     transform: rotateX(180deg);
 }
+
+/*Chart.js stuff*/
+
+#leaderboardChartDropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#leaderboardChart {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 400px;
+    min-width: 400px;
+}

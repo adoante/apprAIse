@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="vanilla.css">
 	<link rel="stylesheet" href="LeaderboardStyle.css">
 	<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="module" src="leaderboardChart.js"></script>
 	<title>Leaderboard</title>
 </head>
 
@@ -26,6 +28,26 @@
 		<div class="pageTitle">
 			<h1 class="title">Leaderboard</h1>
 		</div>
+
+		<!-- Dropdown to select metric -->
+		<div id="leaderboardChartDropdown">
+			<select id="metricSelector">
+				<option value="accuracy_top1">Accuracy (Top 1)</option>
+				<option value="accuracy_top5">Accuracy (Top 5)</option>
+				<option value="memory_usage">Memory Usage</option>
+				<option value="inference_time">Inference Time</option>
+			</select>
+			
+		
+			<!-- Dropdown to toggle Top 1 or Top 3 -->
+			<select id="viewMode">
+				<option value="top3">Top 3</option>
+				<option value="top1">Top 1</option>
+			</select>
+		</div>
+		
+		<canvas id="leaderboardChart"></canvas>
+
 		<div class="dropdowns">
 			<div class="dropdown">
 				<div class="dropdown-btn">
