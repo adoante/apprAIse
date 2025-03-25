@@ -201,17 +201,6 @@ model_data = [
 		88.7,
 		87.3,
 	),
-	(
-		"resnext50",
-		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/resnext50",
-		"https://huggingface.co/qualcomm/ResNeXt50",
-		"https://arxiv.org/abs/1611.05431",
-		"https://aihub.qualcomm.com/jobs/jpr6wjd9p",
-		"Imagenet",
-		"224x224",
-		25.0,
-		95.4,
-	)
 ]
 
 SQLModel.metadata.create_all(engine)
