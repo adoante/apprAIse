@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 50px;    
+    margin-bottom: 50px;
 }
 
 .model {
@@ -14,8 +14,10 @@
     justify-content: space-evenly;
     display: flex;
     flex-direction: column;
-    gap: 1vw; /* Adjusts spacing dynamically */
-    flex-wrap: wrap; /* Allows items to stack if needed */
+    gap: 1vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
 }
 
 .dropdown {
@@ -39,7 +41,7 @@
     justify-content: space-between;
 }
 
-.dropdown-btn p{
+.dropdown-btn p {
     margin: 0;
     white-space: nowrap;
 }
@@ -66,7 +68,7 @@
     background-color: #d1d1d1;
 }
 
-.arrow{
+.arrow {
     width: 25px;
     margin: 0;
     transition: transform 0.3s ease;
@@ -87,4 +89,28 @@
 
 .ModelBtn a {
     text-decoration: none;
+}
+
+.ChartBtn {
+    background-color: greenyellow;
+    padding: 7px 25px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Chart.js stuff*/
+
+.chartContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.chart {
+    max-height: 400px;
+    max-width: 800px;
 }

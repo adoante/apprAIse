@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="vanilla.css">
 	<link rel="stylesheet" href="ComparisonStyle.css">
 	<script type="module" src="/frontend/ComparisonScript.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<title>Comparison</title>
 </head>
 
@@ -37,7 +38,7 @@
 						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-model"></div>
+						<div class="dropdown-content-model" id="dropdown-content-model-1"></div>
 					</div>
 				</div>
 
@@ -47,7 +48,7 @@
 						<img class="arrow LD" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-device"></div>
+						<div class="dropdown-content-device" id="dropdown-content-device-1"></div>
 					</div>
 				</div>
 
@@ -57,7 +58,7 @@
 						<img class="arrow LL" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-library"></div>
+						<div class="dropdown-content-library" id="dropdown-content-library-1"></div>
 					</div>
 				</div>
 			</div>
@@ -74,7 +75,7 @@
 						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-model"></div>
+						<div class="dropdown-content-model" id="dropdown-content-model-2"></div>
 					</div>
 				</div>
 
@@ -84,7 +85,7 @@
 						<img class="arrow LD" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-device"></div>
+						<div class="dropdown-content-device" id="dropdown-content-device-2"></div>
 					</div>
 				</div>
 
@@ -94,7 +95,7 @@
 						<img class="arrow LL" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-library"></div>
+						<div class="dropdown-content-library" id="dropdown-content-library-2"></div>
 					</div>
 				</div>
 			</div>
@@ -111,7 +112,7 @@
 						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-model"></div>
+						<div class="dropdown-content-model" id="dropdown-content-model-3"></div>
 					</div>
 				</div>
 
@@ -121,7 +122,7 @@
 						<img class="arrow LD" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-device"></div>
+						<div class="dropdown-content-device" id="dropdown-content-device-3"></div>
 					</div>
 				</div>
 
@@ -131,7 +132,7 @@
 						<img class="arrow LL" src="Images/down-chevron.png" alt="">
 					</div>
 					<div class="dropdown-content">
-						<div class="dropdown-content-library"></div>
+						<div class="dropdown-content-library" id="dropdown-content-library-3"></div>
 					</div>
 				</div>
 			</div>
@@ -142,6 +143,15 @@
 
 	<div class="pageTitle">
 		<h2 class="title">Charts</h2>
+	</div>
+
+	<button class="ChartBtn">Construct Chart</button>
+
+	<div class="chartContainer">
+		<canvas class="chart" id="accuracyTop1Chart"></canvas>
+		<canvas class="chart" id="accuracyTop5Chart"></canvas>
+		<canvas class="chart" id="inferenceTimeChart"></canvas>
+		<canvas class="chart" id="memoryUsageChart"></canvas>
 	</div>
 
 </div>
