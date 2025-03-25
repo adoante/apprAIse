@@ -23,7 +23,7 @@ def read_all_library(
             if library.library_name.lower().find(name) > -1
         ]
 
-    return {"devices": libraries}
+    return {"libraries": libraries}
 
 # get specific device by device id
 @router.get("/{library_id}")
