@@ -93,6 +93,15 @@ document.addEventListener("DOMContentLoaded", function () {
 		"library": ""
 	}
 
+	function updateMetricCard() {
+		top1.forEach(top1_score => {
+			document.getElementById("top1Metrics").insertAdjacentHTML(
+				"afterbegin",
+				`<div class="metricCard"><p>${top1_score}%</p></div>`
+			)
+		})
+	}
+
 	document.getElementById("dropdown-content-model-1").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			console.log(event.target.textContent + " clicked!");
@@ -116,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});

@@ -1,12 +1,16 @@
 .modelsContainer {
+    background: #2D2D2D;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     margin-bottom: 50px;
+    padding: 50px;
 }
 
 .model {
     display: block;
+    margin: 25px;
 }
 
 .dropdowns {
@@ -113,4 +117,40 @@
 .chart {
     max-height: 400px;
     max-width: 800px;
+}
+
+.metricContainer {
+    background: #2D2D2D;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.metricCardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+
+.metricCard {
+    background: white;
+    
+    border: solid black;
+    border-radius: 16px;
+    box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.5);
+    border-width: 2px;
+
+    min-width: 200px;
+    min-height: 130px;
+
+    font-size: xx-large;
+    text-align: center;
+    align-content: center;
+    color: black;
+}
+
+.pageTitle hr {
+    margin-top: 20px;
 }
