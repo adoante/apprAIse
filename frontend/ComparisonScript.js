@@ -74,204 +74,307 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	})
 
-	const model_names = []
+	/* Construct Individual Charts */
 
-	function getModelNames(id, idx) {
-		document.getElementById(id).addEventListener("click", function (event) {
-			if (event.target.classList.contains("dropdownItem")) {
-				console.log(event.target.textContent + " clicked!");
-				model_names[idx] = event.target.textContent
-				console.log(model_names)
-			}
-		});
+	let chart_labels = ["", "", ""]
+	let top1 = [0, 0, 0]
+	let top5 = [0, 0, 0]
+	let inference = [0, 0, 0]
+	let memory = [0, 0, 0]
+
+	let top1Chart;
+	let top5Chart;
+	let inferenceChart;
+	let memoryChart;
+
+	let model_1 = {
+		"name": "",
+		"device": "",
+		"library": ""
 	}
 
-	getModelNames("dropdown-content-model-1", 0)
-	getModelNames("dropdown-content-model-2", 1)
-	getModelNames("dropdown-content-model-3", 2)
+	document.getElementById("dropdown-content-model-1").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_1["name"] = event.target.textContent
 
-	const device_names = []
-
-	function getDeviceNames(id, idx) {
-		document.getElementById(id).addEventListener("click", function (event) {
-			if (event.target.classList.contains("dropdownItem")) {
-				console.log(event.target.textContent + " clicked!");
-				device_names[idx] = event.target.textContent
-				console.log(device_names)
-				getBenchmarks()
-			}
-		});
-	}
-
-	getDeviceNames("dropdown-content-device-1", 0)
-	getDeviceNames("dropdown-content-device-2", 1)
-	getDeviceNames("dropdown-content-device-3", 2)
-
-	const library_names = []
-
-	function getLibraryNames(id, idx) {
-		document.getElementById(id).addEventListener("click", function (event) {
-			if (event.target.classList.contains("dropdownItem")) {
-				console.log(event.target.textContent + " clicked!");
-				library_names[idx] = event.target.textContent
-				console.log(library_names)
-				getBenchmarks()
-			}
-		});
-	}
-
-	getLibraryNames("dropdown-content-library-1", 0)
-	getLibraryNames("dropdown-content-library-2", 1)
-	getLibraryNames("dropdown-content-library-3", 2)
-
-	const accuracy_top1_scores = {}
-	const accuracy_top5_scores = {}
-	const inference_times = {}
-	const memory_usage = {}
-
-	function getBenchmarks() {
-		if (model_names.length != 0) {
-			if (library_names.length == device_names.length) {
-				for (let i = 0; i < library_names.length; i++) {
-					if (library_names[i] != "" && device_names[i] != "") {
-						api.filter_benchmarks(device_names[i], library_names[i])
-							.then(benchmarkData => {
-								benchmarkData["benchmarks"].forEach(benchmark => {
-									api.read_model(benchmark["model_id"]).then(
-										modelData => {
-											if (model_names.includes(modelData["model_name"])) {
-												accuracy_top1_scores[modelData["model_name"]] = benchmark["accuracy_top1"]
-												accuracy_top5_scores[modelData["model_name"]] = benchmark["accuracy_top5"]
-												inference_times[modelData["model_name"]] = benchmark["inference_time"]
-												memory_usage[modelData["model_name"]] = benchmark["memory_usage"]
-											}
-										}
-									)
-								})
-							})
-					}
+			getBenchmarkData(model_1).then(data => {
+				chart_labels[0] = model_1["name"]
+				if (data[0] !== undefined) {
+					top1[0] = data[0]["accuracy_top1"]
+					top5[0] = data[0]["accuracy_top5"]
+					inference[0] = data[0]["inference_time"]
+					memory[0] = data[0]["memory_usage"]
+				} else {
+					top1[0] = 0
+					top5[0] = 0
+					inference[0] = 0
+					memory[0] = 0
 				}
-			}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
 		}
-	}
-
-	let accuracyTop1Chart;
-	let accuracyTop5Chart;
-	let inferenceTimeChart;
-	let memoryUsageChart;
-
-	function constructAccuracyTop1Chart() {
-		if (accuracyTop1Chart) {
-			accuracyTop1Chart.destroy();
-		}
-
-		const ctx = document.getElementById('accuracyTop1Chart');
-
-		accuracyTop1Chart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: Object.keys(accuracy_top1_scores),
-				datasets: [{
-					label: 'Accuracy Top 1',
-					data: Object.values(accuracy_top1_scores),
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	}
-
-	function constructAccuracyTop5Chart() {
-		if (accuracyTop5Chart) {
-			accuracyTop5Chart.destroy();
-		}
-
-		const ctx = document.getElementById('accuracyTop5Chart');
-
-		accuracyTop5Chart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: Object.keys(accuracy_top5_scores),
-				datasets: [{
-					label: 'Accuracy Top 5',
-					data: Object.values(accuracy_top5_scores),
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	}
-
-	function constructInferenceTimeChart() {
-		if (inferenceTimeChart) {
-			inferenceTimeChart.destroy();
-		}
-
-		const ctx = document.getElementById('inferenceTimeChart');
-
-		inferenceTimeChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: Object.keys(inference_times),
-				datasets: [{
-					label: 'Inference Time',
-					data: Object.values(inference_times),
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	}
-
-	function constructMemoryUsageChart() {
-		if (memoryUsageChart) {
-			memoryUsageChart.destroy();
-		}
-
-		const ctx = document.getElementById('memoryUsageChart');
-
-		memoryUsageChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: Object.keys(memory_usage),
-				datasets: [{
-					label: 'Accuracy Top 1',
-					data: Object.values(memory_usage),
-					borderWidth: 1
-				}]
-			},
-			options: {
-				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
-			}
-		});
-	}
-
-	document.querySelector(".ChartBtn").addEventListener("click", function (event) {
-		constructAccuracyTop1Chart()
-		constructAccuracyTop5Chart()
-		constructInferenceTimeChart()
-		constructMemoryUsageChart()
 	});
+
+	document.getElementById("dropdown-content-device-1").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_1["device"] = event.target.textContent
+			getBenchmarkData(model_1).then(data => {
+				chart_labels[0] = model_1["name"]
+				if (data[0] !== undefined) {
+					top1[0] = data[0]["accuracy_top1"]
+					top5[0] = data[0]["accuracy_top5"]
+					inference[0] = data[0]["inference_time"]
+					memory[0] = data[0]["memory_usage"]
+				} else {
+					top1[0] = 0
+					top5[0] = 0
+					inference[0] = 0
+					memory[0] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	document.getElementById("dropdown-content-library-1").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_1["library"] = event.target.textContent
+			getBenchmarkData(model_1).then(data => {
+				chart_labels[0] = model_1["name"]
+				if (data[0] !== undefined) {
+					top1[0] = data[0]["accuracy_top1"]
+					top5[0] = data[0]["accuracy_top5"]
+					inference[0] = data[0]["inference_time"]
+					memory[0] = data[0]["memory_usage"]
+				} else {
+					top1[0] = 0
+					top5[0] = 0
+					inference[0] = 0
+					memory[0] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	let model_2 = {
+		"name": "",
+		"device": "",
+		"library": ""
+	}
+
+	document.getElementById("dropdown-content-model-2").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_2["name"] = event.target.textContent
+			getBenchmarkData(model_2).then(data => {
+				chart_labels[1] = model_2["name"]
+				if (data[0] !== undefined) {
+					top1[1] = data[0]["accuracy_top1"]
+					top5[1] = data[0]["accuracy_top5"]
+					inference[1] = data[0]["inference_time"]
+					memory[1] = data[0]["memory_usage"]
+				} else {
+					top1[1] = 0
+					top5[1] = 0
+					inference[1] = 0
+					memory[1] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	document.getElementById("dropdown-content-device-2").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_2["device"] = event.target.textContent
+			getBenchmarkData(model_2).then(data => {
+				chart_labels[1] = model_2["name"]
+				if (data[0] !== undefined) {
+					top1[1] = data[0]["accuracy_top1"]
+					top5[1] = data[0]["accuracy_top5"]
+					inference[1] = data[0]["inference_time"]
+					memory[1] = data[0]["memory_usage"]
+				} else {
+					top1[1] = 0
+					top5[1] = 0
+					inference[1] = 0
+					memory[1] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	document.getElementById("dropdown-content-library-2").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_2["library"] = event.target.textContent
+			getBenchmarkData(model_2).then(data => {
+				chart_labels[1] = model_2["name"]
+				if (data[0] !== undefined) {
+					top1[1] = data[0]["accuracy_top1"]
+					top5[1] = data[0]["accuracy_top5"]
+					inference[1] = data[0]["inference_time"]
+					memory[1] = data[0]["memory_usage"]
+				} else {
+					top1[1] = 0
+					top5[1] = 0
+					inference[1] = 0
+					memory[1] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	let model_3 = {
+		"name": "",
+		"device": "",
+		"library": ""
+	}
+
+	document.getElementById("dropdown-content-model-3").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_3["name"] = event.target.textContent
+			getBenchmarkData(model_3).then(data => {
+				chart_labels[2] = model_3["name"]
+				if (data[0] !== undefined) {
+					top1[2] = data[0]["accuracy_top1"]
+					top5[2] = data[0]["accuracy_top5"]
+					inference[2] = data[0]["inference_time"]
+					memory[2] = data[0]["memory_usage"]
+				} else {
+					top1[2] = 0
+					top5[2] = 0
+					inference[2] = 0
+					memory[2] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	document.getElementById("dropdown-content-device-3").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_3["device"] = event.target.textContent
+			getBenchmarkData(model_3).then(data => {
+				chart_labels[2] = model_3["name"]
+				if (data[0] !== undefined) {
+					top1[2] = data[0]["accuracy_top1"]
+					top5[2] = data[0]["accuracy_top5"]
+					inference[2] = data[0]["inference_time"]
+					memory[2] = data[0]["memory_usage"]
+
+				} else {
+					top1[2] = 0
+					top5[2] = 0
+					inference[2] = 0
+					memory[2] = 0
+				}
+
+				top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+			})
+		}
+	});
+
+	document.getElementById("dropdown-content-library-3").addEventListener("click", function (event) {
+		if (event.target.classList.contains("dropdownItem")) {
+			console.log(event.target.textContent + " clicked!");
+			model_3["library"] = event.target.textContent
+			getBenchmarkData(model_3).then(data => {
+				chart_labels[2] = model_3["name"]
+				if (data[0] !== undefined) {
+					top1[2] = data[0]["accuracy_top1"]
+					top5[2] = data[0]["accuracy_top5"]
+					inference[2] = data[0]["inference_time"]
+					memory[2] = data[0]["memory_usage"]
+
+					top1Chart = constructChart(chart_labels, top1, "accuracyTop1Chart", "Accuracy Top 1", top1Chart)
+					top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
+					inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
+					memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+				}
+			})
+		}
+	});
+
+	async function getBenchmarkData(model) {
+		const benchmarkData = await api.filter_benchmarks(model["device"], model["library"]);
+
+		const modelData = (await Promise.all(benchmarkData["benchmarks"].map(async (benchmark) => {
+			let model_name = await api.read_model(benchmark["model_id"]);
+			return model_name["model_name"] === model["name"] ? benchmark : null;
+		}))).filter(Boolean);  // Removes null values
+
+		return modelData
+	}
+
+	function constructChart(chart_labels, metric, chart_id, chart_label, chart) {
+		if (chart) {
+			chart.destroy()
+		}
+
+		console.log(metric)
+
+		const ctx = document.getElementById(chart_id);
+
+		chart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: chart_labels,
+				datasets: [{
+					label: chart_label,
+					data: metric,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				}
+			}
+		});
+
+		return chart;
+	}
 });
