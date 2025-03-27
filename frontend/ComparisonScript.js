@@ -94,12 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function updateMetricCard() {
-		top1.forEach(top1_score => {
-			document.getElementById("top1Metrics").insertAdjacentHTML(
-				"afterbegin",
-				`<div class="metricCard"><p>${top1_score}%</p></div>`
-			)
-		})
+		document.getElementById("metric1").textContent = top1[0] + "%"
+		document.getElementById("metric2").textContent = top1[1] + "%"
+		document.getElementById("metric3").textContent = top1[2] + "%"
+
+		document.getElementById("metric4").textContent = top5[0] + "%"
+		document.getElementById("metric5").textContent = top5[1] + "%"
+		document.getElementById("metric6").textContent = top5[2] + "%"
+
+		document.getElementById("metric7").textContent = inference[0] + "ms"
+		document.getElementById("metric8").textContent = inference[1] + "ms"
+		document.getElementById("metric9").textContent = inference[2] + "ms"
+
+		document.getElementById("metric10").textContent = memory[0] + "MB"
+		document.getElementById("metric11").textContent = memory[1] + "MB"
+		document.getElementById("metric12").textContent = memory[2] + "MB"
 	}
 
 	document.getElementById("dropdown-content-model-1").addEventListener("click", function (event) {
@@ -153,6 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -179,6 +190,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -211,6 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -237,6 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -263,6 +280,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -295,6 +314,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -322,6 +343,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 				inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 				memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+				updateMetricCard()
 			})
 		}
 	});
@@ -342,6 +365,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					top5Chart = constructChart(chart_labels, top5, "accuracyTop5Chart", "Accuracy Top 5", top5Chart)
 					inferenceChart = constructChart(chart_labels, inference, "inferenceTimeChart", "Inference Time", inferenceChart)
 					memoryChart = constructChart(chart_labels, memory, "memoryUsageChart", "Memory Usage", memoryChart)
+
+					updateMetricCard()
 				}
 			})
 		}
