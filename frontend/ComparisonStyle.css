@@ -154,3 +154,14 @@
 .pageTitle hr {
     margin-top: 20px;
 }
+
+.technicalDetailContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+
+.technicalDetailContainer ul{
+    display: flex;
+    flex-direction: column;
+}
