@@ -94,6 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function updateMetricCard() {
+		const metricIds = [
+			"metric1", "metric2", "metric3",
+			"metric4", "metric5", "metric6",
+			"metric7", "metric8", "metric9",
+			"metric10", "metric11", "metric12"
+		];
+
 		document.getElementById("metric1").textContent = top1[0] + "%"
 		document.getElementById("metric2").textContent = top1[1] + "%"
 		document.getElementById("metric3").textContent = top1[2] + "%"
@@ -109,6 +116,23 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById("metric10").textContent = memory[0] + "MB"
 		document.getElementById("metric11").textContent = memory[1] + "MB"
 		document.getElementById("metric12").textContent = memory[2] + "MB"
+
+		metricIds.forEach(id => {
+			document.getElementById(id).style.boxShadow = "4px 4px 4px rgba(255, 255, 255, 0.5)";
+		});
+
+
+		let maxIndex = top1.indexOf(Math.max(...top1));
+		document.getElementById(metricIds[maxIndex]).style.boxShadow = "4px 4px 4px rgba(0, 255, 17, 0.5)";
+
+		maxIndex = top5.indexOf(Math.max(...top5));
+		document.getElementById(metricIds[maxIndex + 3]).style.boxShadow = "4px 4px 4px rgba(0, 255, 17, 0.5)";
+
+		let minIndex = inference.indexOf(Math.min(...inference));
+		document.getElementById(metricIds[minIndex + 6]).style.boxShadow = "4px 4px 4px rgba(0, 255, 17, 0.5)";
+
+		minIndex = memory.indexOf(Math.min(...memory));
+		document.getElementById(metricIds[minIndex + 9]).style.boxShadow = "4px 4px 4px rgba(0, 255, 17, 0.5)";
 	}
 
 	async function getTechnicalDetails(model_name, technicalDetailsID) {
