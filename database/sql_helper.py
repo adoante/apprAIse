@@ -164,3 +164,9 @@ def get_all_users():
 		statement = select(User)
 		users = session.exec(statement)
 		return list(users)
+	
+def get_all_library():
+	with Session(engine) as session:
+		statement = select(Library)
+		libraries = session.exec(statement)
+		return list(libraries)

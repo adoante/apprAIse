@@ -80,13 +80,63 @@ async function filter_benchmarks(endpoint, device = "", library = "", sort = "",
 async function filter_models(endpoint, name = "", end_point = "", input_resolution = "", sort = "", order = "") {
     try {
         let url = `${baseURL}${endpoint}/`
-        let params = new URLSearchParams
+        let params = new URLSearchParams();
 
         if (name) params.append("name", name);
         if (end_point) params.append("end_point", end_point);
         if (input_resolution) params.append("input_resolution", input_resolution);
         if (sort) params.append("sort", sort);
         if (order) params.append("order", order);
+        
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+
+        let response = await fetch(url);
+
+        if (!response.ok) {
+            let endpoint_name = endpoint.charAt(1).toUpperCase() + endpoint.slice(2);
+            throw new Error(`${endpoint_name} ${response.statusText} (${response.status})`);
+        }
+
+        return await response.json();
+
+    } catch (error) {
+        console.error(`Error fetching ${endpoint.slice(1)}:`, error)
+    }
+}
+
+async function filter_devices(endpoint, name = "") {
+    try {
+        let url = `${baseURL}${endpoint}/`
+        let params = new URLSearchParams();
+
+        if (name) params.append("name", name);
+        
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+
+        let response = await fetch(url);
+
+        if (!response.ok) {
+            let endpoint_name = endpoint.charAt(1).toUpperCase() + endpoint.slice(2);
+            throw new Error(`${endpoint_name} ${response.statusText} (${response.status})`);
+        }
+
+        return await response.json();
+
+    } catch (error) {
+        console.error(`Error fetching ${endpoint.slice(1)}:`, error)
+    }
+}
+
+async function filter_libraries(endpoint, name = "") {
+    try {
+        let url = `${baseURL}${endpoint}/`
+        let params = new URLSearchParams();
+
+        if (name) params.append("name", name);
         
         if (params.toString()) {
             url += `?${params.toString()}`;
@@ -118,7 +168,9 @@ const api = {
     read_device: (device_id) => fetchData("/device", device_id),
     read_benchmark: (benchmark_id) => fetchData("/benchmark", benchmark_id),
     filter_benchmarks: (device, library, sort, order) => filter_benchmarks("/benchmark", device, library, sort, order),
-    filter_models: (name, end_point, input_resolution, sort, order) => filter_models("/model", name, end_point, input_resolution, sort, order)
+    filter_models: (name, end_point, input_resolution, sort, order) => filter_models("/model", name, end_point, input_resolution, sort, order),
+    filter_devices: (name) => filter_devices("/device", name),
+    filter_libraries: (name) => filter_libraries("/library", name)
 };
 
 export default api

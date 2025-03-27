@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .endpoints import user, customization, favorite, chipset, model, device, benchmark
+from .endpoints import user, customization, favorite, chipset, model, device, benchmark, library
 
 router = APIRouter()
 
@@ -11,3 +11,4 @@ router.include_router(chipset.router, prefix = "/chipset", tags = ["chipset"])
 router.include_router(device.router, prefix = "/device", tags = ["device"])
 router.include_router(model.router, prefix = "/model", tags = ["model"])
 router.include_router(benchmark.router, prefix = "/benchmark", tags = ["benchmark"])
+router.include_router(library.router, prefix = "/library", tags = ["library"])
