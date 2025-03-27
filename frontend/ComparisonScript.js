@@ -113,8 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-model-1").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_1["name"] = event.target.textContent
+
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_1["name"]
 
 			getBenchmarkData(model_1).then(data => {
 				chart_labels[0] = model_1["name"]
@@ -142,8 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-device-1").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_1["device"] = event.target.textContent
+
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_1["device"]
+
 			getBenchmarkData(model_1).then(data => {
 				chart_labels[0] = model_1["name"]
 				if (data[0] !== undefined) {
@@ -170,8 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-library-1").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_1["library"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_1["library"]
+
 			getBenchmarkData(model_1).then(data => {
 				chart_labels[0] = model_1["name"]
 				if (data[0] !== undefined) {
@@ -204,8 +209,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-model-2").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_2["name"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_2["name"]
+
 			getBenchmarkData(model_2).then(data => {
 				chart_labels[1] = model_2["name"]
 				if (data[0] !== undefined) {
@@ -232,8 +239,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-device-2").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_2["device"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_2["device"]
+
 			getBenchmarkData(model_2).then(data => {
 				chart_labels[1] = model_2["name"]
 				if (data[0] !== undefined) {
@@ -260,8 +269,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-library-2").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_2["library"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_2["library"]
+
 			getBenchmarkData(model_2).then(data => {
 				chart_labels[1] = model_2["name"]
 				if (data[0] !== undefined) {
@@ -294,8 +305,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-model-3").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_3["name"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_3["name"]
+
 			getBenchmarkData(model_3).then(data => {
 				chart_labels[2] = model_3["name"]
 				if (data[0] !== undefined) {
@@ -322,8 +335,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-device-3").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_3["device"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_3["device"]
+
 			getBenchmarkData(model_3).then(data => {
 				chart_labels[2] = model_3["name"]
 				if (data[0] !== undefined) {
@@ -351,8 +366,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("dropdown-content-library-3").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
-			console.log(event.target.textContent + " clicked!");
 			model_3["library"] = event.target.textContent
+			
+			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_3["library"]
+
 			getBenchmarkData(model_3).then(data => {
 				chart_labels[2] = model_3["name"]
 				if (data[0] !== undefined) {
@@ -387,8 +404,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (chart) {
 			chart.destroy()
 		}
-
-		console.log(metric)
 
 		const ctx = document.getElementById(chart_id);
 
