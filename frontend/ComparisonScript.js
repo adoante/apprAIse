@@ -452,15 +452,15 @@ document.addEventListener("DOMContentLoaded", function () {
 				datasets: [{
 					label: chart_label,
 					data: metric,
-					borderWidth: 1
+					backgroundColor: ["blue", "orange", "pink"],
+					borderWidth: 0,
+					borderRadius: 15
 				}]
 			},
 			options: {
 				scales: {
-					y: {
-						beginAtZero: true
-					}
-				}
+					y: { display: false, grid: { display: false } }
+				},
 			}
 		});
 
