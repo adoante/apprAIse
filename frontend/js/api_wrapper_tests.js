@@ -5,40 +5,70 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 import api from './modules/api_wrapper.js';
 
-async function getAllBenchmarks() {
-    try {
-		const device = "";
-        const library = "";
-        const sort = "";
-        const order = "desc"; // or "asc"
+async function signupUser(username, password, firstname, lastname, email) {
+    const data = await api.signup(username, password, firstname, lastname, email);
+    
+    if (data && data.message === `User: ${username} created successfully.`) {
+        console.log("Signup successful:", data);
 
-        const benchmarks = await api.filter_benchmarks(device, library, sort, order);
-        console.log("All Benchmarks:", JSON.stringify(benchmarks));
-    } catch (error) {
-        console.error("Error fetching all benchmarks:", error);
+        await loginUser(username, password);
+    } else {
+        console.error("Signup failed:", data);
     }
 }
 
-// Call the function
-getAllBenchmarks();
-
-async function getAllModels() {
-    try {
-		const name = "";
-        const end_point = "";
-        const input_resolution = ""
-        const sort = "";
-        const order = "desc"; // or "asc"
-
-        const benchmarks = await api.filter_models(name, end_point, input_resolution, sort, order);
-        console.log("All Models:", JSON.stringify(benchmarks));
-    } catch (error) {
-        console.error("Error fetching all models:", error);
+async function loginUser(username, password) {
+    const data = await api.login(username, password);
+    
+    if (data && data.access_token) {
+        localStorage.setItem("access_token", data.access_token); // Store token
+        console.log("Login successful:", data);
+        
+        await api.get_current_user();
+    } else {
+        console.error("Login failed!");
     }
 }
 
-// Call the function
-getAllModels();
+signupUser("adoante113211", "password", "Adolfo", "Gante", "adolfogante@gmail.com");
+
+
+// async function getAllBenchmarks() {
+//     try {
+// 		const device = "";
+//         const library = "";
+//         const sort = "";
+//         const order = "desc"; // or "asc"
+
+//         const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+//         console.log("All Benchmarks:", JSON.stringify(benchmarks));
+//     } catch (error) {
+//         console.error("Error fetching all benchmarks:", error);
+//     }
+// }
+
+// // Call the function
+// getAllBenchmarks();
+
+// async function getAllModels() {
+//     try {
+// 		const name = "";
+//         const end_point = "";
+//         const input_resolution = ""
+//         const sort = "";
+//         const order = "desc"; // or "asc"
+
+//         const benchmarks = await api.filter_models(name, end_point, input_resolution, sort, order);
+//         console.log("All Models:", JSON.stringify(benchmarks));
+//     } catch (error) {
+//         console.error("Error fetching all models:", error);
+//     }
+// }
+
+// // Call the function
+// getAllModels();
+
+
 
 // // Always passes - Root API test
 // api.read_root()
