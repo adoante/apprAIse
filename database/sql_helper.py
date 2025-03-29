@@ -165,3 +165,11 @@ def get_all_users():
 		statement = select(User)
 		users = session.exec(statement)
 		return list(users)
+	
+# Get by name
+
+def get_user_by_name(user_name: str):
+	with Session(engine) as session:
+		statement = select(User).where(User.user_name == user_name)
+		user = session.exec(statement).first()
+	return user
