@@ -9,7 +9,8 @@ class User(SQLModel, table=True):
 	last_name: str
 	email: str
 	password_hash: str
-	qai_hub_api_token: str
+	qai_hub_api_token: Optional[str] = None 
+	disabled: bool
 	customization_id: Optional[int] = Field(default=None, foreign_key="customization.customization_id")
 
 class Customization(SQLModel, table=True):
@@ -168,7 +169,7 @@ def get_all_users():
 	
 # Get by name
 
-def get_user_by_name(user_name: str):
+def get_user_by_username(user_name: str):
 	with Session(engine) as session:
 		statement = select(User).where(User.user_name == user_name)
 		user = session.exec(statement).first()
