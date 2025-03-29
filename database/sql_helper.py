@@ -1,9 +1,10 @@
+import uuid
 from typing import Optional
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 class User(SQLModel, table=True):
-	user_id:Optional[int] = Field(default=None, primary_key=True)
-	user_name: str
+	id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+	user_name: Optional[str] = Field(default=None, primary_key=True)
 	first_name: str
 	last_name: str
 	email: str
