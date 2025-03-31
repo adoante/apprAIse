@@ -1,14 +1,16 @@
+import uuid
 from typing import Optional
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 class User(SQLModel, table=True):
-	user_id:Optional[int] = Field(default=None, primary_key=True)
-	user_name: str
+	id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+	user_name: Optional[str] = Field(default=None, primary_key=True)
 	first_name: str
 	last_name: str
 	email: str
 	password_hash: str
-	qai_hub_api_token: str
+	qai_hub_api_token: Optional[str] = None 
+	disabled: bool
 	customization_id: Optional[int] = Field(default=None, foreign_key="customization.customization_id")
 
 class Customization(SQLModel, table=True):
@@ -170,3 +172,10 @@ def get_all_library():
 		statement = select(Library)
 		libraries = session.exec(statement)
 		return list(libraries)
+	
+# Get by name
+def get_user_by_username(user_name: str):
+	with Session(engine) as session:
+		statement = select(User).where(User.user_name == user_name)
+		user = session.exec(statement).first()
+	return user
