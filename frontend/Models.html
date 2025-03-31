@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript" src="ModelsScript.js"></script>
+	<!--<script type="text/javascript" src="ModelsScript.js"></script>-->
 	<link rel="stylesheet" href="ModelsStyle.css">
 	<link rel="stylesheet" href="vanilla.css">
 	<title>Models</title>
@@ -53,13 +53,13 @@
 			</div>
 			<div class="dropdown">
 				<div class="dropdown-btn">
-					<p>Metric</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
+					<p>Sort by</p>
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
 				</div>
 				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Accuracy</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Peak Memory</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Memory Usage</p>
+					<p class="dropdownItem">Accuracy Top 1</p>
+					<p class="dropdownItem">Accuracy Top 5</p>
+					<p class="dropdownItem">Memory Usage</p>
 				</div>
 			</div>
 
@@ -87,8 +87,8 @@
 		</div>
 
 		<div class="models">
-			<a href="ExampleModel.html?info=Beit">
-				<div class="model blue">	
+			<!--<a href="ExampleModel.html?info=Beit">
+				<div class="model blue">
 					<div class="modelColor blue"></div>
 					<img class="modelImg" src="Images/DoveModel.PNG" alt="">
 					<p class="modelTitle">Beit</p>
@@ -131,11 +131,13 @@
 				<img class="modelImg" src="Images/KolaModel.PNG" alt="">
 				<p class="modelTitle">DenseNet-121-Quantized</p>
 				<p class="modelDes">Imagenet classifier and general purpose backbone.</p>
-			</div>
+			</div>-->
 		</div>
 	</div>
 
 
 </body>
+<script type="module" src="js/modules/api_wrapper.js"></script>
+<script type="module" src="ModelsScript.js"></script>
 
 </html>

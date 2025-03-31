@@ -2,8 +2,10 @@
     margin-bottom: 50px;
     justify-content: space-evenly;
     display: flex;
-    gap: 5vw; /* Adjusts spacing dynamically */
-    flex-wrap: wrap; /* Allows items to stack if needed */
+    gap: 5vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
 }
 
 .dropdown {
@@ -27,7 +29,7 @@
     justify-content: space-between;
 }
 
-.dropdown-btn p{
+.dropdown-btn p {
     margin: 0;
     white-space: nowrap;
 }
@@ -71,6 +73,14 @@
     border-radius: 15px;
     padding-bottom: 20px;
     flex: 1 1 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition */
+}
+
+.model:hover {
+    transform: scale(1.1) translateY(-5px);
+    /* Moves it up slightly */
+    /* Increase size by 10% */
 }
 
 .model.blue {
@@ -149,7 +159,11 @@
     background-color: #FF9D00;
 }
 
-.arrow{
+.modelLink:hover {
+    text-decoration: none;
+}
+
+.arrow {
     width: 25px;
     margin: 0;
     transition: transform 0.3s ease;
