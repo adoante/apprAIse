@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(color)
             // Create the anchor element
             const modelLink = document.createElement("a");
+            modelLink.classList.add("modelLink")
             modelLink.href = `ExampleModel.html?info=${encodeURIComponent(model["model_name"])}`;
 
             // Create the model div

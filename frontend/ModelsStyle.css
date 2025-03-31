@@ -159,6 +159,10 @@
     background-color: #FF9D00;
 }
 
+.modelLink:hover {
+    text-decoration: none;
+}
+
 .arrow {
     width: 25px;
     margin: 0;
