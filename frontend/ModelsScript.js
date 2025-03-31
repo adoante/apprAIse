@@ -1,3 +1,5 @@
+import api from './js/modules/api_wrapper.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
@@ -36,8 +38,88 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+
+    api.filter_models().then(data => {
+        const modelsContainer = document.querySelector(".models"); // Select the container div
+        let i = -1
+        data["models"].forEach(model => {
+
+            console.log(model["model_name"])
+            let color = "pink"
+            console.log(color)
+
+            switch (++i) {
+                case 0:
+                    color = "blue";
+                    break;
+                case 1:
+                    color = "green";
+                    break;
+                case 2:
+                    color = "pink";
+                    break;
+                case 3:
+                    color = "purple";
+                    break;
+                case 4:
+                    color = "red";
+                    break;
+                case 5:
+                    color = "orange";
+                    i = -1
+                    break;
+            }
+
+            console.log(color)
+            // Create the anchor element
+            const modelLink = document.createElement("a");
+            modelLink.href = `ExampleModel.html?info=${encodeURIComponent(model["model_name"])}`;
+
+            // Create the model div
+            console.log(color)
+            const modelElement = document.createElement("div");
+            modelElement.classList.add("model", color);
+
+            // Create the color div
+            const modelColor = document.createElement("div");
+            modelColor.classList.add("modelColor", color);
+
+            // Create the image element
+            const modelImg = document.createElement("img");
+            modelImg.classList.add("modelImg");
+            modelImg.src = "Images/DoveModel.PNG"; // You may want this to come from `model`
+            modelImg.alt = "";
+
+            // Create the title paragraph
+            const modelTitle = document.createElement("p");
+            modelTitle.classList.add("modelTitle");
+            modelTitle.textContent = model["model_name"];
+
+            // Create the description paragraph
+            const modelDes = document.createElement("p");
+            modelDes.classList.add("modelDes");
+            modelDes.textContent = "Imagenet classifier and general purpose backbone."; // You might want to change this dynamically
+
+            // Append all elements inside the model div
+            modelElement.appendChild(modelColor);
+            modelElement.appendChild(modelImg);
+            modelElement.appendChild(modelTitle);
+            modelElement.appendChild(modelDes);
+
+            // Append model div inside the anchor element
+            modelLink.appendChild(modelElement);
+
+            // Append the whole structure inside the models container
+            modelsContainer.appendChild(modelLink);
+        });
+    });
+
+
 });
 
 function dropDownSelect(id) {
     console.log(id.textContent);
 }
+
+
