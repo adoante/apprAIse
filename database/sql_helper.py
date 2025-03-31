@@ -167,8 +167,13 @@ def get_all_users():
 		users = session.exec(statement)
 		return list(users)
 	
+def get_all_library():
+	with Session(engine) as session:
+		statement = select(Library)
+		libraries = session.exec(statement)
+		return list(libraries)
+	
 # Get by name
-
 def get_user_by_username(user_name: str):
 	with Session(engine) as session:
 		statement = select(User).where(User.user_name == user_name)
