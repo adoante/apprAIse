@@ -2,110 +2,117 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="vanilla.css">
-	<link rel="stylesheet" href="LeaderboardStyle.css">
-	<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vanilla.css">
+    <link rel="stylesheet" href="LeaderboardStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="CustomizationScript.js"></script>
 	<script type="module" src="leaderboardChart.js"></script>
-	<title>Leaderboard</title>
+
+    <title>Leaderboard</title>
 </head>
 
 <body>
 
-	<div class="navbarCustom">
-		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+    <div class="navbarCustom">
+        <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
 
-		<ul>
-			<li><a class="navMenu" href="About.html">About</a></li>
-			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
-			<li><a class="navMenu" href="Models.html">Models</a></li>
-			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
-			<li><a class="navMenu edge" href="Login.html">Login</a></li>
-		</ul>
-	</div>
-	<div class="page">
-		<div class="pageTitle">
-			<h1 class="title">Leaderboard</h1>
-		</div>
+        <ul>
+            <li><a class="navMenu" href="About.html">About</a></li>
+            <li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+            <li><a class="navMenu" href="Models.html">Models</a></li>
+            <li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+            <li><a class="navMenu edge" href="Login.html">Login</a></li>
+        </ul>
+    </div>
+    <div class="page">
+        <div class="pageTitle">
+            <h1 class="title">Leaderboard</h1>
+        </div>
 
-		<!-- Dropdown to select metric -->
-		<div id="leaderboardChartDropdown">
-			<select id="metricSelector">
-				<option value="accuracy_top1">Accuracy (Top 1)</option>
-				<option value="accuracy_top5">Accuracy (Top 5)</option>
-				<option value="memory_usage">Memory Usage</option>
-				<option value="inference_time">Inference Time</option>
-			</select>
-			
-		
-			<!-- Dropdown to toggle Top 1 or Top 3 -->
-			<select id="viewMode">
-				<option value="top3">Top 3</option>
-				<option value="top1">Top 1</option>
-			</select>
-		</div>
-		
-		<canvas id="leaderboardChart"></canvas>
+        <div class="customization-btn-container">
+            <button class="customization-btn" onclick="redirectToCustomization()">Customization</button>
+        </div>
 
-		<div class="dropdowns">
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Devices</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p class="dropdownItem">Snapdragon 8 Elite QRD</p>
-					<p class="dropdownItem">Samsung Galaxy S24</p>
-					<p class="dropdownItem">Snapdragon X Elite CRD</p>
-				</div>
-			</div>
+        <div id="leaderboardChartDropdown">
+            <select id="metricSelector">
+                <option value="accuracy_top1">Accuracy (Top 1)</option>
+                <option value="accuracy_top5">Accuracy (Top 5)</option>
+                <option value="memory_usage">Memory Usage</option>
+                <option value="inference_time">Inference Time</option>
+            </select>
 
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Libraries</p>
-					<img class="arrow LL"src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p class="dropdownItem">ONNX Runtime</p>
-					<p class="dropdownItem">Qualcomm© AI Engine Direct</p>
-					<p class="dropdownItem">TFLite</p>
-				</div>
-			</div>
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Sort by</p>
-					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p class="dropdownItem">Accuracy Top 1</p>
-					<p class="dropdownItem">Accuracy Top 5</p>
-					<p class="dropdownItem">Memory Usage</p>
-				</div>
-			</div>
-		</div>
-		<div>
-			<table id="Leaderboard">
-				<thead>
-					<tr class="header">
-						<th class="topLeft">Rank</th>
-						<th>Model Name</th>
-						<th>Top 1 Accuracy</th>
-						<th>Top 5 Accuracy</th>
-						<th>Memory Usage</th>
-						<th class="topRight">Inference Time</th>
+       
+            <select id="viewMode">
+                <option value="top3">Top 3</option>
+                <option value="top1">Top 1</option>
+            </select>
+        </div>
 
-					</tr>
-				</thead>
-				<tbody>
+        <canvas id="leaderboardChart"></canvas>
 
-				</tbody>
-			</table>
-		</div>
-	</div>
+        <div class="dropdowns">
+            <div class="dropdown">
+                <div class="dropdown-btn">
+                    <p>Devices</p>
+                    <img class="arrow LD" src="Images/down-chevron.png" alt="">
+                </div>
+                <div class="dropdown-content">
+                    <p class="dropdownItem">Snapdragon 8 Elite QRD</p>
+                    <p class="dropdownItem">Samsung Galaxy S24</p>
+                    <p class="dropdownItem">Snapdragon X Elite CRD</p>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="dropdown-btn">
+                    <p>Libraries</p>
+                    <img class="arrow LL" src="Images/down-chevron.png" alt="">
+                </div>
+                <div class="dropdown-content">
+                    <p class="dropdownItem">ONNX Runtime</p>
+                    <p class="dropdownItem">Qualcomm© AI Engine Direct</p>
+                    <p class="dropdownItem">TFLite</p>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="dropdown-btn">
+                    <p>Sort by</p>
+                    <img class="arrow LSB" src="Images/down-chevron.png" alt="">
+                </div>
+                <div class="dropdown-content">
+                    <p class="dropdownItem">Accuracy Top 1</p>
+                    <p class="dropdownItem">Accuracy Top 5</p>
+                    <p class="dropdownItem">Memory Usage</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table id="Leaderboard">
+                <thead>
+                    <tr class="header">
+                        <th class="topLeft">Rank</th>
+                        <th>Model Name</th>
+                        <th>Top 1 Accuracy</th>
+                        <th>Top 5 Accuracy</th>
+                        <th>Memory Usage</th>
+                        <th class="topRight">Inference Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </body>
+<script>
+    function redirectToCustomization() {
+        window.location.href = "Customization.html";
+    }
+</script>
 <script type="module" src="js/modules/api_wrapper.js"></script>
 <script type="module" src="LeaderboardScript.js"></script>
 

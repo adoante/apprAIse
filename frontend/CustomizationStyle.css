@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.pageTitle {
+    text-align: center;
+    margin: 20px;
+}
+
+.customizationContainer {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #3d3d3d;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+h2, h3, label {
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+input[type="color"] {
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+}
+
+.apply-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+    background-color: #4338ca;
+}
+
+#statusMessage {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Chart Type Button Styles */
+.chart-type-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.chart-type-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chart-type-btn:hover {
+    background-color: #4338ca;
+}
+
+.chart-type-btn.active {
+    background-color: #35BFFF;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.chart-type-btn:focus {
+    outline: none;
+}
+
+.chart-type-btn:active {
+    transform: scale(1.05);
+}
