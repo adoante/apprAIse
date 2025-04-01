@@ -83,7 +83,6 @@ benchmark_data = [
 	(71.63, 90.1, 0.649, 37, 128, 'Samsung Galaxy S24', 'mobilenet_v3_large', 'tflite'),
 	(70.57, 89.44, .248, 30, 137, 'Samsung Galaxy S24', 'mobilenet_v3_large_quantized', 'tflite'),
 
-
 	# ONNX
 	(77.08, 93.25, 15.50, 466, 151, "Samsung Galaxy S24", "wideresnet50_quantized", "onnx"),
 	(77.12, 93.34, 3.980, 36, 128, "Samsung Galaxy S24", "wideresnet50", "onnx"),
@@ -96,6 +95,34 @@ benchmark_data = [
 	(55.89, 78.07, 5.760, 191, 259,  "Samsung Galaxy S24", "shufflenet_v2_quantized", "onnx"),
 	(56.22, 78.48, 0.625, 27, 223, "Samsung Galaxy S24", "shufflenet_v2", "onnx"),
 	(79.92, 94.76, 1.520, 72, 147, "Samsung Galaxy S24", "resnext50_quantized", "onnx"),
+
+	## Samsung Galaxy S23 (Family)
+
+	# TFlite
+	(77.07, 93.24, 1.76, 340, 82, 'Samsung Galaxy S23', 'wideresnet50_quantized', 'tflite'),
+	(72.36, 87.72, 4.91, 1000, 79, 'Samsung Galaxy S23', 'wideresnet50', 'tflite'),
+	(79.94, 94.77, 13.2, 11, 1579, 'Samsung Galaxy S23', 'vit', 'tflite'),
+	(79.18, 94.5, 11.1, 16, 837, 'Samsung Galaxy S23', 'swin_tiny', 'tflite'),
+	(81.98, 95.89, 18.5, 28, 1563, 'Samsung Galaxy S23', 'swin_small', 'tflite'),
+	(81.91, 95.98, 22.4, 32, 1568, 'Samsung Galaxy S23', 'swin_base', 'tflite'),
+	(54.65, 77.99, 0.198, 3, 43, 'Samsung Galaxy S23', 'squeezenet1_1_quantized', 'tflite'),
+	(54.82, 78.11, 0.618, 17, 41, 'Samsung Galaxy S23', 'squeezenet1_1', 'tflite'),
+	(55.82, 78.06, 0.313, 8, 175, 'Samsung Galaxy S23', 'shufflenet_v2_quantized', 'tflite'),
+	(56.2, 78.47, 0.695, 27, 159, 'Samsung Galaxy S23', 'shufflenet_v2', 'tflite'),
+	(79.87, 94.78, 0.910, 66, 82, 'Samsung Galaxy S23', 'resnext50_quantized', 'tflite'),
+
+	# ONNX
+	(77.09, 93.25, 18.6, 212, 151, 'Samsung Galaxy S23', 'wideresnet50_quantized', 'onnx'),
+	(77.12, 93.34, 5.43, 297, 128, 'Samsung Galaxy S23', 'wideresnet50', 'onnx'),
+	(3.39, 4.37, 14.3, 348, 976, 'Samsung Galaxy S23', 'vit', 'onnx'),
+	(80.68, 95.38, 13.4, 131, 623, 'Samsung Galaxy S23', 'swin_tiny', 'onnx'),
+	(82.59, 96.23, 22.9, 224, 1145, 'Samsung Galaxy S23', 'swin_small', 'onnx'),
+	(83.04, 96.46, 29, 343, 1150, 'Samsung Galaxy S23', 'swin_base', 'onnx'),
+	(54.62, 77.93, 0.481, 7, 47, 'Samsung Galaxy S23', 'squeezenet1_1_quantized', 'onnx'),
+	(54.83, 78.12, 0.515, 10, 71, 'Samsung Galaxy S23', 'squeezenet1_1', 'onnx'),
+	(55.89, 78.07, 7.56, 56, 259, 'Samsung Galaxy S23', 'shufflenet_v2_quantized', 'onnx'),
+	(56.22, 78.48, 1.03, 13, 223, 'Samsung Galaxy S23', 'shufflenet_v2', 'onnx'),
+	(79.92, 94.76, 2.24, 45, 147, 'Samsung Galaxy S23', 'resnext50_quantized', 'onnx'),
 ]
 
 # model_name: str
