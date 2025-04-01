@@ -70,6 +70,19 @@ benchmark_data = [
 	(55.82, 78.06, 0.229, 25, 175,  "Samsung Galaxy S24", "shufflenet_v2_quantized", "tflite"),
 	(56.2, 78.47, 0.453, 29, 159, "Samsung Galaxy S24", "shufflenet_v2", "tflite"),
 	(79.87, 94.78, 0.701, 54, 82, "Samsung Galaxy S24", "resnext50_quantized", "tflite"),
+	(83.79, 96.54, 13.7, 271, 675, 'Samsung Galaxy S24', 'efficientvit_l2_cls', 'tflite'),
+	(67.49, 88.0, 0.611, 39, 84, 'Samsung Galaxy S24', 'googlenet', 'tflite'),
+	(67.28, 87.92, 0.199, 31, 86, 'Samsung Galaxy S24', 'googlenet_quantized', 'tflite'),
+	(67.79, 87.77, 0.999, 93, 129, 'Samsung Galaxy S24', 'inception_v3', 'tflite'),
+	(67.28, 87.92, 0.492, 55, 142,  'Samsung Galaxy S24', 'inception_v3_quantized', 'tflite'),
+	(71.3, 89.89, 0.795, 46, 306, 'Samsung Galaxy S24', 'levit', 'tflite'),
+	(64.61, 85.35, 0.485, 29, 71, 'Samsung Galaxy S24', 'mnasnet05', 'tflite'),
+	(63.79, 85.61, 3.31, 46, 577, 'Samsung Galaxy S24', 'mobile_vit', 'tflite'),
+	(69.2, 88.99, 0.572, 36, 71, 'Samsung Galaxy S24', 'mobilenet_v2', 'tflite'),
+	(67.38, 87.87, 0.314, 31, 108, 'Samsung Galaxy S24', 'mobilenet_v2_quantized', 'tflite'),
+	(71.63, 90.1, 0.649, 37, 128, 'Samsung Galaxy S24', 'mobilenet_v3_large', 'tflite'),
+	(70.57, 89.44, .248, 30, 137, 'Samsung Galaxy S24', 'mobilenet_v3_large_quantized', 'tflite'),
+
 
 	# ONNX
 	(77.08, 93.25, 15.50, 466, 151, "Samsung Galaxy S24", "wideresnet50_quantized", "onnx"),
@@ -242,7 +255,7 @@ model_data = [
 		"Images/dolphin.PNG",
 	),
 	(
-		"googlenetquantized",
+		"googlenet_quantized",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/googlenet_quantized",
 		"https://huggingface.co/qualcomm/GoogLeNetQuantized",
 		"https://arxiv.org/abs/1409.4842",
@@ -254,7 +267,7 @@ model_data = [
 		"Images/dolphin.PNG",
 	),
 	(
-		"inception-v3",
+		"inception_v3",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/inception_v3",
 		"https://huggingface.co/qualcomm/Inception-v3",
 		"https://arxiv.org/abs/1512.00567",
@@ -266,7 +279,7 @@ model_data = [
 		"Images/sheep.PNG",
 	),
 	(
-		"inception-v3-quantized",
+		"inception_v3_quantized",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/inception_v3_quantized",
 		"https://huggingface.co/qualcomm/Inception-v3-Quantized",
 		"https://arxiv.org/abs/1512.00567",
@@ -314,7 +327,7 @@ model_data = [
 		"Images/Dove.PNG"
 	),
 	(
-		"mobilenet-v2",
+		"mobilenet_v2",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/mobilenet_v2",
 		"https://huggingface.co/qualcomm/MobileNet-v2",
 		"https://arxiv.org/abs/1801.04381",
@@ -326,7 +339,7 @@ model_data = [
 		"Images/raven.PNG"
 	),
 	(
-		"mobilenet-v2-quantized",
+		"mobilenet_v2_quantized",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/mobilenet_v2_quantized",
 		"https://huggingface.co/qualcomm/MobileNet-v2-Quantized",
 		"https://arxiv.org/abs/1801.04381",
@@ -338,7 +351,7 @@ model_data = [
 		"Images/raven.PNG"
 	),
 	(
-		"mobilenet-v3-large",
+		"mobilenet_v3_large",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/mobilenet_v3_large",
 		"https://huggingface.co/qualcomm/MobileNet-v3-Large",
 		"https://arxiv.org/abs/1905.02244",
@@ -350,7 +363,7 @@ model_data = [
 		"Images/train.PNG"
 	),
 	(
-		"mobilenet-v3-large-quantized",
+		"mobilenet_v3_large_quantized",
 		"https://github.com/quic/ai-hub-models/tree/main/qai_hub_models/models/mobilenet_v3_large_quantized",
 		"https://huggingface.co/qualcomm/MobileNet-v3-Large-Quantized",
 		"https://arxiv.org/abs/1905.02244",
@@ -392,7 +405,8 @@ with Session(engine) as session:
 				   model_end_point=model[5],
 				   input_resolution=model[6],
 				   parameters=model[7],
-				   model_size=model[8])
+				   model_size=model[8]
+				   )
 		session.add(ai_model)
 
 	# Add benchmarks
@@ -400,6 +414,7 @@ with Session(engine) as session:
 		library = session.exec(select(Library).where(Library.library_name == benchmark[7])).first().library_id
 		model = session.exec(select(Model).where(Model.model_name == benchmark[6])).first().model_id
 		device = session.exec(select(Device).where(Device.device_name == benchmark[5])).first().device_id
+
 		ai_benchmark = Benchmark(
 			accuracy_top1=benchmark[0],
 			accuracy_top5=benchmark[1],
