@@ -39,6 +39,7 @@ class Model(SQLModel, table=True):
 	input_resolution: str
 	parameters: float # M - Million
 	model_size: float # MB - Mega Byte
+	model_img:str
 
 
 class Device(SQLModel, table=True):

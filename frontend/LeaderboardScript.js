@@ -6,7 +6,7 @@ var sort = "accuracy_top1";
 var order = "desc"; // or "asc"
 
 const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
-const libraries = ["tflite", "ONNX Runtime", "Qualcomm© AI Engine Direct"]
+const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
 const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage"]
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function dropDownSelect(id) {
+
+    console.log(id)
     try {
         var newDevice = device;
         var newLibrary = library;
@@ -65,9 +67,11 @@ async function dropDownSelect(id) {
         var newOrder = order; // or "asc"
 
         if (devices.includes(id)) {
+            id = id.toLowerCase()
             newDevice = id
             device = id
         } else if (libraries.includes(id)) {
+            id = id.toLowerCase()
             newLibrary = id
             library = id
         } else if (sorts.includes(id)) {
