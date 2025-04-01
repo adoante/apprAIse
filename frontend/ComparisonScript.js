@@ -430,29 +430,33 @@ document.addEventListener("DOMContentLoaded", function () {
 	async function getBenchmarkData(model) {
 		const benchmarkData = await api.filter_benchmarks(model["device"], model["library"]);
 
-		const modelData = (await Promise.all(benchmarkData["benchmarks"].map(async (benchmark) => {
+		let  modelData = (await Promise.all(benchmarkData["benchmarks"].map(async (benchmark) => {
 			let model_name = await api.read_model(benchmark["model_id"]);
 			return model_name["model_name"] === model["name"] ? benchmark : null;
 		}))).filter(Boolean);  // Removes null values
+		
+		if (modelData.length > 1) {
+			modelData = []
+		}
 
 		return modelData
 	}
 
 	function constructChart(chart_labels, metric, chart_id, chart_label, chart) {
+		const ctx = document.getElementById(chart_id).getContext("2d");
+		
 		if (chart) {
 			chart.destroy()
 		}
 
-		const ctx = document.getElementById(chart_id);
-
 		chart = new Chart(ctx, {
-			type: 'bar',
+			type: window.getChartType(),
 			data: {
 				labels: chart_labels,
 				datasets: [{
 					label: chart_label,
 					data: metric,
-					backgroundColor: ["blue", "orange", "pink"],
+					backgroundColor: window.getChartColors(),
 					borderWidth: 0,
 					borderRadius: 15
 				}]
