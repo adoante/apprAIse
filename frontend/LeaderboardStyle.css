@@ -2,7 +2,7 @@ th {
     text-align: center;
 }
 
-td{
+td {
     text-align: center;
 }
 
@@ -35,7 +35,7 @@ td{
     justify-content: space-between;
 }
 
-.dropdown-btn p{
+.dropdown-btn p {
     margin: 0;
     white-space: nowrap;
 }
@@ -62,7 +62,7 @@ td{
     background-color: #d1d1d1;
 }
 
-.arrow{
+.arrow {
     width: 25px;
     margin: 0;
     transition: transform 0.3s ease;
@@ -72,12 +72,12 @@ td{
     transform: rotateX(180deg);
 }
 
-/*Chart.js stuff*/
-
+/* Chart.js styling */
 #leaderboardChartDropdown {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 #leaderboardChart {
@@ -85,4 +85,29 @@ td{
     margin-right: auto !important;
     min-height: 400px;
     min-width: 400px;
+}
+
+/* Customization Button Styling */
+.customization-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.customization-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.customization-btn:hover {
+    background-color: #4338ca;
+}
+
+.customization-btn:active {
+    background-color: #362bca;
 }
