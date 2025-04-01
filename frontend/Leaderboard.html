@@ -35,6 +35,24 @@
         <div class="customization-btn-container">
             <button class="customization-btn" onclick="redirectToCustomization()">Customization</button>
         </div>
+		<!-- Dropdown to select metric -->
+		<div id="leaderboardChartDropdown">
+			<select id="metricSelector">
+				<option value="accuracy_top1">Accuracy (Top 1)</option>
+				<option value="accuracy_top5">Accuracy (Top 5)</option>
+				<option value="memory_usage">Memory Usage</option>
+				<option value="inference_time">Inference Time</option>
+			</select>
+
+
+			<!-- Dropdown to toggle Top 1 or Top 3 -->
+			<select id="viewMode">
+				<option value="top3">Top 3</option>
+				<option value="top1">Top 1</option>
+			</select>
+		</div>
+
+		<canvas id="leaderboardChart"></canvas>
 
         <div id="leaderboardChartDropdown">
             <select id="metricSelector">
@@ -50,6 +68,39 @@
                 <option value="top1">Top 1</option>
             </select>
         </div>
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					<p>Libraries</p>
+					<img class="arrow LL" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content">
+					<p class="dropdownItem">ONNX</p>
+					<p class="dropdownItem">Qualcomm© AI Engine Direct</p>
+					<p class="dropdownItem">TFLite</p>
+				</div>
+			</div>
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					<p>Sort by</p>
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content">
+					<p class="dropdownItem">Accuracy Top 1</p>
+					<p class="dropdownItem">Accuracy Top 5</p>
+					<p class="dropdownItem">Memory Usage</p>
+				</div>
+			</div>
+		</div>
+		<div>
+			<table id="Leaderboard">
+				<thead>
+					<tr class="header">
+						<th class="topLeft">Rank</th>
+						<th>Model Name</th>
+						<th>Top 1 Accuracy</th>
+						<th>Top 5 Accuracy</th>
+						<th>Memory Usage</th>
+						<th class="topRight">Inference Time</th>
 
         <canvas id="leaderboardChart"></canvas>
 

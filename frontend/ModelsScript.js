@@ -87,9 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
             modelColor.classList.add("modelColor", color);
 
             // Create the image element
+            console.log(model["model_img"])
             const modelImg = document.createElement("img");
             modelImg.classList.add("modelImg");
-            modelImg.src = "Images/DoveModel.PNG"; // You may want this to come from `model`
+            modelImg.src = model["model_img"]; // You may want this to come from `model`
             modelImg.alt = "";
 
             // Create the title paragraph
