@@ -73,6 +73,7 @@
     border-radius: 15px;
     padding-bottom: 20px;
     flex: 1 1 250px;
+    height: 380px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     /* Smooth transition */
 }
@@ -127,6 +128,9 @@
     border-radius: 50%;
     grid-column: 2/span 3;
     grid-row: 3/span 5;
+    justify-self: center;
+    max-width: 200px;
+    max-height: 185px;
 }
 
 .modelColor {

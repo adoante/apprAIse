@@ -5,9 +5,9 @@ var library = "tflite";
 var sort = "accuracy_top1";
 var order = "desc"; // or "asc"
 
-const devices = ["Samsung Galaxy S24","Google Pixel","Snapdragon 8 Elite QRD","Snapdragon X Elite CRD"]
-const libraries = ["tflite", "ONNX Runtime", "Qualcomm© AI Engine Direct"]
-const sorts = ["Accuracy Top 1","Accuracy Top 5","Memory Usage"]
+const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
+const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
+const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage"]
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".dropdown-btn").forEach(button => {
@@ -50,54 +50,58 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".dropdownItem").forEach(button=>{
-        button.addEventListener("click", function(event){
+    document.querySelectorAll(".dropdownItem").forEach(button => {
+        button.addEventListener("click", function (event) {
             dropDownSelect(button.textContent)
         })
     });
 });
 
 async function dropDownSelect(id) {
+
+    console.log(id)
     try {
-            var newDevice = device;
-            var newLibrary = library;
-            var newSort = sort;
-            var newOrder = order; // or "asc"
+        var newDevice = device;
+        var newLibrary = library;
+        var newSort = sort;
+        var newOrder = order; // or "asc"
 
-            if(devices.includes(id)){
-                newDevice = id
-                device = id
-            }else if(libraries.includes(id)){
-                newLibrary = id
-                library = id
-            }else if(sorts.includes(id)){
-                if(id == "Accuracy Top 1"){
-                    newSort = "accuracy_top1"
-                    sort = "accuracy_top1"
-                    order = "desc"
-                    newOrder="desc"
-                }else if(id == "Accuracy Top 5"){
-                    newSort = "accuracy_top5"
-                    sort = "accuracy_top5"
-                    order = "desc"
-                    newOrder="desc"
-                }else if(id  == "Memory Usage"){
-                    newSort = "memory_usage"
-                    sort = "memory_usage"
-                    order = "asc"
-                    newOrder="asc"
-                }
+        if (devices.includes(id)) {
+            id = id.toLowerCase()
+            newDevice = id
+            device = id
+        } else if (libraries.includes(id)) {
+            id = id.toLowerCase()
+            newLibrary = id
+            library = id
+        } else if (sorts.includes(id)) {
+            if (id == "Accuracy Top 1") {
+                newSort = "accuracy_top1"
+                sort = "accuracy_top1"
+                order = "desc"
+                newOrder = "desc"
+            } else if (id == "Accuracy Top 5") {
+                newSort = "accuracy_top5"
+                sort = "accuracy_top5"
+                order = "desc"
+                newOrder = "desc"
+            } else if (id == "Memory Usage") {
+                newSort = "memory_usage"
+                sort = "memory_usage"
+                order = "asc"
+                newOrder = "asc"
             }
-
-
-    
-            const benchmarks =  await api.filter_benchmarks(newDevice, newLibrary, newSort, newOrder);
-            //console.log("All Benchmarks:", JSON.stringify(benchmarks));
-
-            populateTable(benchmarks)
-        } catch (error) {
-            console.error("Error fetching all benchmarks:", error);
         }
+
+
+
+        const benchmarks = await api.filter_benchmarks(newDevice, newLibrary, newSort, newOrder);
+        //console.log("All Benchmarks:", JSON.stringify(benchmarks));
+
+        populateTable(benchmarks)
+    } catch (error) {
+        console.error("Error fetching all benchmarks:", error);
+    }
 }
 
 

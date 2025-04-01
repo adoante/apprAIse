@@ -105,7 +105,8 @@ model_data = [
 		"Imagenet",
 		"224x224",
 		68.9,
-		66.6
+		66.6,
+		"Images/tulip.PNG",
 	),
 	(
 		"wideresnet50",
@@ -116,7 +117,8 @@ model_data = [
 		"Imagenet",
 		"224x224",
 		68.8,
-		263
+		263,
+		"Images/tulip.PNG",
 	),
 	(
 		"vit",
@@ -127,7 +129,8 @@ model_data = [
 		"Imagenet",
 		"224x224",
 		86.6,
-		330
+		330,
+		"Images/jaguar.PNG",
 	),
 	(
 		"swin_tiny",
@@ -138,7 +141,8 @@ model_data = [
 		"Imagenet",
 		"224x224",
 		28.8,
-		110
+		110,
+		"Images/monkey.PNG",
 	),
 	(
 		"swin_small",
@@ -149,7 +153,8 @@ model_data = [
 		"Imagenet",
 		"224x224",
 		50.4,
-		193
+		193,
+		"Images/cow.PNG",
 	),
 	(
 		"swin_base",
@@ -161,6 +166,7 @@ model_data = [
 		"224x224",
 		88.8,
 		339,
+		"Images/otter.PNG",
 	),
 	(
 		"squeezenet1_1_quantized",
@@ -172,6 +178,7 @@ model_data = [
 		"224x224",
 		1.24,
 		1.30,
+		"Images/golf_cart.PNG",
 	),
 	(
 		"squeezenet1_1",
@@ -183,6 +190,7 @@ model_data = [
 		"224x224",
 		1.24,
 		4.73,
+		"Images/golf_cart.PNG",
 	),
 	(
 		"shufflenet_v2_quantized",
@@ -194,6 +202,7 @@ model_data = [
 		"224x224",
 		1.37,
 		4.42,
+		"Images/pencil.PNG",
 	),
 	(
 		"shufflenet_v2",
@@ -205,6 +214,7 @@ model_data = [
 		"224x224",
 		1.36,
 		5.25,
+		"Images/pencil.PNG",
 	),
 	(
 		"resnext50_quantized",
@@ -216,6 +226,7 @@ model_data = [
 		"224x224",
 		88.7,
 		87.3,
+		"Images/mouse.PNG",
 	),
 ]
 
@@ -248,7 +259,8 @@ with Session(engine) as session:
 				   model_end_point=model[5],
 				   input_resolution=model[6],
 				   parameters=model[7],
-				   model_size=model[8])
+				   model_size=model[8],
+				   model_img = model[9],)
 		session.add(ai_model)
 
 	# Add benchmarks
