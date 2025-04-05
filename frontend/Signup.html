@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="vanilla.css">
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="LoginSignupStyle.css">
 	<script type="module" src="SignupScript.js"></script>
 	<title>Signup | ApprAIse</title>
 </head>
@@ -28,23 +29,23 @@
 		</div>
 
         <div class="loginSignupContainer">
-			<form id="signup">
-				<label for="firstname">First name:</label><br>
-				<input type="text" id="firstname" name="firstname" required><br>
+			<form class="formContainer" id="signup">
+				<label for="firstname">First name:</label>
+				<input type="text" id="firstname" name="firstname" required>
 
-				<label for="lastname">Last name:</label><br>
-				<input type="text" id="lastname" name="lastname" required><br>
+				<label for="lastname">Last name:</label>
+				<input type="text" id="lastname" name="lastname" required>
 
-				<label for="username">Username:</label><br>
-				<input type="text" id="username" name="username" required><br>
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required>
 
-				<label for="email">Email:</label><br>
-				<input type="text" id="email" name="email" required><br>
+				<label for="email">Email:</label>
+				<input type="text" id="email" name="email" required>
 
-				<label for="password">Password:</label><br>
-				<input type="text" id="password" name="password" required><br>
+				<label for="password">Password:</label>
+				<input type="text" id="password" name="password" required>
 
-				<input type="submit" value="Signup">
+				<button class="LoginSignupBtn" type="submit">Signup</button>
 			</form>
 
 			<p>Have an account? <a href="Login.html">Login</a></p>

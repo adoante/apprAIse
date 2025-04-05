@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="vanilla.css">
+	<link rel="stylesheet" href="LoginSignupStyle.css">
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
 	<script type="module" src="LoginScript.js"></script>
 	<title>Login | ApprAIse</title>
@@ -28,19 +29,18 @@
 		</div>
 
 		<div class="loginSignupContainer">
-			<form id="login">
-				<label for="username">Username:</label><br>
-				<input type="text" id="username" name="username" required><br>
+			<form class="formContainer" id="login">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required>
 
-				<label for="password">Password:</label><br>
-				<input type="text" id="password" name="password" required><br>
+				<label for="password">Password:</label>
+				<input type="text" id="password" name="password" required>
 
-				<input type="submit" value="Login">
+				<button class="LoginSignupBtn" type="submit">Login</button>
 			</form>
 
 			<p>Don't have an account? <a href="Signup.html">Sign Up</a></p>
 		</div>
-
 	</div>
 
 </body>

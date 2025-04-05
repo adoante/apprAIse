@@ -1,0 +1,53 @@
+.loginSignupContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formContainer {
+    background: white;
+    color: black;
+    border-radius: 16px;
+    max-width: fit-content;
+    box-shadow: 4px 4px 4px rgba(53, 191, 255, 0.50);
+    padding: 25px 50px 25px 50px;
+}
+
+.loginSignupContainer input {
+    border-color: black;
+    border-width: 1px;
+    border-radius: 16px;
+}
+
+.LoginSignupBtn {
+    background-color: #E566FF;
+    padding: 7px 25px;
+    border-radius: 10px;
+    color: white;
+    border-width: 0px;
+    font-size: 18px;
+    display: block;
+    margin: 20px auto 0 auto;
+}
+
+.loginSignupContainer a {
+    text-decoration: none;
+    display: inline;
+    background: linear-gradient(to right, #FF6969, #69F7FF, #69FF87, #F7FF69, #FC69FF);
+    font-weight: 500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loginSignupContainer a:hover {
+    text-decoration: underline;
+    display: inline;
+    background: linear-gradient(to right,#FC69FF,#F7FF69,#69FF87, #69F7FF,#FF6969);
+    font-weight: 500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
