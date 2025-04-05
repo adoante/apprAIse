@@ -19,7 +19,7 @@
 
 .loginSignupContainer input {
     border-color: black;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 16px;
 }
 
@@ -50,4 +50,14 @@
     font-weight: 500;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.loginSignupAlert {
+    background: #E566FF;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
 }

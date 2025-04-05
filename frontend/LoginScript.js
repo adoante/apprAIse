@@ -1,4 +1,4 @@
-import { loginUser } from "./js/modules/AuthScript.js";
+import api from "./js/modules/api_wrapper.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -10,8 +10,32 @@ document.addEventListener("DOMContentLoaded", function () {
 		const username = loginForm.elements['username'].value
 		const password = loginForm.elements['password'].value
 
-		loginUser(username, password)
-	});	
-});
+		api.login(username, password)
+			.then(logindata => {
+				localStorage.setItem("access_token", logindata["token"].access_token);
 
-export default loginUser
+				document.querySelector(".loginSignupContainer").insertAdjacentHTML(
+					"beforeend",
+					`<div class="loginSignupAlert">${logindata["message"]}<div>`,
+				);
+
+				document.querySelector(".loginSignupContainer").insertAdjacentHTML(
+					"beforeend",
+					`<div class="loginSignupAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+				);
+
+				let seconds = 5;
+				const countdownEl = document.getElementById('redirectCountdown');
+
+				const interval = setInterval(() => {
+					seconds--;
+					countdownEl.textContent = seconds;
+
+					if (seconds === 0) {
+						clearInterval(interval);
+						window.location.href = "index.html"; // Change to your target URL
+					}
+				}, 1000);
+			})
+	});
+});
