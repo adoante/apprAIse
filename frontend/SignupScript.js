@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						
 							  if (seconds === 0) {
 								clearInterval(interval);
-								window.location.href = "index.html"; // Change to your target URL
+								window.location.href = "Dashboard.html"; // Change to your target URL
 							  }
 							}, 1000);
 						})
