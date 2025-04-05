@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="vanilla.css">
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
-	<script type="module" src="LoginScript.js"></script>
-	<title>Login | ApprAIse</title>
+	<script type="module" src="SignupScript.js"></script>
+	<title>Signup | ApprAIse</title>
 </head>
 
 <body>
@@ -21,24 +21,33 @@
 		<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
 		<li><a class="navMenu edge" href="Login.html">Login</a></li>
 	</ul>
-
+	
 	<div class="page">
 		<div class="pageTitle">
-			<h1 class="title">Login</h1>
+			<h1 class="title">Signup</h1>
 		</div>
 
-		<div class="loginSignupContainer">
-			<form id="login">
+        <div class="loginSignupContainer">
+			<form id="signup">
+				<label for="firstname">First name:</label><br>
+				<input type="text" id="firstname" name="firstname" required><br>
+
+				<label for="lastname">Last name:</label><br>
+				<input type="text" id="lastname" name="lastname" required><br>
+
 				<label for="username">Username:</label><br>
 				<input type="text" id="username" name="username" required><br>
+
+				<label for="email">Email:</label><br>
+				<input type="text" id="email" name="email" required><br>
 
 				<label for="password">Password:</label><br>
 				<input type="text" id="password" name="password" required><br>
 
-				<input type="submit" value="Login">
+				<input type="submit" value="Signup">
 			</form>
 
-			<p>Don't have an account? <a href="Signup.html">Sign Up</a></p>
+			<p>Have an account? <a href="Login.html">Login</a></p>
 		</div>
 
 	</div>
