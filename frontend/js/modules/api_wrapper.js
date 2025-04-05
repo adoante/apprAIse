@@ -152,14 +152,15 @@ async function signup(username, password, firstname, lastname, email) {
 
         if (!response.ok) {
             const errorMessage = await response.text();  // Read the response body in case of error
-            throw new Error(`Signup failed: ${response.statusText} (${response.status}) - ${errorMessage}`);
+            throw new Error(errorMessage);
         }
         
         const data = await response.json();
         return data;
 
     } catch (error) {
-        console.error("Error signing up:", error);
+        console.error(error);
+        return error
     }
 }
 
@@ -191,6 +192,7 @@ async function login(username, password) {
 
     } catch (error) {
         console.error("Error logging in:", error);
+        return error
     }
 }
 
