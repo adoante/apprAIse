@@ -82,10 +82,14 @@ async def get_current_active_user(
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
+class TokenResponse(BaseModel):
+    token: Token
+    message: str
+
 @router.post("/token")
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
-) -> Token:
+) -> TokenResponse:
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -97,4 +101,7 @@ async def login_for_access_token(
     access_token = create_access_token(
         data={"sub": user.user_name}, expires_delta=access_token_expires
     )
-    return Token(access_token=access_token, token_type="bearer")
+    return TokenResponse(
+        token=Token(access_token=access_token, token_type="bearer"),
+        message=f"User: {user.user_name} successfully logged in."
+    )
