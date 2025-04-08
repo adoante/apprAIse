@@ -6,24 +6,47 @@
 
 /* Style for the model links section */
 .model-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;          
+    gap: 20px;                   
+    flex-wrap: wrap;              
     margin-top: 20px;
 }
 
+
 /* Button styling */
 .btn {
-    display: inline-block;
-    background-color: #007bff; /* Blue color */
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
+    background-color: #FFFFFF;
+    color: black !important;
+    padding: 5px 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;    
+    gap: 20px;
+    min-width: 180px;
+    max-height: 50px;
     border-radius: 5px;
-    text-decoration: none;
+    outline: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-weight: bold;
-    transition: background 0.3s ease;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    
 }
 
+
 .btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #A0A0A0; /* Darker blue on hover */
+}
+
+.btn-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 /* Style for Qualcomm AI Hub link */
@@ -58,7 +81,7 @@
 .modelDescription {
 	display: flex;
     justify-content: space-between; /* Ensure space between text and image */
-	align-items: flex-start; /* Align items at the top */
+	align-items: flex; /* Align items at the top */
 }
 
 .text-container {
@@ -82,22 +105,21 @@
     grid-row: 1/ span 8;
     z-index: -1;
 }
+
 .dropdowns {
-    transition: show 0.3s ease-in-out;
-    margin: 0 auto;
-    /* Auto margins center the block */
-    /* Center text inside */
     margin-bottom: 50px;
+    justify-content: space-evenly;
     display: flex;
-    justify-content: center;
+    gap: 5vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
 }
 
 .dropdown {
-    width: 12vw;
-    margin: 55px 0;
+    max-width: 200px;
+    width: 200px;
     overflow: hidden;
-    margin-left: 50px;
-    margin-right: 50px;
 }
 
 .dropdown-btn {
@@ -107,10 +129,18 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-    width: 12vw;
+    max-width: 200px;
     border-radius: 20px;
     outline: none;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.dropdown-btn p {
+    margin: 0;
+    white-space: nowrap;
 }
 
 .dropdown-content {
@@ -127,6 +157,8 @@
 }
 
 .dropdownItem {
+    cursor: pointer;
+    user-select: none;
     color: #564AFF;
     cursor: pointer;
 }
@@ -179,7 +211,7 @@
     justify-content: space-between; /* Ensures 3 sections are in a row */
     gap: 30px; /* Adds space between the sections */
     margin: 20px auto;
-    max-width: 10   0%;
+    max-width: 100%;
     padding:10%;
 }
 
@@ -198,7 +230,17 @@
 }
 
 .sentence {
-    font-size: 20px;
     text-align:left;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+}
+
+.arrow {
+    width: 25px;
+    height: 20px;
+    margin: 0;
+    transition: transform .3s ease;
+}
+
+.arrow.rotated {
+    transform: rotateX(180deg);
 }
