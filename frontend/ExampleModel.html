@@ -19,6 +19,7 @@
 			<li><a class="navMenu" href="About.html">About</a></li>
 			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
 			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
 			<li><a class="navMenu edge" href="Login.html">Login</a></li>
 		</ul>
 	</div>
@@ -27,47 +28,56 @@
 		<!-- Model Title and Description -->
 		<div class="modelDescription">
 			<div class="text-container">
-				<!-- Pull the Model Name from the URL -->
 				<h1 class="title" id="content">Loading...</h1>
 				<h3 id="shortModelDesc">Loading...</h3>
 				<h2 id="longModelDesc">Loading...</h2>	
 			</div>
 			<img id="modelImage" class="model-image" alt="Beit Model Image">
 		</div>
-		<!--Dropdown-->
+		<!--Dropdown-->	
 		<div class="dropdowns">
-			<div class="dropdown">
-				<button class="dropdown-btn">Devices</button>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
-				</div>
+			<div class="dropdown" id="deviceDropdown">
+			  <div class="dropdown-btn">
+				<p>Devices</p>
+				<img class="arrow LD" src="Images/down-chevron.png" alt="">
+			  </div>
+			  <div class="dropdown-content">
+				<p class="dropdownItem" data-value="Snapdragon 8 Elite QRD">Snapdragon 8 Elite QRD</p>
+				<p class="dropdownItem" data-value="Samsung Galaxy S24">Samsung Galaxy S24</p>
+				<p class="dropdownItem" data-value="Snapdragon X Elite CRD">Snapdragon X Elite CRD</p>
+			  </div>
 			</div>
-			<div class="dropdown">
-				<button class="dropdown-btn">Libraries</button>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Onxx</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm AI Engine Direct</p>
+		  
+			<div class="dropdown" id="libraryDropdown">
+			  <div class="dropdown-btn">
+				<p>Libraries</p>
+				<img class="arrow LD" src="Images/down-chevron.png" alt="">
+			  </div>
+			  <div class="dropdown-content">
+				<p class="dropdownItem" data-value="ONNX Runtime">ONNX Runtime</p>
+				<p class="dropdownItem" data-value="Qualcomm© AI Engine Direct">Qualcomm© AI Engine Direct</p>
+				<p class="dropdownItem" data-value="TFLite">TFLite</p>
+			  </div>
+			</div>
+		</div>
+		  
+
+		<!-- Metrics Section -->
+		<div class="colored-section">
+			<div class="metric-container">
+				<div class="metric-box">
+					<p>Inference Time: <span id="modelInferenceTime">N/A</span></p>
+				</div>
+				<div class="metric-box">
+					<p>Memory Usage: <span id="modelMemoryUsage">N/A</span></p>
+				</div>
+				<div class="metric-box">
+					<p>Compute Units: <span id="modelComputeUnits">N/A</span></p>
 				</div>
 			</div>
 		</div>
-		<div class="page">
-			<!-- Other content -->
-		
-			<div class="colored-section">
-				<!-- This portion will have a different background color -->
-				<div class="metric-container">
-					<div class="metric-box"><p id="model-inference-time">Metric 1</p></div>
-					<div class="metric-box"><p id="model-memory-usage">Metric 2</p></div>
-					<div class="metric-box"><p id="model-layers">Metric 3</p></div>
-				</div>
-			</div> 
-		
-			<!-- Other content -->
-		</div>
-		
+
+		<!-- Technical Details Section -->
 		<div class="text-sections">
 			<div class="text-section">
 				<p class="title-text">Technical Details</p>
@@ -76,36 +86,33 @@
 				<p id="num-parameters" class="sentence">Number of Parameters: </p>
 				<p id="model-size" class="sentence">Model Size: </p>
 			</div>
-			<!--
-			<div class="text-section">
-				<p class="title-text">This is the first sentence of section 2</p>
-				<p class="sentence">Sentence line 1 for section 2</p>
-				<p class="sentence">Sentence line 2 for section 2</p>
-				<p class="sentence">Sentence line 3 for section 2</p>
-				<p class="sentence">Sentence line 4 for section 2</p>
-			</div>
-			<div class="text-section">
-				<p class="title-text">This is the first sentence of section 3</p>
-				<p class="sentence">Sentence line 1 for section 3</p>
-				<p class="sentence">Sentence line 2 for section 3</p>
-				<p class="sentence">Sentence line 3 for section 3</p>
-				<p class="sentence">Sentence line 4 for section 3</p>
-			</div>
-		-->
 		</div>
 
-		<!-- Model Links -->
-		<div class="model-links">
-			<a id="modelGithub" class="btn" href="" target="_blank">GitHub</a>
-			<a id="modelHuggingFace" class="btn" href="" target="_blank">HuggingFace</a>
-			<a id="modelResearchPaper" class="btn" href="" target="_blank">Research Paper</a>
-		</div>
+			<!-- Model Links -->
+			<div class="model-links">
+				<a id="modelGithub" class="btn" href="" target="_blank">
+					<img src="Images/github.png" alt="GitHub Logo" class="btn-logo">
+					GitHub
+					<img src="Images/Link-btn.png" alt="GitHub Logo" class="btn-logo">
+				</a>
+				<a id="modelHuggingFace" class="btn" href="" target="_blank">
+					<img src="Images/hf-logo.png" alt="HuggingFace Logo" class="btn-logo">
+					HuggingFace
+					<img src="Images/Link-btn.png" alt="GitHub Logo" class="btn-logo">
+				</a>
+				<a id="modelResearchPaper" class="btn" href="" target="_blank">
+					<img src="Images/research-paper-icon.png" alt="Research Paper Logo" class="btn-logo">
+					Research Paper
+					<img src="Images/Link-btn.png" alt="GitHub Logo" class="btn-logo">
+				</a>
+			</div>
 
 		<!-- Qualcomm AI Hub Link -->
 		<div class="ai-hub-link">
-			<a href="https://aihub.qualcomm.com/mobile/models/beit?domain=Computer+Vision&useCase=Image+Classification" target="_blank">Explore Beit on Qualcomm AI Hub</a>
+			<a id="modelqaiHublink" href="" target="_blank">Explore on Qualcomm AI Hub</a>
 		</div>
 	</div>
+
 </body>
 
 </html>

@@ -149,9 +149,6 @@ model_data = [
 		"Images/tulip.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"WideResNet50 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"18.0ms",
-		"79MB",
-		"87NPU 2CPU",
 	),
 	(
 		"wideresnet50",
@@ -166,9 +163,6 @@ model_data = [
 		"Images/tulip.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"WideResNet50 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"4.44ms",
-		"133MB",
-		"128NPU",
 	),
 	(
 		"vit",
@@ -183,9 +177,6 @@ model_data = [
 		"Images/jaguar.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"VIT is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"15.0ms",
-		"171MB",
-		"988NPU",
 	),
 	(
 		"swin_tiny",
@@ -200,9 +191,6 @@ model_data = [
 		"Images/monkey.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"SwinTiny is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"11.8ms",
-		"58MB",
-		"654NPU",
 	),
 	(
 		"swin_small",
@@ -217,9 +205,6 @@ model_data = [
 		"Images/cow.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"SwinSmall is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"19.0ms",
-		"100MB",
-		"1,176NPU",
 	),
 	(
 		"swin_base",
@@ -234,9 +219,6 @@ model_data = [
 		"Images/otter.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"SwinBase is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"24.8ms",
-		"175MB",
-		"1,183NPU",
 	),
 	(
 		"squeezenet1_1_quantized",
@@ -251,9 +233,6 @@ model_data = [
 		"Images/golf_cart.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"SqueezeNet is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"501μs",
-		"0MB",
-		"47NPU",
 	),
 	(
 		"squeezenet1_1",
@@ -268,9 +247,6 @@ model_data = [
 		"Images/golf_cart.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"SqueezeNet is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"496μs",
-		"2MB",
-		"71NPU",
 	),
 	(
 		"shufflenet_v2_quantized",
@@ -285,9 +261,6 @@ model_data = [
 		"Images/pencil.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"ShufflenetV2 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"784μs",
-		"0MB",
-		"189NPU",
 	),
 	(
 		"shufflenet_v2",
@@ -302,9 +275,6 @@ model_data = [
 		"Images/pencil.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"ShufflenetV2 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"1.02ms",
-		"3MB",
-		"223NPU",
 	),
 	(
 		"resnext50_quantized",
@@ -318,10 +288,7 @@ model_data = [
 		87.3,
 		"Images/mouse.PNG",
 		"Imagenet classifier and general purpose backbone.",
-		"ResNeXt50 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"1.29ms",
-		"28MB",
-		"83NPU",	
+		"ResNeXt50 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",	
 	),
 	(
 		"efficientvit_l2_cls",
@@ -336,9 +303,6 @@ model_data = [
 		"Images/raven.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"EfficientViT is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"16.3ms",
-		"131MB",
-		"708NPU",
 	),
 	(
 		"googlenet",
@@ -353,9 +317,6 @@ model_data = [
 		"Images/dolphin.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"GoogLeNet is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"1.09ms",
-		"13MB",
-		"145NPU",
 	),
 	(
 		"googlenet_quantized",
@@ -370,9 +331,6 @@ model_data = [
 		"Images/dolphin.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"GoogLeNet is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"15.7ms",
-		"13MB",
-		"127NPU 18CPU"
 	),
 	(
 		"inception_v3",
@@ -387,9 +345,6 @@ model_data = [
 		"Images/sheep.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"InceptionNetV3 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-		"1.46ms",
-		"46MB",
-		"221NPU",
 	),
 	(
 		"inception_v3_quantized",
@@ -404,9 +359,6 @@ model_data = [
 		"Images/sheep.PNG",
 		"Quantized Imagenet classifier and general purpose backbone.",
 		"InceptionNetV3 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases. This model is post‑training quantized to int8 using samples from Google's open images dataset.",
-		"267.ms",
-		"42MB",
-		"138NPU 4CPU",
 	),
 	(
 		"levit",
@@ -421,9 +373,6 @@ model_data = [
 		"Images/raven.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"LeViT is a vision transformer model that can classify images from the Imagenet dataset.",
-        "1.72ms",
-        "16MB",
-        "517NPU",
 	),
 	(
 		"mnasnet05",
@@ -438,9 +387,6 @@ model_data = [
 		"Images/zebra.PNG",
 		"Imagenet classifier and general purpose backbone",
 		"MNASNet05 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "624μs",
-        "5MB",
-        "104NPU",
 	),
 	(
 		"mobile_vit",
@@ -455,9 +401,6 @@ model_data = [
 		"Images/Dove.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"MobileVit is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "4.98ms",
-        "12MB",
-        "446NPU",
 	),
 	(
 		"mobilenet_v2",
@@ -472,9 +415,6 @@ model_data = [
 		"Images/raven.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"MobileNetV2 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "782μs",
-        "7MB",
-        "104NPU",
 	),
 	(
 		"mobilenet_v2_quantized",
@@ -489,9 +429,6 @@ model_data = [
 		"Images/raven.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"MobileNetV2 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "51.3ms",
-        "29MB",
-        "315NPU 105CPU",
 	),
 	(
 		"mobilenet_v3_large",
@@ -506,9 +443,6 @@ model_data = [
 		"Images/train.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"MobileNet‑v3‑Large is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "876μs",
-        "12MB",
-        "146NPU",
 	),
 	(
 		"mobilenet_v3_large_quantized",
@@ -523,9 +457,6 @@ model_data = [
 		"Images/train.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"MobileNet‑v3‑Large is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
-        "800μs",
-        "7MB",
-        "135NPU 2CPU",
 	),
 ]
 
@@ -561,10 +492,7 @@ with Session(engine) as session:
 				   model_size=model[8],
 				   model_img = model[9],
 				   short_desc=model[10],
-				   long_desc=model[11],
-				   inference_time=model[12],
-				   memory_usage=model[13],
-				   layers=model[14]
+				   long_desc=model[11]
 				   )
 		session.add(ai_model)
 

@@ -42,9 +42,6 @@ class Model(SQLModel, table=True):
 	model_img:str
 	short_desc:str
 	long_desc:str
-	inference_time:str
-	memory_usage:str
-	layers:str
 
 
 class Device(SQLModel, table=True):
