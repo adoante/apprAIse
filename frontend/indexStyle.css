@@ -148,7 +148,7 @@
     background-color: #2D2D2D;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
+    column-gap: 50px;
     row-gap: 50px;
     margin-bottom: 100px;
     padding: 50px;
@@ -161,6 +161,7 @@
     background-color: #ffffff;
     border-radius: 15px;
     padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .serviceBlock.Customization {
@@ -185,6 +186,12 @@
 
 .serviceBlock.CaP {
     box-shadow: 5px 5px rgba(255, 164, 73, 0.5);
+}
+
+.serviceBlock:hover {
+    transform: scale(1.1) translateY(-5px);
+    /* Moves it up slightly */
+    /* Increase size by 10% */
 }
 
 .serviceImg {
