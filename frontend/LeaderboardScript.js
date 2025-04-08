@@ -7,9 +7,10 @@ var order = "desc"; // or "asc"
 
 const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
 const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
-const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage"]
+const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage","Inference Time"]
 
 document.addEventListener("DOMContentLoaded", function () {
+    dataGrabAndFill()
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevents event from bubbling to document
@@ -58,8 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function dropDownSelect(id) {
-
-    console.log(id)
     try {
         var newDevice = device;
         var newLibrary = library;
@@ -75,6 +74,7 @@ async function dropDownSelect(id) {
             newLibrary = id
             library = id
         } else if (sorts.includes(id)) {
+            console.log(id)
             if (id == "Accuracy Top 1") {
                 newSort = "accuracy_top1"
                 sort = "accuracy_top1"
@@ -90,18 +90,24 @@ async function dropDownSelect(id) {
                 sort = "memory_usage"
                 order = "asc"
                 newOrder = "asc"
+            }else if (id == "Inference Time") {
+                newSort = "inference_time"
+                sort = "inference_time"
+                order = "asc"
+                newOrder = "asc"
             }
         }
 
-
-
-        const benchmarks = await api.filter_benchmarks(newDevice, newLibrary, newSort, newOrder);
-        //console.log("All Benchmarks:", JSON.stringify(benchmarks));
-
-        populateTable(benchmarks)
+        dataGrabAndFill();
+        
     } catch (error) {
         console.error("Error fetching all benchmarks:", error);
     }
+}
+
+async function dataGrabAndFill(){
+    const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+    populateTable(benchmarks);
 }
 
 
@@ -123,6 +129,7 @@ async function populateTable(benchmarks) {
         row.insertCell(3).textContent = benchmark.accuracy_top5 + "%";
         row.insertCell(4).textContent = benchmark.memory_usage + "MB";
         row.insertCell(5).textContent = benchmark.inference_time + "ms";
+        row.insertCell(6).textContent = benchmark.npu_layers;
 
         i++;
     }
