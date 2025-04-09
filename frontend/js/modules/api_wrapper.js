@@ -227,19 +227,23 @@ async function get_current_user() {
     }
 }
 
-async function update_username(username) {
-    const token = localStorage.getItem("access_token")
-
-    const formData = new URLSearchParams();
-    formData.append("username", username);
+async function updateUserField(field, value) {
+    const token = localStorage.getItem("access_token");
 
     if (!token) {
         console.error("No token found. Please log in.");
         return;
     }
 
+    const formData = new URLSearchParams();
+    if (field === "qai-hub-token") {
+        formData.append("qai_hub_token", value);
+    } else {
+        formData.append(field, value);
+    }
+
     try {
-        let url = `${baseURL}/user/username`
+        let url = `${baseURL}/user/${field}`;
         const response = await fetch(url, {
             method: "PUT",
             headers: {
@@ -250,14 +254,15 @@ async function update_username(username) {
         });
 
         if (!response.ok) {
-            throw new Error(`${response.statusText} (${response.status})`);
+            const errorText = await response.text();
+            throw new Error(`${response.status} ${response.statusText}: ${errorText}`);
         }
 
-        const results = await response.json();
-        return results;
+        const result = await response.json();
+        return result;
 
     } catch (error) {
-        console.error("Error updating username", error);
+        console.error(`Error updating ${field}:`, error);
         return error;
     }
 }
@@ -304,7 +309,7 @@ const api = {
     signup: (username, password, firstname, lastname, email) => signup(username, password, firstname, lastname, email),
     filter_devices: (name) => filter_devices("/device", name),
     filter_libraries: (name) => filter_libraries("/library", name),
-    update_username: (username) => update_username(username)
+    update_user_data: (field, value) => updateUserField(field, value),
 };
 
 export default api
