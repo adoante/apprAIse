@@ -116,4 +116,59 @@ document.addEventListener("DOMContentLoaded", function () {
             modelsContainer.appendChild(modelLink);
         });
     });
+
+
+    let originalOrder = [];  // Store the original order of models
+
+    window.filterModelsBySearch = function() {
+        const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
+
+        // Select all model elements within the models container
+        const models = document.querySelectorAll('.models .model');
+
+        // Save the original order of models if it's not done yet
+        if (originalOrder.length === 0) {
+            originalOrder = Array.from(models);  // Save the initial order when the page loads
+        }
+
+        const modelsContainer = document.querySelector(".models");
+
+        // Always re-order models in their original order
+        modelsContainer.innerHTML = "";  // Clear the container
+
+        // show all models in their original order
+        originalOrder.forEach(model => {
+            model.style.display = '';  // Ensure all models are visible
+            modelsContainer.appendChild(model);  // Re-append the models in their original order
+        });
+        
+        // Otherwise, filter models that match the search query
+        const matched = [];
+        const unmatched = [];
+
+        // Loop over all models and separate them into matched and unmatched
+        originalOrder.forEach((model) => {
+            const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
+
+            if (modelName.includes(searchQuery)) {
+                matched.push(model);  // Add to matched if it matches the query
+            } else {
+                unmatched.push(model);  // Otherwise, add to unmatched
+            }
+        });
+
+        // Hide unmatched models
+        unmatched.forEach(model => {
+            model.style.display = 'none';  // Hide models that don't match the query
+        });
+
+        // If no models match, display a "no results" message
+        if (matched.length === 0) {
+            modelsContainer.innerHTML = "<p>No models found matching your search.</p>";
+        }
+    }
+
+    // Add event listener to the search bar
+    document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+
 });
