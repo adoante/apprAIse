@@ -143,9 +143,41 @@ def update_qai_token(
 			session.add(current_user)
 			session.commit()
 	except:
-		raise HTTPException(status_code = 500, detail = "Failed to update email.")
+		raise HTTPException(status_code = 500, detail = "Failed to update QAI Hub Token.")
 	
 	if old_qai_hub_token:
 		return {"message": f"QAI Hub Token changed from {old_qai_hub_token} to {qai_hub_token}"}
 	
 	return {"message": f"QAI Hub Token changed from NULL to {qai_hub_token}"}
+
+@router.put("/password")
+def update_password(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	password: str = Form(...),
+) -> dict[str, str]:
+	
+	try:
+		hashed_password = get_password_hash(password)
+		with Session(database.engine) as session:
+			current_user.password_hash = hashed_password
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update password.")
+	
+	return {"message": "Password has been updated."}
+
+@router.put("/disable")
+def update_password(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+) -> dict[str, str]:
+	
+	try:
+		with Session(database.engine) as session:
+			current_user.disabled = True
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to disable user account.")
+	
+	return {"message": "User account has been disabled."}

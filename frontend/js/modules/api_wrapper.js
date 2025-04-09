@@ -267,6 +267,38 @@ async function updateUserField(field, value) {
     }
 }
 
+async function disableUser() {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+        console.error("No token found. Please log in.");
+        return;
+    }
+
+    try {
+        let url = `${baseURL}/user/disable`;
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`${response.status} ${response.statusText}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error("Error disabling user", error);
+        return error;
+    }
+}
+
 async function filter_libraries(endpoint, name = "") {
     try {
         let url = `${baseURL}${endpoint}/`
@@ -310,6 +342,7 @@ const api = {
     filter_devices: (name) => filter_devices("/device", name),
     filter_libraries: (name) => filter_libraries("/library", name),
     update_user_data: (field, value) => updateUserField(field, value),
+    disable_user: () => disableUser(),
 };
 
 export default api
