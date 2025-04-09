@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
+    // Fetch models and create HTML elements for each model
     api.filter_models().then(data => {
         const modelsContainer = document.querySelector(".models"); // Select the container div
         let i = -1
@@ -116,12 +116,4 @@ document.addEventListener("DOMContentLoaded", function () {
             modelsContainer.appendChild(modelLink);
         });
     });
-
-
 });
-
-function dropDownSelect(id) {
-    console.log(id.textContent);
-}
-
-

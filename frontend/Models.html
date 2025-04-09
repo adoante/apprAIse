@@ -1,99 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--<script type="text/javascript" src="ModelsScript.js"></script>-->
-	<script src="CommonScript.js"></script>
-	<link rel="stylesheet" href="ModelsStyle.css">
-	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="vanilla.css">
-	<title>Models</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <script type="text/javascript" src="ModelsScript.js"></script> -->
+        <script src="CommonScript.js"></script>
+        <link rel="stylesheet" href="ModelsStyle.css">
+        <link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="vanilla.css">
+        <title>Models</title>
+    </head>
 
-<body>
+    <body>
 
-	<div class="navbarCustom">
-		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+        <div class="navbarCustom">
+            <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
 
-		<ul>
-			<li><a class="navMenu" href="About.html">About</a></li>
-			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
-			<li><a class="navMenu" href="Models.html">Models</a></li>
-			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
-			<li><a class="navMenu edge" href="Login.html">Login</a></li>
-		</ul>
-	</div>
-	<div class="page">
-		<div class="pageTitle">
-			<h1 class="title">Models</h1>
-		</div>
-		<div class="dropdowns">
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Devices</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
-				</div>
-			</div>
+            <ul>
+                <li><a class="navMenu" href="About.html">About</a></li>
+                <li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+                <li><a class="navMenu" href="Models.html">Models</a></li>
+                <li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+                <li><a class="navMenu edge" href="Login.html">Login</a></li>
+            </ul>
+        </div>
 
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Libraries</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">ONNX Runtime</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm© AI Engine Direct</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
-				</div>
-			</div>
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Sort by</p>
-					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p class="dropdownItem">Accuracy Top 1</p>
-					<p class="dropdownItem">Accuracy Top 5</p>
-					<p class="dropdownItem">Memory Usage</p>
-				</div>
-			</div>
+        <div class="page">
+            <div class="pageTitle">
+                <h1 class="title">Models</h1>
+            </div>
+            <div class="dropdowns">
+                <div class="dropdown">
+                    <div class="dropdown-btn">
+                        <p>Devices</p>
+                        <img class="arrow LD" src="Images/down-chevron.png" alt="">
+                    </div>
+                    <div class="dropdown-content">
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
+                    </div>
+                </div>
 
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Dataset</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Imagenet</p>
-				</div>
-			</div>
+                <div class="dropdown">
+                    <div class="dropdown-btn">
+                        <p>Libraries</p>
+                        <img class="arrow LD" src="Images/down-chevron.png" alt="">
+                    </div>
+                    <div class="dropdown-content">
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">ONNX Runtime</p>
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm© AI Engine Direct</p>
+                        <p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-btn">
+                        <p>Model Precision</p>
+                        <img class="arrow LSB" src="Images/down-chevron.png" alt="">
+                    </div>
+                    <div class="dropdown-content">
+                        <p class="dropdownItem">All</p>
+                        <p class="dropdownItem">Quantized</p>
+                        <p class="dropdownItem">Floating Point</p>
+                    </div>
+                </div>
 
-			<div class="dropdown">
-				<div class="dropdown-btn">
-					<p>Model Size</p>
-					<img class="arrow LD" src="Images/down-chevron.png" alt="">
-				</div>
-				<div class="dropdown-content">
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Accuracy</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Peak Memory</p>
-					<p onclick="dropDownSelect(this)" class="dropdownItem">Memory Usage</p>
-				</div>
-			</div>
-		</div>
+                <div class="search-container">
+                    <img src="Images/search-icon.png" alt="Search" class="search-icon">
+                    <input
+                        type="text"
+                        id="modelSearch"
+                        placeholder="Search models..."
+                        oninput="filterModelsBySearch()"
+                    />
+                </div>
+            </div>
 
-		<div class="models"></div>
-	</div>
+            <div class="models"></div>
+        </div>
 
+        <script type="module" src="js/modules/api_wrapper.js"></script>
+        <script type="module" src="ModelsScript.js"></script>
 
-</body>
-<script type="module" src="js/modules/api_wrapper.js"></script>
-<script type="module" src="ModelsScript.js"></script>
+        <!-- Move the script here so filterModelsBySearch is defined globally -->
+        <script>
+            let originalOrder = [];  // Store the original order of models
 
-</html>
+            function filterModelsBySearch() {
+                const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
+                console.log('Search query:', searchQuery);  // Debugging line to check the search input
+
+                // Select all model elements within the models container
+                const models = document.querySelectorAll('.models .model');
+
+                // Save the original order of models if it's not done yet
+                if (originalOrder.length === 0) {
+                    originalOrder = Array.from(models);  // Save the initial order when the page loads
+                }
+
+                const modelsContainer = document.querySelector(".models");
+                let matchingModels = 0; // Counter to track matching models
+
+                // Always re-order models in their original order
+                modelsContainer.innerHTML = "";  // Clear the container
+
+                // If the search query is empty, show all models in their original order
+                if (searchQuery === "") {
+                    originalOrder.forEach(model => {
+                        model.style.display = '';  // Ensure all models are visible
+                        modelsContainer.appendChild(model);  // Re-append the models in their original order
+                    });
+                    return;
+                }
+                
+                // Otherwise, filter models that match the search query
+                const matched = [];
+                const unmatched = [];
+
+                // Loop over all models and separate them into matched and unmatched
+                Array.from(models).forEach((model) => {
+                    const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
+                    console.log('Model name:', modelName);  // Debugging line to check model names
+
+                    if (modelName.includes(searchQuery)) {
+                        matched.push(model);  // Add to matched if it matches the query
+                        matchingModels++;
+                    } else {
+                        unmatched.push(model);  // Otherwise, add to unmatched
+                    }
+                });
+
+                // Append matched models first
+                matched.forEach(model => {
+                    modelsContainer.appendChild(model)
+                    model.style.display = '';
+                });
+
+                // Hide unmatched models
+                unmatched.forEach(model => {
+                    model.style.display = 'none';  // Hide models that don't match the query
+                });
+
+                // If no models match, display a "no results" message
+                if (matchingModels === 0) {
+                    modelsContainer.innerHTML = "<p>No models found matching your search.</p>";
+                }
+            }
+
+            // Add event listener to the search bar
+            document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+
+        </script>
+
+    </body>
+
+    </html>

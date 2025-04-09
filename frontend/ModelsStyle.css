@@ -1,11 +1,11 @@
+/* Dropdown Styling */
 .dropdowns {
     margin-bottom: 50px;
     justify-content: space-evenly;
     display: flex;
     gap: 5vw;
-    /* Adjusts spacing dynamically */
     flex-wrap: wrap;
-    /* Allows items to stack if needed */
+    align-items: center;
 }
 
 .dropdown {
@@ -56,15 +56,32 @@
     background-color: #d1d1d1;
 }
 
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%) brightness(100%);
+}
+
+/* Models Grid */
 .models {
     background-color: #2d2d2d;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamic columns */
     column-gap: 75px;
     row-gap: 50px;
     padding: 75px 5vw;
+    transition: grid-template-columns 0.3s ease; /* Smooth transition for grid changes */
 }
 
+/* Individual Model Styling */
 .model {
     background-color: white;
     color: black;
@@ -74,14 +91,11 @@
     padding-bottom: 20px;
     flex: 1 1 250px;
     height: 380px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Smooth transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
 .model:hover {
-    transform: scale(1.1) translateY(-5px);
-    /* Moves it up slightly */
-    /* Increase size by 10% */
+    transform: scale(1.05) translateY(-5px); /* Slightly less aggressive zoom */
 }
 
 .model.blue {
@@ -108,7 +122,7 @@
     box-shadow: 5px 5px rgba(255, 157, 0, 0.5);
 }
 
-
+/* Other Elements within Models */
 .modelTitle {
     text-align: center;
     font-weight: bold;
@@ -121,7 +135,7 @@
     text-align: center;
     margin: 0;
     grid-row: 9/span 1;
-    grid-column: 2/ span 3;
+    grid-column: 2/span 3;
 }
 
 .modelImg {
@@ -134,7 +148,7 @@
 }
 
 .modelColor {
-    grid-row: 1/ span 5;
+    grid-row: 1/span 5;
     grid-column: 1/span 5;
     border-radius: 15px;
 }
@@ -167,6 +181,7 @@
     text-decoration: none;
 }
 
+/* Arrow for Dropdown */
 .arrow {
     width: 25px;
     margin: 0;
