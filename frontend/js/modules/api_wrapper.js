@@ -154,7 +154,7 @@ async function signup(username, password, firstname, lastname, email) {
             const errorMessage = await response.text();  // Read the response body in case of error
             throw new Error(errorMessage);
         }
-        
+
         const data = await response.json();
         return data;
 
@@ -226,6 +226,41 @@ async function get_current_user() {
     }
 }
 
+async function update_username(username) {
+    const token = localStorage.getItem("access_token")
+
+    const formData = new URLSearchParams();
+    formData.append("username", username);
+
+    if (!token) {
+        console.error("No token found. Please log in.");
+        return;
+    }
+
+    try {
+        let url = `${baseURL}/user/username`
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error(`${response.statusText} (${response.status})`);
+        }
+
+        const results = await response.json();
+        return results;
+
+    } catch (error) {
+        console.error("Error updating username", error);
+        return error;
+    }
+}
+
 async function filter_libraries(endpoint, name = "") {
     try {
         let url = `${baseURL}${endpoint}/`
@@ -267,7 +302,8 @@ const api = {
     login: (username, password) => login(username, password),
     signup: (username, password, firstname, lastname, email) => signup(username, password, firstname, lastname, email),
     filter_devices: (name) => filter_devices("/device", name),
-    filter_libraries: (name) => filter_libraries("/library", name)
+    filter_libraries: (name) => filter_libraries("/library", name),
+    update_username: (username) => update_username(username)
 };
 
 export default api
