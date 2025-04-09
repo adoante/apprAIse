@@ -53,3 +53,23 @@ def read_users_me(
 	current_user: Annotated[database.User, Depends(get_current_active_user)],
 ) -> database.User:
 	return current_user
+
+@router.put("/username")
+def update_username(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	username: str = Form(...),
+) -> dict[str, str]:
+	old_username = current_user.user_name
+
+	if database.get_user_by_username(username):
+		raise HTTPException(status_code = 409, detail = "Username taken.")
+	
+	try:
+		with Session(database.engine) as session:
+			current_user.user_name = username
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update username.")
+	
+	return {"message": f"Username changed from {old_username} to {username}"}
