@@ -219,10 +219,11 @@ async function get_current_user() {
         }
 
         const userData = await response.json();
+        return userData;
 
-        console.log("User Data:", userData);
     } catch (error) {
         console.error("Error fetching user data:", error);
+        return error;
     }
 }
 
