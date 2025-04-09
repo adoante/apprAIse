@@ -73,3 +73,79 @@ def update_username(
 		raise HTTPException(status_code = 500, detail = "Failed to update username.")
 	
 	return {"message": f"Username changed from {old_username} to {username}"}
+
+@router.put("/firstname")
+def update_firstname(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	firstname: str = Form(...),
+) -> dict[str, str]:
+	old_firstname = current_user.first_name
+	
+	try:
+		with Session(database.engine) as session:
+			current_user.first_name = firstname
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update firstname.")
+	
+	return {"message": f"Firstname changed from {old_firstname} to {firstname}"}
+
+@router.put("/lastname")
+def update_lastname(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	lastname: str = Form(...),
+) -> dict[str, str]:
+	old_lastname = current_user.last_name
+	
+	try:
+		with Session(database.engine) as session:
+			current_user.last_name = lastname
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update lastname.")
+	
+	return {"message": f"Lastname changed from {old_lastname} to {lastname}"}
+
+@router.put("/email")
+def update_email(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	email: str = Form(...),
+) -> dict[str, str]:
+	old_email = current_user.email
+	
+	try:
+		validate_email(email)
+	except:
+		raise HTTPException(status_code=400, detail="Bad email.")
+
+	try:
+		with Session(database.engine) as session:
+			current_user.email = email
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update email.")
+	
+	return {"message": f"Email changed from {old_email} to {email}"}
+
+@router.put("/qai-hub-token")
+def update_qai_token(
+	current_user: Annotated[database.User, Depends(get_current_active_user)],
+	qai_hub_token: str = Form(...),
+) -> dict[str, str]:
+	old_qai_hub_token = current_user.qai_hub_api_token
+
+	try:
+		with Session(database.engine) as session:
+			current_user.qai_hub_api_token = qai_hub_token
+			session.add(current_user)
+			session.commit()
+	except:
+		raise HTTPException(status_code = 500, detail = "Failed to update email.")
+	
+	if old_qai_hub_token:
+		return {"message": f"QAI Hub Token changed from {old_qai_hub_token} to {qai_hub_token}"}
+	
+	return {"message": f"QAI Hub Token changed from NULL to {qai_hub_token}"}
