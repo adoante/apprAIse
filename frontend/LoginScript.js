@@ -37,5 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 					}
 				}, 1000);
 			})
+			.catch(error => {
+				document.querySelector(".loginSignupContainer").insertAdjacentHTML(
+					"beforeend",
+					`<div class="loginSignupAlert">Username or password incorrect.<div>`,
+				);
+			})
 	});
 });
