@@ -114,7 +114,7 @@ benchmark_data = [
 	# ONNX
 	(77.09, 93.25, 18.6, 212, 151, 'Samsung Galaxy S23', 'wideresnet50_quantized', 'onnx'),
 	(77.12, 93.34, 5.43, 297, 128, 'Samsung Galaxy S23', 'wideresnet50', 'onnx'),
-	(79.94, 94.77, 14.3, 348, 976, 'Samsung Galaxy S23', 'vit', 'onnx')
+	(79.94, 94.77, 14.3, 348, 976, 'Samsung Galaxy S23', 'vit', 'onnx'),
 	(80.68, 95.38, 13.4, 131, 623, 'Samsung Galaxy S23', 'swin_tiny', 'onnx'),
 	(82.59, 96.23, 22.9, 224, 1145, 'Samsung Galaxy S23', 'swin_small', 'onnx'),
 	(83.04, 96.46, 29, 343, 1150, 'Samsung Galaxy S23', 'swin_base', 'onnx'),
