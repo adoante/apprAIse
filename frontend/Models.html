@@ -31,38 +31,38 @@
                 <h1 class="title">Models</h1>
             </div>
             <div class="dropdowns">
-                <div class="dropdown">
+                <div class="dropdown" id="deviceDropdown">
                     <div class="dropdown-btn">
                         <p>Devices</p>
                         <img class="arrow LD" src="Images/down-chevron.png" alt="">
                     </div>
                     <div class="dropdown-content">
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon 8 Elite QRD</p>
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">Samsung Galaxy S24</p>
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">Snapdragon X Elite CRD</p>
+                        <p class="dropdownItem" data-value="Snapdragon 8 Elite QRD">Snapdragon 8 Elite QRD</p>
+                        <p class="dropdownItem" data-value="Samsung Galaxy S24">Samsung Galaxy S24</p>
+                        <p class="dropdownItem" data-value="Snapdragon X Elite CRD">Snapdragon X Elite CRD</p>
                     </div>
                 </div>
 
-                <div class="dropdown">
-                    <div class="dropdown-btn">
+                <div class="dropdown" id="libraryDropdown">
+                    <div class="dropdown-btn" >
                         <p>Libraries</p>
                         <img class="arrow LD" src="Images/down-chevron.png" alt="">
                     </div>
                     <div class="dropdown-content">
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">ONNX</p>
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">Qualcomm© AI Engine Direct</p>
-                        <p onclick="dropDownSelect(this)" class="dropdownItem">TFLite</p>
+                        <p class="dropdownItem" data-value="ONNX">ONNX</p>
+                        <p class="dropdownItem" data-value="Qualcomm© AI Engine Direct">Qualcomm© AI Engine Direct</p>
+                        <p class="dropdownItem" data-value="TFLite">TFLite</p>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" id="quantizedDropdown">
                     <div class="dropdown-btn">
                         <p>Model Precision</p>
                         <img class="arrow LSB" src="Images/down-chevron.png" alt="">
                     </div>
-                    <div class="dropdown-content">
-                        <p class="dropdownItem">All</p>
-                        <p class="dropdownItem">Quantized</p>
-                        <p class="dropdownItem">Floating Point</p>
+                    <div class="dropdown-content" >
+                        <p class="dropdownItem" data-value="All">All</p>
+                        <p class="dropdownItem" data-value="Quantized">Quantized</p>
+                        <p class="dropdownItem" data-value="Floating Point">Floating Point</p>
                     </div>
                 </div>
 

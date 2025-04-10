@@ -1,6 +1,62 @@
 import api from './js/modules/api_wrapper.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+    
+    let selectedDevice = "";
+    let selectedLibrary = "";
+    let selectedQuantize = "";
+    let quantized = false;
+    let floatingPoint = false;
+
+    function dropDownSelect(item) {
+        const selectedText = item.textContent;
+        const value = item.getAttribute("data-value");
+
+        const parentDropdown = item.closest('.dropdown');
+        const dropdownBtn = parentDropdown.querySelector('.dropdown-btn p');
+
+        dropdownBtn.textContent = selectedText;
+
+        if (parentDropdown.id === "deviceDropdown") {
+            selectedDevice = value;
+        } else if (parentDropdown.id === "libraryDropdown") {
+            selectedLibrary = value;
+        }else if (parentDropdown.id === "quantizedDropdown") {
+            selectedQuantize = value;
+        }
+
+        console.log("Device selected:", selectedDevice);
+        console.log("Library selected:", selectedLibrary);
+        console.log("Quantized selected:", selectedQuantize);
+
+        if (selectedDevice || selectedLibrary) {
+            fetchBenchmarkData();
+        }
+
+        if(selectedQuantize){
+            quantizedOrNot();
+        }
+    }
+
+    function fetchBenchmarkData(){
+        console.log("Needs Benchmark");
+    }
+
+    function quantizedOrNot(){
+        if(selectedQuantize == "Quantized"){
+            floatingPoint = false;
+            quantized = true;
+        }else if(selectedQuantize == "All"){
+            floatingPoint = false;
+            quantized = false;
+        }else{
+            floatingPoint = true;
+            quantized = false;
+        }
+        filterModelsBySearch();
+    }
+
+    
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevents event from bubbling to document
@@ -131,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
             originalOrder = Array.from(models);  // Save the initial order when the page loads
         }
 
+
         const modelsContainer = document.querySelector(".models");
 
         // Always re-order models in their original order
@@ -149,11 +206,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Loop over all models and separate them into matched and unmatched
         originalOrder.forEach((model) => {
             const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
-
-            if (modelName.includes(searchQuery)) {
-                matched.push(model);  // Add to matched if it matches the query
-            } else {
-                unmatched.push(model);  // Otherwise, add to unmatched
+            if(quantized){
+                if (modelName.includes(searchQuery) && modelName.includes("quantized")) {
+                    matched.push(model);  // Add to matched if it matches the query
+                } else {
+                    unmatched.push(model);  // Otherwise, add to unmatched
+                }
+            }else if(floatingPoint){
+                if (modelName.includes(searchQuery) && !modelName.includes("quantized")) {
+                    matched.push(model);  // Add to matched if it matches the query
+                } else {
+                    unmatched.push(model);  // Otherwise, add to unmatched
+                }
+            }else{
+                if (modelName.includes(searchQuery)) {
+                    matched.push(model);  // Add to matched if it matches the query
+                } else {
+                    unmatched.push(model);  // Otherwise, add to unmatched
+                }
             }
         });
 
@@ -169,8 +239,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add event listener to the search bar
-    document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+    //document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
 
-
+    document.querySelectorAll(".dropdownItem").forEach(item => {
+        item.addEventListener("click", function () {
+            dropDownSelect(item);
+        });
+    });
 
 });
