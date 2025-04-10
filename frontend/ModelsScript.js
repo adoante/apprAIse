@@ -38,9 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function fetchBenchmarkData(){
-        console.log("Needs Benchmark");
-    }
+    
 
     function quantizedOrNot(){
         if(selectedQuantize == "Quantized"){
@@ -240,6 +238,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listener to the search bar
     //document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+
+    async function fetchBenchmarkData(){
+        const benchmarks = await api.filter_benchmarks("ONNX","Sam");
+        console.log(benchmarks);
+    }
+
+    //const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+
 
     document.querySelectorAll(".dropdownItem").forEach(item => {
         item.addEventListener("click", function () {
