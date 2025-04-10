@@ -91,6 +91,7 @@
     padding-bottom: 20px;
     flex: 1 1 250px;
     height: 380px;
+    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
 }
 
