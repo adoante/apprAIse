@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
 
         // Select all model elements within the models container
-        const models = document.querySelectorAll('.models .model');
+        const models = document.querySelectorAll('.models .modelLink');
 
         // Save the original order of models if it's not done yet
         if (originalOrder.length === 0) {
@@ -170,5 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listener to the search bar
     document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+
+
 
 });
