@@ -1,9 +1,9 @@
 import api from './js/modules/api_wrapper.js';
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-    let selectedDevice = "";
-    let selectedLibrary = "";
+
+    let selectedDevice = null;
+    let selectedLibrary = null;
     let selectedQuantize = "";
     let quantized = false;
     let floatingPoint = false;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedDevice = value;
         } else if (parentDropdown.id === "libraryDropdown") {
             selectedLibrary = value;
-        }else if (parentDropdown.id === "quantizedDropdown") {
+        } else if (parentDropdown.id === "quantizedDropdown") {
             selectedQuantize = value;
         }
 
@@ -29,32 +29,54 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Library selected:", selectedLibrary);
         console.log("Quantized selected:", selectedQuantize);
 
-        if (selectedDevice || selectedLibrary) {
-            fetchBenchmarkData();
+        if ((selectedDevice || selectedLibrary) && !(parentDropdown.id === "quantizedDropdown")) {
+            fetchBenchmarkData(selectedDevice, selectedLibrary);
         }
 
-        if(selectedQuantize){
+        if (selectedQuantize && (parentDropdown.id === "quantizedDropdown")) {
             quantizedOrNot();
         }
     }
 
-    
+    async function fetchBenchmarkData(device, library) {
+        const benchmarks = await api.filter_benchmarks(device, library, null, "asc");
+        let currentModelsNames = [];
+        let currentModels = [];
 
-    function quantizedOrNot(){
-        if(selectedQuantize == "Quantized"){
+        //console.log("Help2");
+        let i = 0;
+        for (let benchmark of benchmarks.benchmarks) {
+            const model = await api.read_model(benchmark.model_id);
+            if (!currentModelsNames.includes(model.model_name)) {
+                i++;
+                //console.log("Help" + i);
+                //console.log("Model?" + model.model_name);
+                currentModelsNames.push(model.model_name);
+                currentModels.push(model);
+            }
+        }
+        addmodels(currentModels)
+        filterModelsBySearch(originalOrder);
+        //filterModelsBySearch(currentModels)
+        console.log(currentModels)
+    }
+
+
+    function quantizedOrNot() {
+        if (selectedQuantize == "Quantized") {
             floatingPoint = false;
             quantized = true;
-        }else if(selectedQuantize == "All"){
+        } else if (selectedQuantize == "All") {
             floatingPoint = false;
             quantized = false;
-        }else{
+        } else {
             floatingPoint = true;
             quantized = false;
         }
-        filterModelsBySearch();
+        filterModelsBySearch(originalOrder);
     }
 
-    
+
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevents event from bubbling to document
@@ -94,14 +116,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Fetch models and create HTML elements for each model
-    api.filter_models().then(data => {
-        const modelsContainer = document.querySelector(".models"); // Select the container div
-        let i = -1
-        data["models"].forEach(model => {
 
-            console.log(model["model_name"])
+    noFilterModelDisplay();
+
+
+    async function noFilterModelDisplay() {
+        api.filter_models().then(data => {
+            addmodels(data["models"]);
+        });
+    }
+
+    function addmodels(data) {
+        const modelsContainer = document.querySelector(".models"); // Select the container div
+        modelsContainer.textContent = '';
+        let i = -1
+        data.forEach(model => {
+
+            //console.log(model["model_name"])
             let color = "pink"
-            console.log(color)
+            //console.log(color)
 
             switch (++i) {
                 case 0:
@@ -125,14 +158,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     break;
             }
 
-            console.log(color)
+            //console.log(color)
             // Create the anchor element
             const modelLink = document.createElement("a");
             modelLink.classList.add("modelLink")
             modelLink.href = `ExampleModel.html?info=${encodeURIComponent(model["model_name"])}`;
 
             // Create the model div
-            console.log(color)
+            ///console.log(color)
             const modelElement = document.createElement("div");
             modelElement.classList.add("model", color);
 
@@ -141,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modelColor.classList.add("modelColor", color);
 
             // Create the image element
-            console.log(model["model_img"])
+            //console.log(model["model_img"])
             const modelImg = document.createElement("img");
             modelImg.classList.add("modelImg");
             modelImg.src = model["model_img"]; // You may want this to come from `model`
@@ -169,20 +202,20 @@ document.addEventListener("DOMContentLoaded", function () {
             // Append the whole structure inside the models container
             modelsContainer.appendChild(modelLink);
         });
-    });
-
+    }
 
     let originalOrder = [];  // Store the original order of models
 
-    window.filterModelsBySearch = function() {
+    window.filterModelsBySearch = function (currentOrder) {
         const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
-
+        console.log("here")
+        console.log(quantized)
         // Select all model elements within the models container
         const models = document.querySelectorAll('.models .modelLink');
 
         // Save the original order of models if it's not done yet
-        if (originalOrder.length === 0) {
-            originalOrder = Array.from(models);  // Save the initial order when the page loads
+        if (currentOrder.length === 0) {
+            currentOrder = Array.from(models);  // Save the initial order when the page loads
         }
 
 
@@ -192,31 +225,31 @@ document.addEventListener("DOMContentLoaded", function () {
         modelsContainer.innerHTML = "";  // Clear the container
 
         // show all models in their original order
-        originalOrder.forEach(model => {
+        currentOrder.forEach(model => {
             model.style.display = '';  // Ensure all models are visible
             modelsContainer.appendChild(model);  // Re-append the models in their original order
         });
-        
+
         // Otherwise, filter models that match the search query
         const matched = [];
         const unmatched = [];
 
         // Loop over all models and separate them into matched and unmatched
-        originalOrder.forEach((model) => {
+        currentOrder.forEach((model) => {
             const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
-            if(quantized){
+            if (quantized) {
                 if (modelName.includes(searchQuery) && modelName.includes("quantized")) {
                     matched.push(model);  // Add to matched if it matches the query
                 } else {
                     unmatched.push(model);  // Otherwise, add to unmatched
                 }
-            }else if(floatingPoint){
+            } else if (floatingPoint) {
                 if (modelName.includes(searchQuery) && !modelName.includes("quantized")) {
                     matched.push(model);  // Add to matched if it matches the query
                 } else {
                     unmatched.push(model);  // Otherwise, add to unmatched
                 }
-            }else{
+            } else {
                 if (modelName.includes(searchQuery)) {
                     matched.push(model);  // Add to matched if it matches the query
                 } else {
@@ -237,15 +270,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add event listener to the search bar
-    //document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
-
-    async function fetchBenchmarkData(){
-        const benchmarks = await api.filter_benchmarks("ONNX","Sam");
-        console.log(benchmarks);
-    }
-
-    //const benchmarks = await api.filter_benchmarks(device, library, sort, order);
-
+    document.getElementById('modelSearch').addEventListener('input', function () {
+        filterModelsBySearch(originalOrder);
+    });
 
     document.querySelectorAll(".dropdownItem").forEach(item => {
         item.addEventListener("click", function () {
