@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let selectedQuantize = "";
     let quantized = false;
     let floatingPoint = false;
+    let recentFilterChange = false;
 
     function dropDownSelect(item) {
         const selectedText = item.textContent;
@@ -18,16 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
         dropdownBtn.textContent = selectedText;
 
         if (parentDropdown.id === "deviceDropdown") {
+            recentFilterChange = true;
             selectedDevice = value;
         } else if (parentDropdown.id === "libraryDropdown") {
+            recentFilterChange = true;
             selectedLibrary = value;
         } else if (parentDropdown.id === "quantizedDropdown") {
             selectedQuantize = value;
         }
 
-        console.log("Device selected:", selectedDevice);
-        console.log("Library selected:", selectedLibrary);
-        console.log("Quantized selected:", selectedQuantize);
+        //console.log("Device selected:", selectedDevice);
+        //console.log("Library selected:", selectedLibrary);
+        //console.log("Quantized selected:", selectedQuantize);
 
         if ((selectedDevice || selectedLibrary) && !(parentDropdown.id === "quantizedDropdown")) {
             fetchBenchmarkData(selectedDevice, selectedLibrary);
@@ -56,9 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         addmodels(currentModels)
-        filterModelsBySearch(originalOrder);
+        filterModelsBySearch();
         //filterModelsBySearch(currentModels)
-        console.log(currentModels)
+        //console.log(currentModels)
     }
 
 
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             floatingPoint = true;
             quantized = false;
         }
-        filterModelsBySearch(originalOrder);
+        filterModelsBySearch();
     }
 
 
@@ -206,72 +209,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let originalOrder = [];  // Store the original order of models
 
-    window.filterModelsBySearch = function (currentOrder) {
+    window.filterModelsBySearch = function () {
         const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
-        console.log("here")
-        console.log(quantized)
-        // Select all model elements within the models container
-        const models = document.querySelectorAll('.models .modelLink');
-
-        // Save the original order of models if it's not done yet
-        if (currentOrder.length === 0) {
-            currentOrder = Array.from(models);  // Save the initial order when the page loads
-        }
-
-
         const modelsContainer = document.querySelector(".models");
 
-        // Always re-order models in their original order
-        modelsContainer.innerHTML = "";  // Clear the container
+        // Save original model order once
+        if (!window.originalModelOrder || recentFilterChange) {
+            window.originalModelOrder = Array.from(document.querySelectorAll('.models .modelLink'));
+            recentFilterChange = false;
+        }
 
-        // show all models in their original order
-        currentOrder.forEach(model => {
-            model.style.display = '';  // Ensure all models are visible
-            modelsContainer.appendChild(model);  // Re-append the models in their original order
-        });
+        // Reset container
+        modelsContainer.innerHTML = "";
 
-        // Otherwise, filter models that match the search query
         const matched = [];
         const unmatched = [];
-
-        // Loop over all models and separate them into matched and unmatched
-        currentOrder.forEach((model) => {
+        window.originalModelOrder.forEach((model) => {
             const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
             if (quantized) {
                 if (modelName.includes(searchQuery) && modelName.includes("quantized")) {
-                    matched.push(model);  // Add to matched if it matches the query
+                    matched.push(model);
                 } else {
-                    unmatched.push(model);  // Otherwise, add to unmatched
+                    unmatched.push(model);
                 }
             } else if (floatingPoint) {
                 if (modelName.includes(searchQuery) && !modelName.includes("quantized")) {
-                    matched.push(model);  // Add to matched if it matches the query
+                    matched.push(model);
                 } else {
-                    unmatched.push(model);  // Otherwise, add to unmatched
+                    unmatched.push(model);
                 }
             } else {
                 if (modelName.includes(searchQuery)) {
-                    matched.push(model);  // Add to matched if it matches the query
+                    matched.push(model);
                 } else {
-                    unmatched.push(model);  // Otherwise, add to unmatched
+                    unmatched.push(model);
                 }
             }
         });
 
-        // Hide unmatched models
-        unmatched.forEach(model => {
-            model.style.display = 'none';  // Hide models that don't match the query
+        // Append matched models
+        matched.forEach(model => {
+            model.style.display = '';
+            modelsContainer.appendChild(model);
         });
 
-        // If no models match, display a "no results" message
         if (matched.length === 0) {
             modelsContainer.innerHTML = "<p>No models found matching your search.</p>";
         }
+
     }
 
     // Add event listener to the search bar
     document.getElementById('modelSearch').addEventListener('input', function () {
-        filterModelsBySearch(originalOrder);
+        filterModelsBySearch();
     });
 
     document.querySelectorAll(".dropdownItem").forEach(item => {
