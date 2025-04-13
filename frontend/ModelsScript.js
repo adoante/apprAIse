@@ -1,6 +1,85 @@
 import api from './js/modules/api_wrapper.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    let selectedDevice = null;
+    let selectedLibrary = null;
+    let selectedQuantize = "";
+    let quantized = false;
+    let floatingPoint = false;
+    let recentFilterChange = false;
+
+    function dropDownSelect(item) {
+        const selectedText = item.textContent;
+        const value = item.getAttribute("data-value");
+
+        const parentDropdown = item.closest('.dropdown');
+        const dropdownBtn = parentDropdown.querySelector('.dropdown-btn p');
+
+        dropdownBtn.textContent = selectedText;
+
+        if (parentDropdown.id === "deviceDropdown") {
+            recentFilterChange = true;
+            selectedDevice = value;
+        } else if (parentDropdown.id === "libraryDropdown") {
+            recentFilterChange = true;
+            selectedLibrary = value;
+        } else if (parentDropdown.id === "quantizedDropdown") {
+            selectedQuantize = value;
+        }
+
+        //console.log("Device selected:", selectedDevice);
+        //console.log("Library selected:", selectedLibrary);
+        //console.log("Quantized selected:", selectedQuantize);
+
+        if ((selectedDevice || selectedLibrary) && !(parentDropdown.id === "quantizedDropdown")) {
+            fetchBenchmarkData(selectedDevice, selectedLibrary);
+        }
+
+        if (selectedQuantize && (parentDropdown.id === "quantizedDropdown")) {
+            quantizedOrNot();
+        }
+    }
+
+    async function fetchBenchmarkData(device, library) {
+        const benchmarks = await api.filter_benchmarks(device, library, null, "asc");
+        let currentModelsNames = [];
+        let currentModels = [];
+
+        //console.log("Help2");
+        let i = 0;
+        for (let benchmark of benchmarks.benchmarks) {
+            const model = await api.read_model(benchmark.model_id);
+            if (!currentModelsNames.includes(model.model_name)) {
+                i++;
+                //console.log("Help" + i);
+                //console.log("Model?" + model.model_name);
+                currentModelsNames.push(model.model_name);
+                currentModels.push(model);
+            }
+        }
+        addmodels(currentModels)
+        filterModelsBySearch();
+        //filterModelsBySearch(currentModels)
+        //console.log(currentModels)
+    }
+
+
+    function quantizedOrNot() {
+        if (selectedQuantize == "Quantized") {
+            floatingPoint = false;
+            quantized = true;
+        } else if (selectedQuantize == "All") {
+            floatingPoint = false;
+            quantized = false;
+        } else {
+            floatingPoint = true;
+            quantized = false;
+        }
+        filterModelsBySearch();
+    }
+
+
     document.querySelectorAll(".dropdown-btn").forEach(button => {
         button.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevents event from bubbling to document
@@ -40,14 +119,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Fetch models and create HTML elements for each model
-    api.filter_models().then(data => {
-        const modelsContainer = document.querySelector(".models"); // Select the container div
-        let i = -1
-        data["models"].forEach(model => {
 
-            console.log(model["model_name"])
+    noFilterModelDisplay();
+
+
+    async function noFilterModelDisplay() {
+        api.filter_models().then(data => {
+            addmodels(data["models"]);
+        });
+    }
+
+    function addmodels(data) {
+        const modelsContainer = document.querySelector(".models"); // Select the container div
+        modelsContainer.textContent = '';
+        let i = -1
+        data.forEach(model => {
+
+            //console.log(model["model_name"])
             let color = "pink"
-            console.log(color)
+            //console.log(color)
 
             switch (++i) {
                 case 0:
@@ -71,14 +161,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     break;
             }
 
-            console.log(color)
+            //console.log(color)
             // Create the anchor element
             const modelLink = document.createElement("a");
             modelLink.classList.add("modelLink")
             modelLink.href = `ExampleModel.html?info=${encodeURIComponent(model["model_name"])}`;
 
             // Create the model div
-            console.log(color)
+            ///console.log(color)
             const modelElement = document.createElement("div");
             modelElement.classList.add("model", color);
 
@@ -87,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
             modelColor.classList.add("modelColor", color);
 
             // Create the image element
-            console.log(model["model_img"])
+            //console.log(model["model_img"])
             const modelImg = document.createElement("img");
             modelImg.classList.add("modelImg");
             modelImg.src = model["model_img"]; // You may want this to come from `model`
@@ -115,60 +205,69 @@ document.addEventListener("DOMContentLoaded", function () {
             // Append the whole structure inside the models container
             modelsContainer.appendChild(modelLink);
         });
-    });
-
+    }
 
     let originalOrder = [];  // Store the original order of models
 
-    window.filterModelsBySearch = function() {
+    window.filterModelsBySearch = function () {
         const searchQuery = document.getElementById('modelSearch').value.toLowerCase();
-
-        // Select all model elements within the models container
-        const models = document.querySelectorAll('.models .model');
-
-        // Save the original order of models if it's not done yet
-        if (originalOrder.length === 0) {
-            originalOrder = Array.from(models);  // Save the initial order when the page loads
-        }
-
         const modelsContainer = document.querySelector(".models");
 
-        // Always re-order models in their original order
-        modelsContainer.innerHTML = "";  // Clear the container
+        // Save original model order once
+        if (!window.originalModelOrder || recentFilterChange) {
+            window.originalModelOrder = Array.from(document.querySelectorAll('.models .modelLink'));
+            recentFilterChange = false;
+        }
 
-        // show all models in their original order
-        originalOrder.forEach(model => {
-            model.style.display = '';  // Ensure all models are visible
-            modelsContainer.appendChild(model);  // Re-append the models in their original order
-        });
-        
-        // Otherwise, filter models that match the search query
+        // Reset container
+        modelsContainer.innerHTML = "";
+
         const matched = [];
         const unmatched = [];
-
-        // Loop over all models and separate them into matched and unmatched
-        originalOrder.forEach((model) => {
+        window.originalModelOrder.forEach((model) => {
             const modelName = model.querySelector(".modelTitle").textContent.toLowerCase();
-
-            if (modelName.includes(searchQuery)) {
-                matched.push(model);  // Add to matched if it matches the query
+            if (quantized) {
+                if (modelName.includes(searchQuery) && modelName.includes("quantized")) {
+                    matched.push(model);
+                } else {
+                    unmatched.push(model);
+                }
+            } else if (floatingPoint) {
+                if (modelName.includes(searchQuery) && !modelName.includes("quantized")) {
+                    matched.push(model);
+                } else {
+                    unmatched.push(model);
+                }
             } else {
-                unmatched.push(model);  // Otherwise, add to unmatched
+                if (modelName.includes(searchQuery)) {
+                    matched.push(model);
+                } else {
+                    unmatched.push(model);
+                }
             }
         });
 
-        // Hide unmatched models
-        unmatched.forEach(model => {
-            model.style.display = 'none';  // Hide models that don't match the query
+        // Append matched models
+        matched.forEach(model => {
+            model.style.display = '';
+            modelsContainer.appendChild(model);
         });
 
-        // If no models match, display a "no results" message
         if (matched.length === 0) {
             modelsContainer.innerHTML = "<p>No models found matching your search.</p>";
         }
+
     }
 
     // Add event listener to the search bar
-    document.getElementById('modelSearch').addEventListener('input', filterModelsBySearch);
+    document.getElementById('modelSearch').addEventListener('input', function () {
+        filterModelsBySearch();
+    });
+
+    document.querySelectorAll(".dropdownItem").forEach(item => {
+        item.addEventListener("click", function () {
+            dropDownSelect(item);
+        });
+    });
 
 });
