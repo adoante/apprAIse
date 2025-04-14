@@ -1,0 +1,161 @@
+.dropdowns {
+	margin-bottom: 50px;
+	justify-content: space-evenly;
+	display: flex;
+	flex-direction: column;
+	gap: 1vw;
+	/* Adjusts spacing dynamically */
+	flex-wrap: wrap;
+	/* Allows items to stack if needed */
+}
+
+.dropdown {
+	max-width: 200px;
+	width: 200px;
+	overflow: hidden;
+}
+
+.dropdown-btn {
+	background-color: #564AFF;
+	color: white;
+	padding: 12px 25px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	max-width: 200px;
+	border-radius: 20px;
+	outline: none;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+}
+
+.dropdown-btn p {
+	margin: 0;
+	white-space: nowrap;
+}
+
+.dropdown-content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease-out;
+	background-color: #f1f1f1;
+	padding: 0 10px;
+	border-radius: 20px;
+}
+
+.dropdown-content p {
+	margin: 10px 0;
+}
+
+.dropdownItem {
+	color: #564AFF;
+	cursor: pointer;
+}
+
+.dropdownItem:hover {
+	background-color: #d1d1d1;
+}
+
+.arrow {
+	width: 25px;
+	margin: 0;
+	transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+	transform: rotateX(180deg);
+}
+
+.dashboardBtn {
+	background-color: #E566FF;
+	padding: 7px 50px;
+	border-radius: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 0px;
+	font-size: large;
+	color: white;
+}
+
+.dashboardBtn:hover {
+	cursor: pointer;
+	color: yellow;
+}
+
+.dashboardSidebar {
+	background: #2D2D2D;
+	margin: 0;
+	padding: 25px;
+	width: fit-content;
+	position: fixed;
+	height: 100%;
+	overflow: auto;
+	border-radius: 0 16px 0 0;
+}
+
+.dashboardForm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formContainer {
+    background: white;
+    color: black;
+    border-radius: 16px;
+    max-width: fit-content;
+    box-shadow: 4px 4px 4px rgba(53, 191, 255, 0.50);
+    padding: 25px 50px 25px 50px;
+}
+
+.dashboardForm input {
+    border-color: black;
+    border-width: 2px;
+    border-radius: 16px;
+	margin-bottom: 20px;
+}
+
+.dashboardFormBtn {
+    background-color: #E566FF;
+    padding: 7px 25px;
+    border-radius: 10px;
+    color: white;
+    border-width: 0px;
+    font-size: 18px;
+    display: block;
+    margin: 20px auto 0 auto;
+}
+
+.dashboardForm a {
+    text-decoration: none;
+    display: inline;
+    background: linear-gradient(to right, #FF6969, #69F7FF, #69FF87, #F7FF69, #FC69FF);
+    font-weight: 500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboardForm a:hover {
+    text-decoration: underline;
+    display: inline;
+    background: linear-gradient(to right,#FC69FF,#F7FF69,#69FF87, #69F7FF,#FF6969);
+    font-weight: 500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.formAlert {
+    background: #E566FF;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
+}

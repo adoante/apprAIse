@@ -8,6 +8,7 @@
 	<script type="module" src="DashboardScript.js"></script>
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="vanilla.css">
+	<link rel="stylesheet" href="DashboardStyle.css">
 	<title>ApprAIse</title>
 </head>
 
@@ -26,11 +27,71 @@
 	</div>
 
 	<div class="page">
-		<div class="pageTitle">
-			<h1 class="title">Dashboard</h1>
+
+		<div class="dashboardSidebar">
+			<div class="dropdowns">
+				<div class="dropdown" id="accountDropdown">
+					<div class="dropdown-btn">
+						Account
+						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Username</p>
+						<p class="dropdownItem">Firstname</p>
+						<p class="dropdownItem">Lastname</p>
+						<p class="dropdownItem">Email</p>
+						<p class="dropdownItem">QAI Hub Token</p>
+						<p class="dropdownItem">Password</p>
+						<p class="dropdownItem">Disable Account</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Customization
+						<img class="arrow LD" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Charts/Colors</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Favorites
+						<img class="arrow LL" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Models</p>
+					</div>
+				</div>
+
+				<button class="dashboardBtn" id="logout">Logout</button>
+			</div>
 		</div>
+
+		<div class="dashboardContent">
+			<div class="pageTitle">
+				<h1 class="title">Dashboard</h1>
+			</div> <!--Content Insert Here-->
+
+		</div>
+
 	</div>
 
 </body>
 
 </html>
+
+<!--
+<div class="dashboardForm">
+				<h2>Change Username</h2>
+				<p>Current Username: </p>
+				<form class="formContainer" id="username">
+					<label for="username">Username</label>
+					<input type="text" id="username" name="username" required>
+
+					<button class="dashboardBtn" type="submit">Change</button>
+				</form>
+			</div>
+-->
