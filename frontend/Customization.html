@@ -8,7 +8,7 @@
     <link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="CustomizationStyle.css">
     <script src="CustomizationScript.js"></script>
-    <script src="CommonScript.js"></script>
+    <script type="module" src="CommonScript.js"></script>
 
     <title>Customization</title>
 </head>
@@ -56,7 +56,7 @@
             </div>
 
             <!-- Apply Button -->
-            <button onclick="applySettings()">Apply Settings</button>
+            <button class="apply-btn" onclick="applySettings()">Apply Settings</button>
             <p id="statusMessage"></p>
         </div>
     </div>

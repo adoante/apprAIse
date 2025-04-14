@@ -4,12 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="module" src="js/modules/api_wrapper.js"></script>
-	<script type="module" src="js/api_wrapper_tests.js"></script>
-	<script src="CommonScript.js"></script>
-	<link rel="stylesheet" href="indexStyle.css">
+	<script type="module" src="CommonScript.js"></script>
+	<script type="module" src="DashboardScript.js"></script>
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="vanilla.css">
+	<link rel="stylesheet" href="DashboardStyle.css">
 	<title>ApprAIse</title>
 </head>
 
@@ -28,9 +27,71 @@
 	</div>
 
 	<div class="page">
-		<div class="pageTitle">
-			<h1 class="title">Dashboard</h1>
+
+		<div class="dashboardSidebar">
+			<div class="dropdowns">
+				<div class="dropdown" id="accountDropdown">
+					<div class="dropdown-btn">
+						Account
+						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Username</p>
+						<p class="dropdownItem">Firstname</p>
+						<p class="dropdownItem">Lastname</p>
+						<p class="dropdownItem">Email</p>
+						<p class="dropdownItem">QAI Hub Token</p>
+						<p class="dropdownItem">Password</p>
+						<p class="dropdownItem">Disable Account</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Customization
+						<img class="arrow LD" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Charts/Colors</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Favorites
+						<img class="arrow LL" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Models</p>
+					</div>
+				</div>
+
+				<button class="dashboardBtn" id="logout">Logout</button>
+			</div>
 		</div>
+
+		<div class="dashboardContent">
+			<div class="pageTitle">
+				<h1 class="title">Dashboard</h1>
+			</div> <!--Content Insert Here-->
+
+			<div class="footer">
+				<div class="footerLogo">
+					<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+				</div>
+				<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+				<div>
+					<ul class="footerMenu">
+						<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+						<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+						<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+						<li><a class="footerMenuItem" href="About.html">About</a></li>
+						<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </body>

@@ -8,7 +8,7 @@
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="LoginSignupStyle.css">
 	<script type="module" src="SignupScript.js"></script>
-	<script src="CommonScript.js"></script>
+	<script type="module" src="CommonScript.js"></script>
 	<title>Signup | ApprAIse</title>
 </head>
 
@@ -23,13 +23,13 @@
 		<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
 		<li><a class="navMenu edge" href="Login.html">Login</a></li>
 	</ul>
-	
+
 	<div class="page">
 		<div class="pageTitle">
 			<h1 class="title">Signup</h1>
 		</div>
 
-        <div class="loginSignupContainer">
+		<div class="loginSignupContainer">
 			<form class="formContainer" id="signup">
 				<label for="firstname">First name</label>
 				<input type="text" id="firstname" name="firstname" required>
@@ -41,15 +41,31 @@
 				<input type="text" id="username" name="username" required>
 
 				<label for="email">Email</label>
-				<input type="text" id="email" name="email" required>
+				<input type="email" id="email" name="email" required>
 
 				<label for="password">Password</label>
-				<input type="text" id="password" name="password" required>
+				<input type="password" type="text" id="password" name="password" required>
 
 				<button class="LoginSignupBtn" type="submit">Signup</button>
 			</form>
 
 			<p>Have an account? <a href="Login.html">Login</a></p>
+		</div>
+
+		<div class="footer">
+			<div class="footerLogo">
+				<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+			</div>
+			<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+			<div>
+				<ul class="footerMenu">
+					<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+				</ul>
+			</div>
 		</div>
 
 	</div>

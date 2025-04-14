@@ -44,6 +44,8 @@ def authenticate_user(username: str, password: str):
         return False
     if not verify_password(password, user.password_hash):
         return False
+    if user.disabled:
+        return False
     return user
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
