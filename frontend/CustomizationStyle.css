@@ -6,7 +6,7 @@ body {
 .customizationContainer {
     width: fit-content;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
     background-color: #3d3d3d;
     border-radius: 15px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
