@@ -223,6 +223,8 @@ async function get_current_user() {
 
     } catch (error) {
         console.error("Error fetching user data:", error);
+        localStorage.removeItem("access_token");
+		window.location.replace("index.html");
         return error;
     }
 }
@@ -263,6 +265,8 @@ async function updateUserField(field, value) {
 
     } catch (error) {
         console.error(`Error updating ${field}:`, error);
+        localStorage.removeItem("access_token");
+		window.location.replace("index.html");
         return error;
     }
 }
@@ -295,6 +299,8 @@ async function disableUser() {
 
     } catch (error) {
         console.error("Error disabling user", error);
+        localStorage.removeItem("access_token");
+		window.location.replace("index.html");
         return error;
     }
 }

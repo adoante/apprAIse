@@ -3,6 +3,8 @@
 	across multiple pages and updates/modifies those elements accordingly.
 */
 
+import api from "./js/modules/api_wrapper.js"
+
 document.addEventListener("DOMContentLoaded", function () {
 	const loginLink = document.querySelector(".navMenu.edge")
 	const access_token = localStorage.getItem("access_token")
