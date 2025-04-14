@@ -432,7 +432,7 @@ li {
     font-weight: 500;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
+
 }
 
 .pageTitle {
@@ -447,6 +447,39 @@ li {
 
 .navbarCustom {
     margin-bottom: 50px;
+}
+
+.footer {
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 25px;
+    padding: 25px 5vw;
+}
+
+.footerLogo {
+    font-size: clamp(25px, 2vw, 40px);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.footerDescription {
+    font-style: italic;
+    font-size: clamp(20px, 1.5vw, 25px);
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.footerMenuItem {
+    display: block;
+    text-decoration: none;
+}
+
+.footerMenu {
+    text-align: right;
+    border-left: 1px solid #ffffff;
+    padding-left: 20px;
 }
 
 /*.page {
