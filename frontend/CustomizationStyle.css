@@ -4,7 +4,7 @@ body {
 }
 
 .customizationContainer {
-    width: 50%;
+    width: fit-content;
     margin: 0 auto;
     padding: 20px;
     background-color: #3d3d3d;
@@ -31,7 +31,7 @@ input[type="color"] {
 }
 
 .apply-btn {
-    background-color: #564AFF;
+    background-color: #E566FF;
     color: white;
     padding: 10px 20px;
     margin: 15px 0;
