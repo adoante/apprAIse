@@ -35,6 +35,10 @@ td {
     justify-content: space-between;
 }
 
+.dropdown-btn:hover{
+    background-color:#4338ca;
+}
+
 .dropdown-btn p {
     margin: 0;
     white-space: nowrap;

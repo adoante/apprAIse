@@ -34,6 +34,10 @@
     white-space: nowrap;
 }
 
+.dropdown-btn:hover{
+    background-color:#4338ca;
+}
+
 .dropdown-content {
     max-height: 0;
     overflow: hidden;
