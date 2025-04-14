@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								<p>Current Email: ${data["email"]}</p>
 								<form class="formContainer" id="email">
 									<label for="email">Email</label>
-									<input type="text" id="email" name="email" required>
+									<input type="email" id="email" name="email" required>
 	
 										<button class="dashboardBtn" type="submit">Change</button>
 								</form>
@@ -184,14 +184,68 @@ document.addEventListener("DOMContentLoaded", function () {
 						})
 					break;
 				case "Password":
-					console.log(content)
+					api.get_current_user()
+						.then(data => {
+							contentContainer.insertAdjacentHTML(
+								"beforeend",
+								`
+								<div style="background: red;" class="formAlert">
+									WARNING:<br>
+									Currently we do not have plans to implement password recovery.<br>
+									Do not forget your password if you for some reason really really<br>
+									like your current user name.
+								</div>
+								<div class="dashboardForm">
+									<h2>Change Password</h2>
+									<p>Current Password: LMAO JK</p>
+									<form class="formContainer" id="password">
+										<label for="password">New Password</label>
+										<input type="password" type="text" id="password" name="password" required>
+		
+											<button class="dashboardBtn" type="submit">Change</button>
+									</form>
+								</div>
+								`
+							)
 
-					contentContainer.insertAdjacentHTML("beforeend", footer)
+							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
 					break;
 				case "Disable Account":
-					console.log(content)
+					api.get_current_user()
+						.then(data => {
+							let accountStatus = ""
 
-					contentContainer.insertAdjacentHTML("beforeend", footer)
+							if (data["disabled"]) {
+								accountStatus = "Disabled"
+							} else {
+								accountStatus = "Active"
+							}
+
+							contentContainer.insertAdjacentHTML(
+								"beforeend",
+								`
+							<div style="background: red;" class="formAlert">
+								WARNING:<br>
+								This basically deletes your account.<br>
+								We currently have no method to activate a disabled account.<br>
+							</div>
+
+							<div class="dashboardForm">
+								<h2>Disable Account</h2>
+								<p>Account Status: ${accountStatus}</p>
+								<form class="formContainer" id="disable">
+									<label for="disable">Type: disable_account</label>
+									<input type="text" id="disable" name="disable" required>
+	
+										<button style="background: red;" class="dashboardBtn" type="submit">Disable Account</button>
+								</form>
+							</div>
+							`
+							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
 					break;
 			}
 		}
@@ -202,40 +256,81 @@ document.addEventListener("DOMContentLoaded", function () {
 		e.preventDefault();
 
 		const form = e.target;
-		const formData = new FormData(form);
 
+		const formId = form.id;
+
+		const formData = new FormData(form);
 		const fieldName = formData.keys().next().value;
 		const fieldValue = formData.get(fieldName);
 
-		// Update the user data (common function for all forms)
-		api.update_user_data(fieldName, fieldValue)
-			.then(data => {
+		if (formId == "disable") {
+			if (fieldValue != "disable_account") {
 				contentContainer.lastElementChild.insertAdjacentHTML(
 					"beforebegin",
-					`<div class="formAlert">${data["message"]}</div>`
+					`<div class="formAlert">Wrong Input.</div>`
 				);
+			} else {
+				api.disable_user()
+					.then(data => {
+						contentContainer.lastElementChild.insertAdjacentHTML(
+							"beforebegin",
+							`<div class="formAlert">${data["message"]}</div>`
+						);
 
-				if (!data["message"].includes("409") && !data["message"].includes("400")) {
+						contentContainer.lastElementChild.insertAdjacentHTML(
+							"beforebegin",
+							`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+						);
+
+						let seconds = 5;
+						const countdownEl = document.getElementById('redirectCountdown');
+
+						const interval = setInterval(() => {
+							seconds--;
+							countdownEl.textContent = seconds;
+
+							if (seconds === 0) {
+								clearInterval(interval);
+								localStorage.removeItem("access_token");
+								window.location.replace("Login.html");
+							}
+						}, 1000);
+					})
+			}
+		}
+
+		if (formId != "disable") {
+			// Update the user data (common function for all forms)
+			api.update_user_data(fieldName, fieldValue)
+				.then(data => {
 					contentContainer.lastElementChild.insertAdjacentHTML(
 						"beforebegin",
-						`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+						`<div class="formAlert">${data["message"]}</div>`
 					);
 
-					let seconds = 5;
-					const countdownEl = document.getElementById('redirectCountdown');
+					if (!data["message"].includes("409") && !data["message"].includes("400")) {
+						contentContainer.lastElementChild.insertAdjacentHTML(
+							"beforebegin",
+							`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+						);
 
-					const interval = setInterval(() => {
-						seconds--;
-						countdownEl.textContent = seconds;
+						let seconds = 5;
+						const countdownEl = document.getElementById('redirectCountdown');
 
-						if (seconds === 0) {
-							clearInterval(interval);
-							localStorage.removeItem("access_token");
-							window.location.replace("Login.html");
-						}
-					}, 1000);
+						const interval = setInterval(() => {
+							seconds--;
+							countdownEl.textContent = seconds;
 
-				}
-			})
+							if (seconds === 0) {
+								clearInterval(interval);
+								localStorage.removeItem("access_token");
+								window.location.replace("Login.html");
+							}
+						}, 1000);
+
+					}
+				})
+		}
+
 	});
 });

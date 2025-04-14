@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			.catch(error => {
 				document.querySelector(".loginSignupContainer").insertAdjacentHTML(
 					"beforeend",
-					`<div class="loginSignupAlert">Username or password incorrect.<div>`,
+					`<div class="loginSignupAlert">Check Username or password.<div>`,
 				);
 			})
 	});
