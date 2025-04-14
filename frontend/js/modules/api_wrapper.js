@@ -201,6 +201,7 @@ async function get_current_user() {
 
     if (!token) {
         console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
         return;
     }
 
@@ -223,8 +224,10 @@ async function get_current_user() {
 
     } catch (error) {
         console.error("Error fetching user data:", error);
+
         localStorage.removeItem("access_token");
-		window.location.replace("Login.html");
+        window.location.replace("Login.html");
+
         return error;
     }
 }
@@ -234,6 +237,7 @@ async function updateUserField(field, value) {
 
     if (!token) {
         console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
         return;
     }
 
@@ -265,8 +269,6 @@ async function updateUserField(field, value) {
 
     } catch (error) {
         console.error(`Error updating ${field}:`, error);
-        localStorage.removeItem("access_token");
-		window.location.replace("Login.html");
         return error;
     }
 }
@@ -276,6 +278,7 @@ async function disableUser() {
 
     if (!token) {
         console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
         return;
     }
 
@@ -300,7 +303,7 @@ async function disableUser() {
     } catch (error) {
         console.error("Error disabling user", error);
         localStorage.removeItem("access_token");
-		window.location.replace("Login.html");
+        window.location.replace("index.html");
         return error;
     }
 }

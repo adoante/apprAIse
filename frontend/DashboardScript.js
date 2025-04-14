@@ -46,14 +46,35 @@ document.addEventListener("DOMContentLoaded", function () {
 		window.location.replace("index.html");
 	})
 
+	// Center Dashboard content
 	const sidebarWidth = document.querySelector(".dashboardSidebar").offsetWidth;
 	document.querySelector(".dashboardContent").style.marginLeft = `${sidebarWidth}px`;
 
 	// Select Content
+	const footer =
+		`
+		<div class="footer">
+			<div class="footerLogo">
+				<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+			</div>
+			<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+			<div>
+				<ul class="footerMenu">
+					<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="Dashboard.html">Dashboard</a></li>
+				</ul>
+			</div>
+		</div>
+		`
+
+	let contentContainer = document.querySelector(".dashboardContent")
+
 	document.getElementById("accountDropdown").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			let content = event.target.textContent;
-			let contentContainer = document.querySelector(".dashboardContent")
 
 			contentContainer.innerHTML =
 				`<div class="pageTitle">
@@ -77,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
 								</form>
 							</div>`
 							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
 
 					break;
@@ -96,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
 								</form>
 							</div>`
 							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
 					break;
 				case "Lastname":
@@ -114,6 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
 								</form>
 							</div>`
 							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
 					break;
 				case "Email":
@@ -132,6 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
 								</form>
 							</div>`
 							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
 					break;
 				case "QAI Hub Token":
@@ -150,46 +179,63 @@ document.addEventListener("DOMContentLoaded", function () {
 								</form>
 							</div>`
 							)
+
+							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
 					break;
 				case "Password":
 					console.log(content)
+
+					contentContainer.insertAdjacentHTML("beforeend", footer)
 					break;
 				case "Disable Account":
 					console.log(content)
+
+					contentContainer.insertAdjacentHTML("beforeend", footer)
 					break;
 			}
 		}
 	})
 
-	// Update user data
+	// Handle Submits
+	document.body.addEventListener("submit", function (e) {
+		e.preventDefault();
 
-	const observer = new MutationObserver((mutationsList, observer) => {
-		const usernameForm = document.querySelector("#username"); // or `.myForm`
-		if (usernameForm) {
-		  console.log("Form is now in the DOM!");
-		}
+		const form = e.target;
+		const formData = new FormData(form);
 
-		const firstnameForm = document.querySelector("#firstname"); // or `.myForm`
-		if (firstnameForm) {
-		  console.log("Form is now in the DOM!");
-		}
+		const fieldName = formData.keys().next().value;
+		const fieldValue = formData.get(fieldName);
 
-		const lastnameForm = document.querySelector("#lastname"); // or `.myForm`
-		if (lastnameForm) {
-		  console.log("Form is now in the DOM!");
-		}
+		// Update the user data (common function for all forms)
+		api.update_user_data(fieldName, fieldValue)
+			.then(data => {
+				contentContainer.lastElementChild.insertAdjacentHTML(
+					"beforebegin",
+					`<div class="formAlert">${data["message"]}</div>`
+				);
 
-		const emailForm = document.querySelector("#email"); // or `.myForm`
-		if (emailForm) {
-		  console.log("Form is now in the DOM!");
-		}
+				if (!data["message"].includes("409") && !data["message"].includes("400")) {
+					contentContainer.lastElementChild.insertAdjacentHTML(
+						"beforebegin",
+						`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+					);
 
-		const qaiHubTokenForm = document.querySelector("#qai-hub-token"); // or `.myForm`
-		if (qaiHubTokenForm) {
-		  console.log("Form is now in the DOM!");
-		}
-	  });
-	  
-	  observer.observe(document.body, { childList: true, subtree: true });
+					let seconds = 5;
+					const countdownEl = document.getElementById('redirectCountdown');
+
+					const interval = setInterval(() => {
+						seconds--;
+						countdownEl.textContent = seconds;
+
+						if (seconds === 0) {
+							clearInterval(interval);
+							localStorage.removeItem("access_token");
+							window.location.replace("Login.html");
+						}
+					}, 1000);
+
+				}
+			})
+	});
 });

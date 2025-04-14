@@ -95,6 +95,14 @@
 	border-radius: 0 16px 0 0;
 }
 
+.dashboardContainer {
+	display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 .dashboardForm {
     display: flex;
     flex-direction: column;
@@ -112,6 +120,7 @@
     max-width: fit-content;
     box-shadow: 4px 4px 4px rgba(53, 191, 255, 0.50);
     padding: 25px 50px 25px 50px;
+	margin-bottom: 50px;
 }
 
 .dashboardForm input {
@@ -158,4 +167,6 @@
     padding: 25px;
     max-width: fit-content;
     margin-bottom: 25px;
+	margin-left: auto;
+    margin-right: auto;
 }
