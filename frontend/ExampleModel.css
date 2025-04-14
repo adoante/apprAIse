@@ -8,9 +8,9 @@
 .model-links {
     display: flex;
     justify-content: center;
-    align-items: center;          
-    gap: 20px;                   
-    flex-wrap: wrap;              
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
@@ -22,7 +22,7 @@
     padding: 5px 5px;
     font-size: 16px;
     border: none;
-    cursor: pointer;    
+    cursor: pointer;
     gap: 20px;
     min-width: 180px;
     max-height: 50px;
@@ -35,12 +35,13 @@
     font-weight: bold;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    
+
 }
 
 
 .btn:hover {
-    background-color: #A0A0A0; /* Darker blue on hover */
+    background-color: #A0A0A0;
+    /* Darker blue on hover */
 }
 
 .btn-logo {
@@ -64,11 +65,12 @@
 }
 
 .ai-hub-link a:hover {
-    color: #005db3; /* Darker shade on hover */
+    color: #005db3;
+    /* Darker shade on hover */
 }
 
 .modelTitle {
-   max-width: 25%;
+    max-width: 25%;
     /* Define width */
     margin: 0 auto;
     /* Auto margins center the block */
@@ -79,21 +81,27 @@
 }
 
 .modelDescription {
-	display: flex;
-    justify-content: space-between; /* Ensure space between text and image */
-	align-items: flex; /* Align items at the top */
+    display: flex;
+    justify-content: space-between;
+    /* Ensure space between text and image */
+    align-items: flex;
+    /* Align items at the top */
 }
 
 .text-container {
-	display: flex;
-	flex-direction: column; /* Stack text vertically */
-	justify-content: flex-start; /* Align text at the top */
-	max-width: 35%; /* Limit the width of the text section */
-	text-align: left; /* Align text to the left */
+    display: flex;
+    flex-direction: column;
+    /* Stack text vertically */
+    justify-content: flex-start;
+    /* Align text at the top */
+    max-width: 35%;
+    /* Limit the width of the text section */
+    text-align: left;
+    /* Align text to the left */
     margin-left: auto;
 }
 
-.model-image {  
+.model-image {
     border-radius: 55%;
     max-width: clamp(50px, 30vw, 600px);
     -webkit-transform: scaleX(-1);
@@ -104,6 +112,7 @@
     grid-column: 4/ span 9;
     grid-row: 1/ span 8;
     z-index: -1;
+    margin: auto;
 }
 
 .dropdowns {
@@ -169,7 +178,7 @@
 
 .colored-section {
     background-color: #2d2d2d;
-    padding-top: 20px;  
+    padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 0;
     width: 100%;
@@ -180,18 +189,22 @@
 .metric-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Even spacing */
+    justify-content: space-between;
+    /* Even spacing */
     gap: 75px;
     row-gap: 25px;
     margin: 120px auto;
-    max-width: 100%; /* Ensures it doesn’t stretch too much */
+    max-width: 100%;
+    /* Ensures it doesn’t stretch too much */
     margin-left: 15%;
     margin-right: 15%;
 }
 
 .metric-box {
-    flex: 1 1 calc(33.33% - 75px); /* Ensures 3 boxes per row with space in between */
-    min-width: 120px; /* Prevents them from getting too small */
+    flex: 1 1 calc(33.33% - 75px);
+    /* Ensures 3 boxes per row with space in between */
+    min-width: 120px;
+    /* Prevents them from getting too small */
     min-height: 160px;
     background-color: #f3f3f3;
     border-radius: 8px;
@@ -207,31 +220,66 @@
 
 
 .text-sections {
-    display: flex;
-    justify-content: space-between; /* Ensures 3 sections are in a row */
-    gap: 30px; /* Adds space between the sections */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Dynamic columns */
+    justify-content: space-between;
+    /* Ensures 3 sections are in a row */
+    column-gap: 5vw;
+    row-gap: 50px;
+    /* Adds space between the sections */
     margin: 20px auto;
     max-width: 100%;
-    padding:10%;
+    padding: 5vw;
+    /*10%;*/
+}
+
+@media (min-width: 1200px) {
+    .text-sections {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .text-section {
     flex: 1;
-    padding:10px;
+    padding: 0 1vw;
     border-radius: 8px;
+}
+
+@media (min-width:1500px) {
+    .text-section {
+        padding: 0 10% !important;
+    }
 }
 
 .title-text {
     font-size: 18px;
     font-weight: bold;
     text-align: left;
-    text-decoration: underline; /* Underlines the first sentence */
-    margin-bottom: 10px;/* Adds space between the title and the lines */
+    /*text-decoration: underline;*/
+    border-bottom: 1px solid #ffffff;
+    /* Underlines the first sentence */
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    /* Adds space between the title and the lines */
 }
 
 .sentence {
-    text-align:left;
-    margin-bottom: 3px;
+    text-align: left;
+    margin: 5px 5px;
+}
+
+.model-link {
+    text-decoration: none;
+    color: #7EAAFF
+}
+
+.model-link:hover {
+    text-decoration: underline;
+}
+
+.model-link:visited {
+    color: #d19efa;
 }
 
 .arrow {
