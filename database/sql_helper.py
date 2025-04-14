@@ -17,7 +17,7 @@ class Customization(SQLModel, table=True):
 	customization_id: Optional[int] = Field(default=None, primary_key=True)
 	favorite_id: Optional[int]= Field(default=None, foreign_key="favorite.favorites_id")
 
-class Favorite(SQLModel, table=True):
+class Favorite(SQLModel,	 table=True):
 	favorites_id: Optional[int] = Field(default=None, primary_key =True)
 	user_id: int
 	model_id: Optional[int] = Field(default=None, foreign_key="model.model_id")
@@ -40,6 +40,8 @@ class Model(SQLModel, table=True):
 	parameters: float # M - Million
 	model_size: float # MB - Mega Byte
 	model_img:str
+	short_desc:str
+	long_desc:str
 
 
 class Device(SQLModel, table=True):
