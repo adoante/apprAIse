@@ -2,7 +2,7 @@
 FROM python:3.13.3-slim
 
 # Expose port
-EXPOSE 80
+EXPOSE 8000
 
 # Make /code as a working directory in the container
 WORKDIR /code
@@ -19,4 +19,4 @@ COPY ./database /code/database
 COPY ./frontend /code/frontend
 
 # Run the application
-CMD ["fastapi", "run", "./api/run_api.py", "--port", "80"]
+CMD ["fastapi", "run", "./api/run_api.py", "--port", "8000"]
