@@ -35,6 +35,10 @@ td {
     justify-content: space-between;
 }
 
+.dropdown-btn:hover{
+    background-color:#4338ca;
+}
+
 .dropdown-btn p {
     margin: 0;
     white-space: nowrap;
@@ -45,12 +49,13 @@ td {
     overflow: hidden;
     transition: max-height 0.5s ease-out;
     background-color: #f1f1f1;
-    padding: 0 10px;
     border-radius: 20px;
 }
 
 .dropdown-content p {
-    margin: 10px 0;
+    padding: 10px 10px;
+    margin: 0px;
+    text-align: center;
 }
 
 .dropdownItem {

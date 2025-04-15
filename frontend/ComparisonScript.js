@@ -76,6 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	/* Construct Individual Charts */
 
+	const model1Link = document.getElementById("Model1link")
+	const model2Link = document.getElementById("Model2link")
+	const model3Link = document.getElementById("Model3link")
+
 	let chart_labels = ["", "", ""]
 	let top1 = [0, 0, 0]
 	let top5 = [0, 0, 0]
@@ -149,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("dropdown-content-model-1").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			model_1["name"] = event.target.textContent
+			model1Link.href = `ExampleModel.html?info=${encodeURIComponent(model_1["name"])}`
 
 			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_1["name"]
 
@@ -246,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("dropdown-content-model-2").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			model_2["name"] = event.target.textContent
+			model2Link.href = `ExampleModel.html?info=${encodeURIComponent(model_2["name"])}`
 
 			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_2["name"]
 
@@ -343,6 +349,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("dropdown-content-model-3").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			model_3["name"] = event.target.textContent
+			model3Link.href = `ExampleModel.html?info=${encodeURIComponent(model_3["name"])}`
 
 			this.parentElement.parentElement.querySelector(".dropdown-btn").textContent = model_3["name"]
 
