@@ -20,24 +20,10 @@ pip install -r requirements
 
 ## Run app
 
-### Make sure database exists (recommendation: init fresh *.db every time)
-
-```bash
-python -m database.database_init
-```
-
-### Start up API
-
 ```bash
 fastapi dev .\api\run_api.py
 ```
 
-### Open website
+## Go to website
 
-cd into dir .\frontend
-
-```bash
-python -m http.server -7800
-```
-
-Go to http://localhost:PORT
+[ApprAIse (localhost)](http://127.0.0.1:8000)
