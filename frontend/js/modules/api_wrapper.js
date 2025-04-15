@@ -19,7 +19,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 */
 
-const baseURL = "http://127.0.0.1:8000/api/v1"
+const baseURL = "/api/v1";
 
 async function fetchData(endpoint, id = "") {
     try {
