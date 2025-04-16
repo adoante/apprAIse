@@ -1,0 +1,36 @@
+name: Deploy frontend to Hostinger
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Push frontend folder to hostinger branch
+        run: |
+          # Create a temp directory
+          mkdir temp
+          cp -R frontend/* temp/
+
+          # Init new Git repo in temp
+          cd temp
+          git init
+          git checkout -b hostinger
+
+          git add .
+          git commit -m "Deploy frontend to hostinger branch"
+
+          # Force push to the `hostinger` branch on the same repo
+          git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" hostinger
