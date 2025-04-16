@@ -457,6 +457,8 @@ li {
     padding: 25px 5vw;
 }
 
+
+
 .footerLogo {
     font-size: clamp(25px, 2vw, 40px);
     margin-top: auto;
@@ -480,6 +482,25 @@ li {
     text-align: right;
     border-left: 1px solid #ffffff;
     padding-left: 20px;
+}
+
+@media screen and (max-width: 450px){
+    .footer{
+        display: block;
+    }
+
+    .footerLogo{
+        text-align: center;
+    }
+
+    .footerMenu{
+        margin-top: 15px;
+        padding-top: 15px;
+        text-align: center;
+        border-left: none;
+        border-top: 1px solid #ffffff;
+        float: none;
+    }
 }
 
 /*.page {
