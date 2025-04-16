@@ -19,7 +19,12 @@ https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 */
 
-const baseURL = "http://127.0.0.1:8000/api/v1"
+let baseURL = "https://adoante.xyz/api/v1"; // default for production
+
+const host = window.location.hostname;
+if (host === "localhost" || host === "127.0.0.1") {
+  baseURL = "http://localhost:8000/api/v1"; // your local dev API
+}
 
 async function fetchData(endpoint, id = "") {
     try {
@@ -352,6 +357,7 @@ const api = {
     filter_libraries: (name) => filter_libraries("/library", name),
     update_user_data: (field, value) => updateUserField(field, value),
     disable_user: () => disableUser(),
+    baseURL,
 };
 
 export default api
