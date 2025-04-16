@@ -357,6 +357,7 @@ const api = {
     filter_libraries: (name) => filter_libraries("/library", name),
     update_user_data: (field, value) => updateUserField(field, value),
     disable_user: () => disableUser(),
+    baseURL,
 };
 
 export default api
