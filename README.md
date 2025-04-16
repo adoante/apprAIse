@@ -84,10 +84,8 @@ fastapi dev .\api\run_api.py
    - See step 10 for command
 16. Back to the terminal with the Instance SSH
    - docker pull <URI>
-17. Run image on EC2
-   - `docker run -dp 8000:8000 <image>`
-18. Rename container
-   - `docker rename <conatiner> appraise`
+17. Get the <IMAGE_ID>
+   - `docker images`
 18. Go to your instance in the EC2 dashboard
    - click on it
    - go to the Security tab
@@ -102,22 +100,9 @@ fastapi dev .\api\run_api.py
 19. Create Caddyfile
    - `vim Caddyfile`
    - type `domain.com {reverse_proxy appraise:8000}`
-20. Create Caddy container
-	```
-	docker run -d \
-	  --name caddy \
-	  -p 80:80 \
-	  -p 443:443 \
-	  -v $(pwd)/Caddyfile:/etc/caddy/Caddyfile \
-	  -v caddy_data:/data \
-	  -v caddy_config:/config \
-	  caddy:2
-	```
-21. Connect Caddy and Appraise container to network
-    - `docker network create my-network`
-	- `docker network connect my-network appraise`
-	- `docker network connect my-network caddy`
-22. Restart containers
-    - `docker restart appraise`
-	- `docker restart caddy`
-23. That's it! Unless you ran into error. I can't help with that.
+20. Run `docker_reset.sh`
+   - Use this script on the EC2!
+   - `chmod +x docker_reset.sh`
+   - `./docker_reset.sh`
+   - The script will prompt you for the <IMAGE_ID> 
+21. That's it! Unless you ran into error. I can't help with that.
