@@ -16,7 +16,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 # Copy everything from api, database, and frontend
 COPY ./api /code/api/
 COPY ./database /code/database
-COPY ./frontend /code/frontend
 
 # Run the application
 CMD ["fastapi", "run", "./api/run_api.py", "--port", "8000"]

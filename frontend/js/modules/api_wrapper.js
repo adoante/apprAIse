@@ -19,7 +19,12 @@ https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 */
 
-const baseURL = "/api/v1";
+let baseURL = "https://adoante.xyz/api/v1"; // default for production
+
+const host = window.location.hostname;
+if (host === "localhost" || host === "127.0.0.1") {
+  baseURL = "http://localhost:8000/api/v1"; // your local dev API
+}
 
 async function fetchData(endpoint, id = "") {
     try {
