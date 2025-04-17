@@ -1,5 +1,5 @@
 # Image from dockerhub
-FROM python:3.13.3-slim
+FROM python:3.10-slim
 
 # Expose port
 EXPOSE 8000
