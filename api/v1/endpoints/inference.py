@@ -9,9 +9,6 @@ from sqlmodel import Session
 import os
 from .auth import get_current_active_user
 
-# Assuming you have some model loading logic here
-# Example: some_inference_model = load_your_model()
-
 router = APIRouter()
 
 @router.post("/")
