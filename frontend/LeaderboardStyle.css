@@ -10,8 +10,10 @@ td {
     margin-bottom: 50px;
     justify-content: space-evenly;
     display: flex;
-    gap: 5vw; /* Adjusts spacing dynamically */
-    flex-wrap: wrap; /* Allows items to stack if needed */
+    gap: 5vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
 }
 
 .dropdown {
@@ -35,8 +37,8 @@ td {
     justify-content: space-between;
 }
 
-.dropdown-btn:hover{
-    background-color:#4338ca;
+.dropdown-btn:hover {
+    background-color: #4338ca;
 }
 
 .dropdown-btn p {
@@ -89,7 +91,14 @@ td {
     margin-left: auto !important;
     margin-right: auto !important;
     min-height: 400px;
-    min-width: 400px;
+    min-width: 360px;
+}
+
+#Leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 360px;
+    /* optional: forces horizontal scroll on small screens */
 }
 
 /* Customization Button Styling */
@@ -115,4 +124,9 @@ td {
 
 .customization-btn:active {
     background-color: #362bca;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
 }
