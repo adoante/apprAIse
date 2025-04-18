@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    const modelTop1Accuracy = document.getElementById('modelTop1Accuracy');
+    const modelTop5Accuracy = document.getElementById('modelTop5Accuracy');
     const modelInferenceTimeDiv = document.getElementById('modelInferenceTime');
     const modelMemoryUsageDiv = document.getElementById('modelMemoryUsage');
     const modelComputeUnitsDiv = document.getElementById('modelComputeUnits');
@@ -74,20 +76,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Found model:", model);
 
                 api.filter_benchmarks(selectedDevice, selectedLibrary)
-                .then(benchmarkData => {
-                    const benchmark = benchmarkData["benchmarks"].find(n => n.model_id === model.model_id)
-                    if(model.model_id === benchmark.model_id){
-                        modelInferenceTimeDiv.textContent = benchmark.inference_time || 'N/A';
-                        modelMemoryUsageDiv.textContent = benchmark.memory_usage || 'N/A';
-                        modelComputeUnitsDiv.textContent = benchmark.npu_layers || 'N/A';
-                    }
-                })
-                .catch(err => {
-                    console.error('Error fetching benchmark data:', err);
-                    modelInferenceTimeDiv.textContent = 'Error fetching data';
-                    modelMemoryUsageDiv.textContent = '';
-                    modelComputeUnitsDiv.textContent = '';
-                });
+                    .then(benchmarkData => {
+                        const benchmark = benchmarkData["benchmarks"].find(n => n.model_id === model.model_id)
+                        if (model.model_id === benchmark.model_id) {
+                            modelTop1Accuracy.textContent = benchmark.accuracy_top1 + "%" || 'N/A'
+                            modelTop5Accuracy.textContent = benchmark.accuracy_top5 + "%" || 'N/A'
+                            modelInferenceTimeDiv.textContent = benchmark.inference_time + "ms" || 'N/A';
+                            modelMemoryUsageDiv.textContent = benchmark.memory_usage + "MB" || 'N/A';
+                            modelComputeUnitsDiv.textContent = benchmark.npu_layers || 'N/A';
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error fetching benchmark data:', err);
+                        modelInferenceTimeDiv.textContent = 'Error fetching data';
+                        modelMemoryUsageDiv.textContent = '';
+                        modelComputeUnitsDiv.textContent = '';
+                    });
             } else {
                 console.log("No model found for the selected device and library.");
             }
@@ -110,6 +114,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const modelResearchPaperDiv = document.getElementById('modelResearchPaper');
     const modelImageDiv = document.getElementById('modelImage');
     const modelqaiHubLink = document.getElementById('modelqaiHublink');
+    const modelMedImg = document.getElementById('MedImg');
+    const modelAnomDet = document.getElementById('AnomalyDet');
+    const modelInvManage = document.getElementById('InventoryManagement');
+    const modelXR = document.getElementById('XR');
+    const listofNonXRModels = [
+        "convnext_base", "convnext_tiny", "convnext_tiny_w8a16_quantized", "densenet_121",
+        "densenet_121_quantized", "efficientnet_B0", "efficientnet_B4", "efficientnet_v2_s",
+        "inception_v3", "resnet50", "resnext101", "resnext50", "swin_small", "swin_tiny"
+    ]
 
     if (contentDiv) {
         if (infoType) {
@@ -119,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("model-checkpoint").textContent = "Model Checkpoint: " + model["model_end_point"];
                         document.getElementById("input-resolution").textContent = "Input Resolution: " + model["input_resolution"];
                         document.getElementById("num-parameters").textContent = "Number of Parameters: " + model["parameters"] + "M";
-                        document.getElementById("model-size").textContent = "Model Size: " + model["model_size"] +"MB";
+                        document.getElementById("model-size").textContent = "Model Size: " + model["model_size"] + "MB";
                         contentDiv.textContent = model["model_name"];
                         shortModelDescDiv.textContent = model["short_desc"];
                         longModelDescDiv.textContent = model["long_desc"];
@@ -128,6 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         modelResearchPaperDiv.href = model["research_paper_link"];
                         modelImageDiv.src = model['model_img'];
                         modelqaiHubLink.href = model["qai_hub_link"]
+                        if (model["model_name"].includes("queeze")) {
+                            modelMedImg.textContent = "Gaming";
+                            modelAnomDet.textContent = "Robotics";
+                            modelInvManage.textContent = "";
+                        } else if (listofNonXRModels.includes(model["model_name"])) {
+                            modelXR.textContent = "";
+                        }
+
                     }
                 });
             });
