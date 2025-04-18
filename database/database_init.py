@@ -16,28 +16,28 @@ chipsets_data = [
 
 # Device Data
 devices_data = [     
-	("google pixel 3", "mobile", "Google", 1),
-    ("google pixel 3a", "mobile", "Google", 2),
-    ("google pixel 3a XL", "mobile", "Google", 2),
-    ("google pixel 4", "mobile", "Google", 3),
-    ("google pixel 4a", "mobile", "Google", 4),
-    ("google pixel 5a 5G", "mobile", "Google", 5),
-    ("Samsung Galaxy S21", "mobile", "Samsung", 6),
-    ("Samsung Galaxy S21 Ultra", "mobile", "Samsung", 6),
-    ("Samsung Galaxy S21+", "mobile", "Samsung", 6),
-    ("Samsung Galaxy S22 5G", "mobile", "Samsung", 7),
-    ("Samsung Galaxy S22 Ultra 5G", "mobile", "Samsung", 7),
-    ("Samsung Galaxy S22+ 5G", "mobile", "Samsung", 7),
+	#("google pixel 3", "mobile", "Google", 1),
+    #("google pixel 3a", "mobile", "Google", 2),
+    #("google pixel 3a XL", "mobile", "Google", 2),
+    #("google pixel 4", "mobile", "Google", 3),
+    #("google pixel 4a", "mobile", "Google", 4),
+    #("google pixel 5a 5G", "mobile", "Google", 5),
+    #("Samsung Galaxy S21", "mobile", "Samsung", 6),
+    #("Samsung Galaxy S21 Ultra", "mobile", "Samsung", 6),
+    #("Samsung Galaxy S21+", "mobile", "Samsung", 6),
+    #("Samsung Galaxy S22 5G", "mobile", "Samsung", 7),
+    #("Samsung Galaxy S22 Ultra 5G", "mobile", "Samsung", 7),
+    #("Samsung Galaxy S22+ 5G", "mobile", "Samsung", 7),
     ("Samsung Galaxy S23", "mobile", "Samsung", 8),
-    ("Samsung Galaxy S23 Ultra", "mobile", "Samsung", 8),
-    ("Samsung Galaxy S23+", "mobile", "Samsung", 8),
+    #("Samsung Galaxy S23 Ultra", "mobile", "Samsung", 8),
+    #("Samsung Galaxy S23+", "mobile", "Samsung", 8),
     ("Samsung Galaxy S24", "mobile", "Samsung", 9),
-    ("Samsung Galaxy S24 Ultra", "mobile", "Samsung", 9),
-    ("Samsung Galaxy S24+", "mobile", "Samsung", 9),
-    ("Samsung Galaxy Tab S8", "tablet", "Samsung", 6),
+    #("Samsung Galaxy S24 Ultra", "mobile", "Samsung", 9),
+    #("Samsung Galaxy S24+", "mobile", "Samsung", 9),
+    #("Samsung Galaxy Tab S8", "tablet", "Samsung", 6),
     ("Snapdragon 8 Elite QRD", "mobile", "Qualcomm", 10),
-    ("Xiaomi 12", "mobile", "Xiaomi", 7),
-    ("Xiaomi 12 Pro", "mobile", "Xiaomi", 7)
+    #("Xiaomi 12", "mobile", "Xiaomi", 7),
+    #("Xiaomi 12 Pro", "mobile", "Xiaomi", 7)
 ]
 
 library_data = [
