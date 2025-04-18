@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    const modelTop1Accuracy = document.getElementById('modelTop1Accuracy');
+    const modelTop5Accuracy = document.getElementById('modelTop5Accuracy');
     const modelInferenceTimeDiv = document.getElementById('modelInferenceTime');
     const modelMemoryUsageDiv = document.getElementById('modelMemoryUsage');
     const modelComputeUnitsDiv = document.getElementById('modelComputeUnits');
@@ -77,8 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(benchmarkData => {
                         const benchmark = benchmarkData["benchmarks"].find(n => n.model_id === model.model_id)
                         if (model.model_id === benchmark.model_id) {
-                            modelInferenceTimeDiv.textContent = benchmark.inference_time || 'N/A';
-                            modelMemoryUsageDiv.textContent = benchmark.memory_usage || 'N/A';
+                            modelTop1Accuracy.textContent = benchmark.accuracy_top1 + "%" || 'N/A'
+                            modelTop5Accuracy.textContent = benchmark.accuracy_top5 + "%" || 'N/A'
+                            modelInferenceTimeDiv.textContent = benchmark.inference_time + "ms" || 'N/A';
+                            modelMemoryUsageDiv.textContent = benchmark.memory_usage + "MB" || 'N/A';
                             modelComputeUnitsDiv.textContent = benchmark.npu_layers || 'N/A';
                         }
                     })
