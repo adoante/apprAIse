@@ -1,0 +1,198 @@
+/* Dropdown Styling */
+.dropdowns {
+    margin-bottom: 50px;
+    justify-content: space-evenly;
+    display: flex;
+    gap: 5vw;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dropdown {
+    max-width: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.dropdown-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    max-width: 200px;
+    border-radius: 20px;
+    outline: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-btn p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.dropdown-btn:hover{
+    background-color:#4338ca;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+}
+
+.dropdown-content p {
+    padding: 10px 10px;
+    margin: 0px;
+}
+
+.dropdownItem {
+    color: #564AFF;
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: #d1d1d1;
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%) brightness(100%);
+}
+
+/* Models Grid */
+.models {
+    background-color: #2d2d2d;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamic columns */
+    column-gap: 75px;
+    row-gap: 50px;
+    padding: 75px 5vw;
+    transition: grid-template-columns 0.3s ease; /* Smooth transition for grid changes */
+}
+
+/* Individual Model Styling */
+.model {
+    background-color: white;
+    color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 15px;
+    padding-bottom: 20px;
+    flex: 1 1 250px;
+    height: 380px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.model:hover {
+    transform: scale(1.05) translateY(-5px); /* Slightly less aggressive zoom */
+}
+
+.model.blue {
+    box-shadow: 5px 5px rgba(53, 191, 255, 0.5);
+}
+
+.model.green {
+    box-shadow: 5px 5px rgba(35, 134, 54, 0.5);
+}
+
+.model.pink {
+    box-shadow: 5px 5px rgba(252, 105, 255, 0.5);
+}
+
+.model.purple {
+    box-shadow: 5px 5px rgba(151, 71, 255, 0.5);
+}
+
+.model.red {
+    box-shadow: 5px 5px rgba(255, 105, 105, 0.5);
+}
+
+.model.orange {
+    box-shadow: 5px 5px rgba(255, 157, 0, 0.5);
+}
+
+/* Other Elements within Models */
+.modelTitle {
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    grid-row: 8/span 1;
+    grid-column: 1/span 5;
+}
+
+.modelDes {
+    text-align: center;
+    margin: 0;
+    grid-row: 9/span 1;
+    grid-column: 2/span 3;
+}
+
+.modelImg {
+    border-radius: 50%;
+    grid-column: 2/span 3;
+    grid-row: 3/span 5;
+    justify-self: center;
+    max-width: 200px;
+    max-height: 185px;
+}
+
+.modelColor {
+    grid-row: 1/span 5;
+    grid-column: 1/span 5;
+    border-radius: 15px;
+}
+
+.modelColor.blue {
+    background-color: #35BFFF;
+}
+
+.modelColor.green {
+    background-color: #238636;
+}
+
+.modelColor.pink {
+    background-color: #FC69FF;
+}
+
+.modelColor.purple {
+    background-color: #9747FF;
+}
+
+.modelColor.red {
+    background-color: #FF6969;
+}
+
+.modelColor.orange {
+    background-color: #FF9D00;
+}
+
+.modelLink:hover {
+    text-decoration: none;
+}
+
+/* Arrow for Dropdown */
+.arrow {
+    width: 25px;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+    transform: rotateX(180deg);
+}

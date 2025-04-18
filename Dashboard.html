@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="module" src="CommonScript.js"></script>
+	<script type="module" src="DashboardScript.js"></script>
+	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="vanilla.css">
+	<link rel="stylesheet" href="DashboardStyle.css">
+	<title>ApprAIse</title>
+</head>
+
+<body>
+
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+
+		<ul>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+	</div>
+
+	<div class="page">
+
+		<div class="dashboardSidebar">
+			<div class="dropdowns">
+				<div class="dropdown" id="accountDropdown">
+					<div class="dropdown-btn">
+						Account
+						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Username</p>
+						<p class="dropdownItem">Firstname</p>
+						<p class="dropdownItem">Lastname</p>
+						<p class="dropdownItem">Email</p>
+						<p class="dropdownItem">QAI Hub Token</p>
+						<p class="dropdownItem">Password</p>
+						<p class="dropdownItem">Disable Account</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Customization
+						<img class="arrow LD" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Charts/Colors</p>
+					</div>
+				</div>
+
+				<div class="dropdown">
+					<div class="dropdown-btn">
+						Favorites
+						<img class="arrow LL" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Models</p>
+					</div>
+				</div>
+
+				<button class="dashboardBtn" id="logout">Logout</button>
+			</div>
+		</div>
+
+		<div class="dashboardContent">
+			<div class="pageTitle">
+				<h1 class="title">Dashboard</h1>
+			</div> <!--Content Insert Here-->
+		</div>
+
+	</div>
+
+</body>
+
+</html>
