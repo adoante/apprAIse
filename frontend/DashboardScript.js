@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
 					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
 					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="inference.html">Inference</a></li>
 					<li><a class="footerMenuItem" href="Dashboard.html">Dashboard</a></li>
 				</ul>
 			</div>
