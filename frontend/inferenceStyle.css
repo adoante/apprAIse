@@ -7,6 +7,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+    background-color: #2D2D2D;
+    padding: 25px;
 }
 
 .inferenceContainer label {
