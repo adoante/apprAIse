@@ -5,7 +5,7 @@ var ctx;
 document.addEventListener("DOMContentLoaded", function () {
     ctx = document.getElementById('leaderboardChart').getContext('2d');
 
-   
+
 
     const chartContainer = document.getElementById("leaderboardChart").parentElement;
     chartContainer.insertBefore(recreateChartBtn, ctx.canvas);
@@ -69,7 +69,7 @@ function renderChart(mode = "top3") {
     const colors = window.getChartColors();
 
 
-    chart = new Chart(ctx, {
+    /*chart = new Chart(ctx, {
         type: window.getChartType(),
         data: {
             labels: displayedData.map(d => d.model),
@@ -101,7 +101,59 @@ function renderChart(mode = "top3") {
             },
             layout: { padding: { top: 30, bottom: 30 } }
         }
+    });*/
+
+    chart = new Chart(ctx, {
+        type: window.getChartType(),
+        data: {
+            labels: displayedData.map(d => d.model),
+            datasets: [{
+                label: document.getElementById("metricSelector").selectedOptions[0].text,
+                data: displayedData.map(d => d.score),
+                backgroundColor: colors.slice(0, displayedData.length),
+                borderWidth: 0,
+                borderRadius: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allows height scaling
+            layout: {
+                padding: {
+                    top: 30,
+                    bottom: 30
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 100 // Adjust as needed
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let value = tooltipItem.raw;
+                            if (selectedMetric === "inference_time") {
+                                return `${value} ms`;
+                            } else if (selectedMetric === "memory_usage") {
+                                return `${value} MB`;
+                            }
+                            return `${value}%`;
+                        }
+                    }
+                }
+            }
+        }
     });
+
 }
 
 function redirectToCustomization() {
