@@ -19,7 +19,12 @@ https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 
 */
 
-const baseURL = "http://127.0.0.1:8000/api/v1"
+let baseURL = "https://adoante.xyz/api/v1"; // default for production
+
+const host = window.location.hostname;
+if (host === "localhost" || host === "127.0.0.1") {
+  baseURL = "http://localhost:8000/api/v1"; // your local dev API
+}
 
 async function fetchData(endpoint, id = "") {
     try {
@@ -154,7 +159,7 @@ async function signup(username, password, firstname, lastname, email) {
             const errorMessage = await response.text();  // Read the response body in case of error
             throw new Error(errorMessage);
         }
-        
+
         const data = await response.json();
         return data;
 
@@ -201,6 +206,7 @@ async function get_current_user() {
 
     if (!token) {
         console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
         return;
     }
 
@@ -219,10 +225,91 @@ async function get_current_user() {
         }
 
         const userData = await response.json();
+        return userData;
 
-        console.log("User Data:", userData);
     } catch (error) {
         console.error("Error fetching user data:", error);
+
+        localStorage.removeItem("access_token");
+        window.location.replace("Login.html");
+
+        return error;
+    }
+}
+
+async function updateUserField(field, value) {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+        console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
+        return;
+    }
+
+    const formData = new URLSearchParams();
+    if (field === "qai-hub-token") {
+        formData.append("qai_hub_token", value);
+    } else {
+        formData.append(field, value);
+    }
+
+    try {
+        let url = `${baseURL}/user/${field}`;
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`${response.status} ${response.statusText}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error(`Error updating ${field}:`, error);
+        return error;
+    }
+}
+
+async function disableUser() {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+        console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
+        return;
+    }
+
+    try {
+        let url = `${baseURL}/user/disable`;
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`${response.status} ${response.statusText}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error("Error disabling user", error);
+        localStorage.removeItem("access_token");
+        window.location.replace("index.html");
+        return error;
     }
 }
 
@@ -267,7 +354,10 @@ const api = {
     login: (username, password) => login(username, password),
     signup: (username, password, firstname, lastname, email) => signup(username, password, firstname, lastname, email),
     filter_devices: (name) => filter_devices("/device", name),
-    filter_libraries: (name) => filter_libraries("/library", name)
+    filter_libraries: (name) => filter_libraries("/library", name),
+    update_user_data: (field, value) => updateUserField(field, value),
+    disable_user: () => disableUser(),
+    baseURL,
 };
 
 export default api

@@ -1,6 +1,5 @@
 import api from './js/modules/api_wrapper.js';
 
-
 var ctx;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,7 +22,7 @@ async function getAllBenchmarks(selectedMetric = "accuracy_top1") {
     try {
         const order = selectedMetric === "inference_time" ? "asc" : "desc";
 
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/benchmark/?sort=${selectedMetric}&order=${order}`);
+        const response = await fetch(`${api.baseURL}/benchmark/?sort=${selectedMetric}&order=${order}`);
         const data = await response.json();
 
         console.log("Fetched Benchmarks:", data);

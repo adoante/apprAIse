@@ -182,3 +182,38 @@ def get_user_by_username(user_name: str):
 		statement = select(User).where(User.user_name == user_name)
 		user = session.exec(statement).first()
 	return user
+
+# Remove dups in DB 
+
+def remove_duplicates():
+    with Session(engine) as session:
+        def dedupe(model, unique_field):
+            records = session.exec(select(model)).all()
+            seen = set()
+            to_delete = []
+
+            for record in records:
+                value = getattr(record, unique_field, None)
+                if value is None:
+                    continue  # skip if field missing
+                if value in seen:
+                    to_delete.append(record)
+                else:
+                    seen.add(value)
+
+            for record in to_delete:
+                session.delete(record)
+            return len(to_delete)
+
+        total_deleted = 0
+        total_deleted += dedupe(User, "user_name")
+        total_deleted += dedupe(Customization, "customization_id")
+        total_deleted += dedupe(Favorite, "favorites_id")
+        total_deleted += dedupe(Chipset, "chipset_name")
+        total_deleted += dedupe(Model, "model_name")
+        total_deleted += dedupe(Device, "device_name")
+        total_deleted += dedupe(Benchmark, "benchmark_id")
+        total_deleted += dedupe(Library, "library_name")
+
+        session.commit()
+        print(f"✅ Removed {total_deleted} duplicate records across all tables")

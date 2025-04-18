@@ -488,57 +488,59 @@ model_data = [
 	),
 ]
 
-SQLModel.metadata.create_all(engine)
+def create_db():
 
-# Insert Data
-with Session(engine) as session:
-	#Add all of the chipsets to the database
-	for chipset_name, chipset_manufacturer, chipset_version in chipsets_data:
-		chipset = Chipset(chipset_name=chipset_name, manufacturer=chipset_manufacturer, version=chipset_version)
-		session.add(chipset)
+	SQLModel.metadata.create_all(engine)
 
-	#Add all of the devices to the database
-	for device_name, device_industry, device_company, chipset_id in devices_data:
-		device = Device(device_name= device_name, device_industry= device_industry, device_company= device_company, chipset_id= chipset_id)
-		session.add(device)
+	# Insert Data
+	with Session(engine) as session:
+		#Add all of the chipsets to the database
+		for chipset_name, chipset_manufacturer, chipset_version in chipsets_data:
+			chipset = Chipset(chipset_name=chipset_name, manufacturer=chipset_manufacturer, version=chipset_version)
+			session.add(chipset)
 
-	# Add libraries
-	for library_name in library_data:
-		library = Library(library_name=library_name)
-		session.add(library)
+		#Add all of the devices to the database
+		for device_name, device_industry, device_company, chipset_id in devices_data:
+			device = Device(device_name= device_name, device_industry= device_industry, device_company= device_company, chipset_id= chipset_id)
+			session.add(device)
 
-	# Add models
-	for model in model_data:
-		ai_model = Model(model_name=model[0],
-				   github_link=model[1],
-				   hugging_face_link=model[2],
-				   research_paper_link=model[3],
-				   qai_hub_link=model[4],
-				   model_end_point=model[5],
-				   input_resolution=model[6],
-				   parameters=model[7],
-				   model_size=model[8],
-				   model_img = model[9],
-				   short_desc=model[10],
-				   long_desc=model[11]
-				   )
-		session.add(ai_model)
+		# Add libraries
+		for library_name in library_data:
+			library = Library(library_name=library_name)
+			session.add(library)
 
-	# Add benchmarks
-	for benchmark in benchmark_data:
-		library = session.exec(select(Library).where(Library.library_name == benchmark[7])).first().library_id
-		model = session.exec(select(Model).where(Model.model_name == benchmark[6])).first().model_id
-		device = session.exec(select(Device).where(Device.device_name == benchmark[5])).first().device_id
+		# Add models
+		for model in model_data:
+			ai_model = Model(model_name=model[0],
+					   github_link=model[1],
+					   hugging_face_link=model[2],
+					   research_paper_link=model[3],
+					   qai_hub_link=model[4],
+					   model_end_point=model[5],
+					   input_resolution=model[6],
+					   parameters=model[7],
+					   model_size=model[8],
+					   model_img = model[9],
+					   short_desc=model[10],
+					   long_desc=model[11]
+					   )
+			session.add(ai_model)
 
-		ai_benchmark = Benchmark(
-			accuracy_top1=benchmark[0],
-			accuracy_top5=benchmark[1],
-			inference_time=benchmark[2],
-			memory_usage=benchmark[3],
-			npu_layers=benchmark[4],
-			device_id=device,
-			model_id=model,
-			library_id=library)
-		session.add(ai_benchmark)
-		
-	session.commit()
+		# Add benchmarks
+		for benchmark in benchmark_data:
+			library = session.exec(select(Library).where(Library.library_name == benchmark[7])).first().library_id
+			model = session.exec(select(Model).where(Model.model_name == benchmark[6])).first().model_id
+			device = session.exec(select(Device).where(Device.device_name == benchmark[5])).first().device_id
+
+			ai_benchmark = Benchmark(
+				accuracy_top1=benchmark[0],
+				accuracy_top5=benchmark[1],
+				inference_time=benchmark[2],
+				memory_usage=benchmark[3],
+				npu_layers=benchmark[4],
+				device_id=device,
+				model_id=model,
+				library_id=library)
+			session.add(ai_benchmark)
+			
+		session.commit()

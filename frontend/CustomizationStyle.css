@@ -1,18 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #2d2d2d;
     color: #ffffff;
 }
 
-.pageTitle {
-    text-align: center;
-    margin: 20px;
-}
-
 .customizationContainer {
-    width: 50%;
+    width: fit-content;
     margin: 0 auto;
-    padding: 20px;
+    padding: 50px;
     background-color: #3d3d3d;
     border-radius: 15px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
@@ -37,7 +31,7 @@ input[type="color"] {
 }
 
 .apply-btn {
-    background-color: #564AFF;
+    background-color: #E566FF;
     color: white;
     padding: 10px 20px;
     margin: 15px 0;

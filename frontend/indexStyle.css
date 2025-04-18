@@ -46,16 +46,29 @@
 }
 
 .LeaderboardBtn {
+    color: #ffffff;
     background-color: #E566FF;
-    padding: 7px 25px;
+    padding: 7px 0px;
     border-radius: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: transform 0.3s ease,background-color 0.3s ease;
 }
 
-.LeaderboardBtn a {
+.LeaderboardBtn:hover{
+    transform: scale(1.1);
+    background-color: #C94CE6;
+}
+
+.LeaderboardBtn a{
     text-decoration: none;
+    padding: 7px 25px;
+}
+
+.LeaderboardBtn a:hover{
+    color: #ffffff;
+    
 }
 
 .progress-container {
@@ -150,7 +163,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 50px;
     row-gap: 50px;
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
     padding: 50px;
     padding-left: 5vw;
     padding-right: 5vw;
