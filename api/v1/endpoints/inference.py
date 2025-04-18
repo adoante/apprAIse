@@ -31,8 +31,20 @@ def run_inference(image_bytes: bytes, user_id: str) -> PredictionResponse:
 	config_file_path = os.path.join("~/.qai_hub/", f"{user_id}.ini")
 	os.environ['QAIHUB_CLIENT_INI'] = config_file_path
 
+	# Load image from bytes
 	img = Image.open(io.BytesIO(image_bytes))
+
+	# Convert to RGB if needed (JPEG doesn't support alpha)
+	if img.mode in ("RGBA", "P"):
+	    img = img.convert("RGB")
+
 	img = img.resize((224, 224))
+
+	# Convert to JPEG in memory
+	jpeg_bytes_io = io.BytesIO()
+	img.save(jpeg_bytes_io, format='JPEG')
+	jpeg_bytes = jpeg_bytes_io.getvalue()
+
 	image_array = np.array(img).astype(np.float32) / 255.0
 	image_array = np.expand_dims(image_array, axis=0)
 
