@@ -1,0 +1,54 @@
+#imagePreviewContainer {
+	max-width: 300px;
+}
+
+.inferenceContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.inferenceContainer label {
+	text-align: center;
+	width: 100%;
+
+}
+
+.upload-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	margin-bottom: 25px;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    margin-top: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.customAlert {
+    background: #E566FF;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
+}
+
+.chart {
+    max-height: 400px;
+    max-width: 800px;
+}

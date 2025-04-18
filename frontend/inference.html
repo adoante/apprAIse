@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="vanilla.css">
-    <link rel="stylesheet" href="uploadImage.css">
+    <link rel="stylesheet" href="inferenceStyle.css">
     <link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
-    <script type="module" src="uploadImage.js"></script>
+    <script type="module" src="inferenceScript.js"></script>
     <script type="module" src="CommonScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="CustomizationScript.js"></script>
@@ -32,20 +32,30 @@
             <h1 class="title">Upload Image</h1>
         </div>
 
-        <form class="upload-form" id="uploadForm">
-            <label for="imageUpload">Upload an Image to inference.</label>
-            <input type="file" id="imageUpload" name="image" accept="image/*">
-        </form>
+        <div class="inferenceContainer">
+            <form class="upload-form" id="uploadForm">
+                <label for="imageUpload">Upload an Image to inference.</label>
+                <input type="file" id="imageUpload" name="image" accept="image/*">
+            </form>
+            
+            <div class="customAlert">
+                Do not leave page after upload.
+            </div>
 
-        <h3>
-            Check your inference progress <a href="https://app.aihub.qualcomm.com/jobs/">here.</a>
-        </h3>
+            <h3>
+                Check your inference progress <a href="https://app.aihub.qualcomm.com/jobs/" target="_blank"
+                    rel="noopener noreferrer">here.</a>
+            </h3>
 
-        <canvas id="inferenceResults"></canvas>
+            <h3>Results</h3>
+            <div id="loader" class="spinner" style="display: none;"></div>
 
-        <div id="imagePreviewContainer" style="display:none;">
-            <h3>Image Preview:</h3>
-            <img id="imagePreview" src="" alt="Preview" style="max-width: 300px; height: auto;">
+            <canvas class="chart" id="inferenceResults"></canvas>
+
+            <div id="imagePreviewContainer">
+                <h3>Image Preview:</h3>
+                <img id="imagePreview" src="">
+            </div>
         </div>
 
     </div>

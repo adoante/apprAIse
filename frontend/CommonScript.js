@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			
 			loginLinkFooter.insertAdjacentHTML(
 				"beforeend",
-				`<li><a class="footerMenuItem" href="uploadImage.html">Inference</a></li>`
+				`<li><a class="footerMenuItem" href="inference.html">Inference</a></li>`
 			)
 
 			loginLinkFooter.insertAdjacentHTML(
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		loginLink.insertAdjacentHTML(
 			"beforebegin",
-			`<li><a class="navMenu" href="uploadImage.html">Inference</a></li>`
+			`<li><a class="navMenu" href="inference.html">Inference</a></li>`
 		)
 	}
 });
