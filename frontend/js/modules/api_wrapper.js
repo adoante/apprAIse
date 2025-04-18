@@ -23,7 +23,7 @@ let baseURL = "https://adoante.xyz/api/v1"; // default for production
 
 const host = window.location.hostname;
 if (host === "localhost" || host === "127.0.0.1") {
-  baseURL = "http://localhost:8000/api/v1"; // your local dev API
+    baseURL = "http://localhost:8000/api/v1"; // your local dev API
 }
 
 async function fetchData(endpoint, id = "") {
@@ -237,6 +237,42 @@ async function get_current_user() {
     }
 }
 
+async function runInference(image) {
+    const token = localStorage.getItem("access_token");
+
+    if (!token) {
+        console.error("No token found. Please log in.");
+        window.location.replace("Login.html");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+        let url = `${baseURL}/inference`
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Inference failed");
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (error) {
+        console.error("Error running inference:", error);
+        throw error;
+    }
+}
+
 async function updateUserField(field, value) {
     const token = localStorage.getItem("access_token");
 
@@ -358,6 +394,7 @@ const api = {
     update_user_data: (field, value) => updateUserField(field, value),
     disable_user: () => disableUser(),
     baseURL,
+    run_inference: (image) => runInference(image),
 };
 
 export default api
