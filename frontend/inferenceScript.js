@@ -20,6 +20,7 @@ uploadInput.addEventListener("change", async (event) => {
 		loader.style.display = "block"; // Show spinner
 
 		const results = await api.run_inference(file);
+		document.getElementById("classAndLabel").textContent = `Class Index: ${results["predicted_class"]} - Predicted Label: ${results["predicted_label"]}`
 		inferenceResultsChart = displayResults(
 			results["top5_labels"],
 			results["top5_probabilities"],
@@ -28,6 +29,37 @@ uploadInput.addEventListener("change", async (event) => {
 		);
 	} catch (error) {
 		console.error("Inference failed:", error);
+		document.querySelector(".inferenceContainer").insertAdjacentHTML(
+			"afterbegin",
+			`<div class="customAlert" style="background:#6F9CDE;">
+			Most likely you need to login. 😀
+			<div>`,
+		);
+		
+		document.querySelector(".inferenceContainer").insertAdjacentHTML(
+			"afterbegin",
+			`<div class="customAlert" style="background:red;">
+			${error["message"]}<br>
+			<div>`,
+		);
+
+		document.querySelector(".inferenceContainer").insertAdjacentHTML(
+			"afterbegin",
+			`<div class="customAlert">Redirecting in <span id="redirectCountdown2">10</span> seconds...<div>`,
+		);
+
+		let seconds = 10;
+		const countdownEl = document.getElementById('redirectCountdown2');
+
+		const interval = setInterval(() => {
+			seconds--;
+			countdownEl.textContent = seconds;
+
+			if (seconds === 0) {
+				clearInterval(interval);
+				window.location.href = "Login.html"; // Change to your target URL
+			}
+		}, 1000);
 	} finally {
 		loader.style.display = "none"; // Hide spinner
 	}

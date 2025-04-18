@@ -242,7 +242,6 @@ async function runInference(image) {
 
     if (!token) {
         console.error("No token found. Please log in.");
-        window.location.replace("Login.html");
         return;
     }
 
