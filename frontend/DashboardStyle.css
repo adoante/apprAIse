@@ -88,7 +88,7 @@
 	color: yellow;
 }
 
-.dashboardSidebar {
+.dashboardDropdowns {
 	background: #2D2D2D;
 	margin: 0;
 	padding: 25px;
@@ -97,6 +97,45 @@
 	height: 100%;
 	overflow: auto;
 	border-radius: 0 16px 0 0;
+}
+
+@media (max-width: 700px) {
+    .dashboardDropdowns {
+		width: 100%;
+		position: relative;
+		padding: 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 25px;
+		border-radius: 0;
+	}
+
+	.dashboardBtn {
+		background-color: #E566FF;
+		padding: 7px 50px;
+		border-radius: 10px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		border-width: 0px;
+		font-size: large;
+		color: white;
+		margin-top: 20px;
+	}
+
+	.dropdowns {
+		margin-bottom: 0px;
+	}
+
+	.dashboardContainer {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 .dashboardContainer {

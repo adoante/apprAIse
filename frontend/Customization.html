@@ -18,13 +18,30 @@
     <div class="navbarCustom">
         <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
 
-        <ul>
-            <li><a class="navMenu" href="About.html">About</a></li>
+        <ul class="navbarList">
             <li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
             <li><a class="navMenu" href="Models.html">Models</a></li>
             <li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+            <li><a class="navMenu" href="About.html">About</a></li>
+            <li><a class="navMenu" href="inference.html">Inference</a></li>
             <li><a class="navMenu edge" href="Login.html">Login</a></li>
         </ul>
+
+        <button id="menuToggle">☰</button>
+
+        <nav id="sidebar">
+            <ul class="navbarListMobile">
+                <li>
+                    <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+                </li>
+                <li><a href="Leaderboard.html">Leaderboard</a></li>
+                <li><a href="Models.html">Models</a></li>
+                <li><a href="Comparison.html">Comparison</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="inference.html">Inference</a></li>
+                <li><a href="Login.html">Login</a></li>
+            </ul>
+        </nav>
     </div>
 
     <div class="page">
@@ -39,10 +56,10 @@
             <div class="color-picker-section">
                 <label for="colorPicker1">Select Color 1:</label>
                 <input type="color" id="colorPicker1" name="colorPicker1" value="#0000FF">
-                
+
                 <label for="colorPicker2">Select Color 2:</label>
                 <input type="color" id="colorPicker2" name="colorPicker2" value="#FF0000">
-                
+
                 <label for="colorPicker3">Select Color 3:</label>
                 <input type="color" id="colorPicker3" name="colorPicker3" value="#00FF00">
             </div>
@@ -59,6 +76,25 @@
             <button class="apply-btn" onclick="applySettings()">Apply Settings</button>
             <p id="statusMessage"></p>
         </div>
+
+        <div class="footer">
+			<div class="footerLogo">
+				<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+			</div>
+			<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+			<div>
+				<ul class="footerMenu">
+
+					<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="inference.html">Inference</a></li>
+					<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+				</ul>
+			</div>
+		</div>
+
     </div>
 
     <script>

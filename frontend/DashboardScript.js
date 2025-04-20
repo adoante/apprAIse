@@ -47,9 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	})
 
 	// Center Dashboard content
-	const sidebarWidth = document.querySelector(".dashboardSidebar").offsetWidth;
-	document.querySelector(".dashboardContent").style.marginLeft = `${sidebarWidth}px`;
-
+	if (screen.width > 700) {
+		const sidebarWidth = document.querySelector(".dashboardDropdowns").offsetWidth;
+		document.querySelector(".dashboardContent").style.marginLeft = `${sidebarWidth}px`;
+	}
+	
 	// Select Content
 	const footer =
 		`
@@ -78,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			let content = event.target.textContent;
 
 			contentContainer.innerHTML =
-				`<div class="pageTitle">
-				<h1 class="title">Dashboard</h1>
-			</div> <!--Content Insert Here-->`;
+				``;
 
 			switch (content) {
 				case "Username":
