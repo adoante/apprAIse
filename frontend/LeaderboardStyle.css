@@ -1,17 +1,24 @@
 th {
     text-align: center;
+    padding: 10px 0 !important;
 }
 
 td {
     text-align: center;
+    word-break: break-word;
+    /* Or use 'break-all' */
+    white-space: normal;
+    padding: 10px 0 !important;
 }
 
 .dropdowns {
     margin-bottom: 50px;
     justify-content: space-evenly;
     display: flex;
-    gap: 5vw; /* Adjusts spacing dynamically */
-    flex-wrap: wrap; /* Allows items to stack if needed */
+    gap: 5vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
 }
 
 .dropdown {
@@ -35,8 +42,8 @@ td {
     justify-content: space-between;
 }
 
-.dropdown-btn:hover{
-    background-color:#4338ca;
+.dropdown-btn:hover {
+    background-color: #4338ca;
 }
 
 .dropdown-btn p {
@@ -85,11 +92,53 @@ td {
     margin-bottom: 20px;
 }
 
-#leaderboardChart {
+/*#leaderboardChart {
     margin-left: auto !important;
     margin-right: auto !important;
-    min-height: 400px;
-    min-width: 400px;
+    /*min-height: 180px;*/
+/*min-width: 360px;*/
+/*   width: 100%;
+    height: 100%;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    /* Optional max width */
+/*margin: auto;
+    /* Center it if needed */
+/*}*/
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    /* 👈 make it taller here */
+    margin: auto;
+    /* You can set height if you're using maintainAspectRatio: false */
+    /* height: 400px; */
+}
+
+@media (max-width:500px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+
+#leaderboardChart {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#Leaderboard {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    min-width: 675px;
+    /* optional: forces horizontal scroll on small screens */
 }
 
 /* Customization Button Styling */
@@ -115,4 +164,9 @@ td {
 
 .customization-btn:active {
     background-color: #362bca;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
 }

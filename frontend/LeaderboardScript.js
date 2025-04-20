@@ -7,7 +7,7 @@ var order = "desc"; // or "asc"
 
 const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
 const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
-const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage","Inference Time"]
+const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage", "Inference Time"]
 
 document.addEventListener("DOMContentLoaded", function () {
     dataGrabAndFill()
@@ -90,7 +90,7 @@ async function dropDownSelect(id) {
                 sort = "memory_usage"
                 order = "asc"
                 newOrder = "asc"
-            }else if (id == "Inference Time") {
+            } else if (id == "Inference Time") {
                 newSort = "inference_time"
                 sort = "inference_time"
                 order = "asc"
@@ -99,13 +99,13 @@ async function dropDownSelect(id) {
         }
 
         dataGrabAndFill();
-        
+
     } catch (error) {
         console.error("Error fetching all benchmarks:", error);
     }
 }
 
-async function dataGrabAndFill(){
+async function dataGrabAndFill() {
     const benchmarks = await api.filter_benchmarks(device, library, sort, order);
     populateTable(benchmarks);
 }
@@ -115,6 +115,8 @@ async function populateTable(benchmarks) {
     const tableBody = document.querySelector("#Leaderboard tbody");
     tableBody.innerHTML = "";
     let i = 1;
+
+    console.log(benchmarks);
 
     // Use a for...of loop to handle async/await correctly
     for (let benchmark of benchmarks.benchmarks) {

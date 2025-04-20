@@ -52,6 +52,18 @@
     border-radius: 10px;
 }
 
+@media (max-width:750px) {
+    .TextBar3 {
+        display: block;
+        padding: 25px;
+    }
+
+    .repoBtn {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+}
+
 .repoBtn.btnLink {
     color: black;
     text-decoration: none;
@@ -81,16 +93,34 @@
     background-color: #2D2D2D;
 }
 
+@media (max-width: 1225px) {
+    .teamMembers {
+        grid-template-columns: 1fr;
+    }
+}
+
 .memberCard {
     background-color: white;
     display: flex;
     border-radius: 15px;
+    max-width: 800px;
 }
 
 .memberPic {
     display: flex;
     max-width: 200px;
     margin: 32px;
+}
+
+@media (max-width:600px) {
+    .teamMembers {
+        padding: 25px;
+    }
+
+    .memberPic {
+        max-width: 100px;
+        margin: 16px;
+    }
 }
 
 .memberText {
@@ -129,6 +159,25 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+}
+
+@media (max-width:750px) {
+    .TextBar1 {
+        padding: 25px;
+    }
+
+    .TextBar2 {
+        padding: 25px;
+    }
+
+    .TextBar4 {
+        padding: 25px;
+    }
+
+    .partners {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 }
 
 .partnerImg {

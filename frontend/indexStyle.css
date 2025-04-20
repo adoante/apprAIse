@@ -1,6 +1,7 @@
 .exampleImg {
     border-radius: 50%;
     max-width: clamp(50px, 30vw, 600px);
+    min-width: 200px;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     display: block;
@@ -29,6 +30,28 @@
     grid-template-columns: 1fr 1fr;
     height: auto;
 }
+
+@media (max-width: 800px){
+    .TitleAndExample{
+        display: block;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .exampleClassification{
+        margin-top: 20px;
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+}
+
+@media (max-width: 500px){
+    .exampleClassification{
+        padding-left: 0vw;
+        padding-right: 0vw;
+    }
+}
+
 
 .exampleClassification {
     display: grid;
@@ -160,7 +183,7 @@
 .Services {
     background-color: #2D2D2D;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr); /* fallback */
     column-gap: 50px;
     row-gap: 50px;
     /*margin-bottom: 100px;*/
@@ -169,8 +192,21 @@
     padding-right: 5vw;
 }
 
+@media (min-width: 600px) {
+    .Services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .Services {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 .serviceBlock {
     color: #000000;
+    width: 100%;
     background-color: #ffffff;
     border-radius: 15px;
     padding: 20px;
