@@ -8,12 +8,15 @@ function handleNavigation() {
 	const loginLink = document.querySelector(".navMenu.edge");
 	const loginLinkFooter = document.querySelector(".footerMenu");
 	const access_token = localStorage.getItem("access_token");
+	const loginLinkMobile = document.querySelector(".navbarListMobile").lastElementChild.lastElementChild
 
 	if (access_token) {
 		// Header: Show Dashboard
 		if (loginLink) {
 			loginLink.href = "Dashboard.html";
 			loginLink.textContent = "Dashboard";
+			loginLinkMobile.href = "Dashboard.html";
+			loginLinkMobile.textContent = "Dashboard";
 		}
 
 		// Footer: Ensure Dashboard link is present
