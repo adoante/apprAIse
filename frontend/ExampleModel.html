@@ -61,7 +61,7 @@
 				<div class="dropdown-content">
 					<p class="dropdownItem" data-value="Snapdragon 8 Elite QRD">Snapdragon 8 Elite QRD</p>
 					<p class="dropdownItem" data-value="Samsung Galaxy S24">Samsung Galaxy S24</p>
-					<p class="dropdownItem" data-value="Snapdragon X Elite CRD">Snapdragon X Elite CRD</p>
+					<p class="dropdownItem" data-value="Samsung Galaxy S23">Samsung Galaxy S23</p>
 				</div>
 			</div>
 
@@ -72,7 +72,6 @@
 				</div>
 				<div class="dropdown-content">
 					<p class="dropdownItem" data-value="ONNX">ONNX</p>
-					<p class="dropdownItem" data-value="Qualcomm© AI Engine Direct">Qualcomm© AI Engine Direct</p>
 					<p class="dropdownItem" data-value="TFLite">TFLite</p>
 				</div>
 			</div>
@@ -82,13 +81,19 @@
 		<!-- Metrics Section -->
 		<div class="colored-section">
 			<div class="metric-container">
-				<div class="metric-box">
+				<div class="metric-box blue">
+					<p>Top 1 Accuracy: <span id="modelTop1Accuracy">N/A</span></p>
+				</div>
+				<div class="metric-box green">
+					<p>Top 5 Accuracy: <span id="modelTop5Accuracy">N/A</span></p>
+				</div>
+				<div class="metric-box pink">
 					<p>Inference Time: <span id="modelInferenceTime">N/A</span></p>
 				</div>
-				<div class="metric-box">
+				<div class="metric-box red">
 					<p>Memory Usage: <span id="modelMemoryUsage">N/A</span></p>
 				</div>
-				<div class="metric-box">
+				<div class="metric-box orange">
 					<p>Compute Units: <span id="modelComputeUnits">N/A</span></p>
 				</div>
 			</div>
@@ -102,6 +107,38 @@
 				<p id="input-resolution" class="sentence">Input Resolution: </p>
 				<p id="num-parameters" class="sentence">Number of Parameters: </p>
 				<p id="model-size" class="sentence">Model Size: </p>
+			</div>
+
+			<div class="text-section">
+				<p class="title-text">Applicable Scenarios</p>
+				<p id="MedImg" class="sentence">Medical Imaging</p>
+				<p id="AnomalyDet" class="sentence">Anomaly Detection</p>
+				<p id="InventoryManagement" class="sentence">Inventory Management</p>
+			</div>
+
+			<div class="text-section">
+				<p class="title-text">Supported Form Factors</p>
+				<p id="Phone" class="sentence">Phone</p>
+				<p id="Tablet" class="sentence">Tablet</p>
+				<p id="IoT" class="sentence">IoT</p>
+				<p id="XR" class="sentence">XR</p>
+			</div>
+
+			<div class="text-section">
+				<p class="title-text">Supported Form Factors</p>
+				<p class="sentence">
+					Source Model:
+					<a class="model-link" href="https://github.com/pytorch/vision/blob/main/LICENSE">
+						BSD-3-CLAUSE
+					</a>
+				</p>
+				<p class="sentence">
+					Deployable Model:
+					<a class="model-link"
+						href="https://qaihub-public-assets.s3.us-west-2.amazonaws.com/qai-hub-models/Qualcomm+AI+Hub+Proprietary+License.pdf">AI
+						Model Hub License
+					</a>
+				</p>
 			</div>
 		</div>
 

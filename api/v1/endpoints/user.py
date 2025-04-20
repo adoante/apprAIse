@@ -1,5 +1,6 @@
 import database.sql_helper as database
-
+import textwrap
+import os
 from fastapi import Depends, APIRouter, HTTPException, Form
 from typing import Annotated, Optional
 from sqlmodel import Session
@@ -142,9 +143,26 @@ def update_qai_token(
 			current_user.qai_hub_api_token = qai_hub_token
 			session.add(current_user)
 			session.commit()
-	except:
-		raise HTTPException(status_code = 500, detail = "Failed to update QAI Hub Token.")
-	
+
+			config_data = textwrap.dedent(f"""\
+				[api]
+				api_token = {current_user.qai_hub_api_token}
+				api_url = https://app.aihub.qualcomm.com
+				web_url = https://app.aihub.qualcomm.com
+				verbose = True
+			""")
+
+
+			config_dir = os.path.expanduser("~/.qai_hub/")
+			os.makedirs(config_dir, exist_ok=True)
+
+			config_file_path = os.path.join(config_dir, f"{current_user.id}.ini")
+			with open(config_file_path, 'w') as config_file:
+				config_file.write(config_data)
+
+	except Exception as e:
+		raise HTTPException(status_code=500, detail=f"Failed to update QAI Hub Token: {str(e)}")
+
 	if old_qai_hub_token:
 		return {"message": f"QAI Hub Token changed from {old_qai_hub_token} to {qai_hub_token}"}
 	
