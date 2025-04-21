@@ -181,3 +181,16 @@
     display: flex;
     flex-direction: column;
 }
+
+.customAlert {
+    background: #E566FF;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
