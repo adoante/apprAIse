@@ -205,9 +205,7 @@ async function get_current_user() {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
-        console.error("No token found. Please log in.");
-        window.location.replace("Login.html");
-        return;
+        throw new Error("No token found. Please log in.")
     }
 
     try {
@@ -241,8 +239,7 @@ async function runInference(image) {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
-        console.error("No token found. Please log in.");
-        return;
+        throw new Error("No token found. Please log in.")
     }
 
     const formData = new FormData();
@@ -276,9 +273,7 @@ async function updateUserField(field, value) {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
-        console.error("No token found. Please log in.");
-        window.location.replace("Login.html");
-        return;
+        throw new Error("No token found. Please log in.")
     }
 
     const formData = new URLSearchParams();
