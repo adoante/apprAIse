@@ -235,7 +235,7 @@ async function get_current_user() {
     }
 }
 
-async function runInference(image) {
+async function runInference(image, model_file = "shufflenet_v2_quantized.tflite", device="Samsung Galaxy S24 (Family)") {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
@@ -244,6 +244,8 @@ async function runInference(image) {
 
     const formData = new FormData();
     formData.append("image", image);
+    formData.append("model_file", model_file)
+    formData.append("device", device)
 
     try {
         let url = `${baseURL}/inference`

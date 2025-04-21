@@ -6,7 +6,7 @@ import urllib.request
 import numpy as np
 from PIL import Image
 from typing import List, Annotated
-from fastapi import Depends, APIRouter, HTTPException, File
+from fastapi import Depends, APIRouter, HTTPException, File, Form
 from fastapi.responses import JSONResponse
 from sqlmodel import Session, SQLModel
 import qai_hub as hub
@@ -27,7 +27,7 @@ class PredictionResponse(SQLModel):
 def softmax(x):
 	return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
-def run_inference(image_bytes: bytes, user_id: str) -> PredictionResponse:
+def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str) -> PredictionResponse:
 	config_file_path = os.path.join("~/.qai_hub/", f"{user_id}.ini")
 	os.environ['QAIHUB_CLIENT_INI'] = config_file_path
 
@@ -49,11 +49,11 @@ def run_inference(image_bytes: bytes, user_id: str) -> PredictionResponse:
 	image_array = np.expand_dims(image_array, axis=0)
 
 	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-	model_path = os.path.join(BASE_DIR, "squeezenet1_1_quantized.tflite")
+	model_path = os.path.join(BASE_DIR, model_file)
 
 	inference_job = hub.submit_inference_job(
 		model=model_path,
-		device=hub.Device("Samsung Galaxy S24 (Family)"),
+		device=hub.Device(device),
 		inputs={"image_tensor": [image_array]}
 	)
 
@@ -95,10 +95,12 @@ executor = ProcessPoolExecutor()
 def inference_image(
 	current_user: Annotated[database.User, Depends(get_current_active_user)],
 	image: bytes = File(...),
+	model_file: str = Form(...),
+	device: str = Form(...),
 ) -> PredictionResponse:
 	try:
 		with Session(database.engine) as session:
-			future = executor.submit(run_inference, image, f"{current_user.id}")
+			future = executor.submit(run_inference, image, f"{current_user.id}", model_file, device)
 			return future.result()
 	except Exception as e:
 		return JSONResponse(status_code=500, content={"error": str(e)})
