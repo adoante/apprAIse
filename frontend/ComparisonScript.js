@@ -469,9 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				}]
 			},
 			options: {
-				scales: {
-					y: { display: false, grid: { display: false } }
-				},
+
 			}
 		});
 
