@@ -84,9 +84,9 @@
     height: 30px;
 }
 
-.teamMembers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+/*.teamMembers {
+    display: flex;
+    flex-wrap: wrap;
     column-gap: 50px;
     row-gap: 50px;
     padding: 75px;
@@ -97,13 +97,24 @@
     .teamMembers {
         grid-template-columns: 1fr;
     }
+}*/
+.teamMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 50px;
+    padding: 75px;
+    background-color: #2D2D2D;
 }
 
 .memberCard {
+    flex: 1 1 calc(50% - 50px);
+    max-width: calc(50% - 50px);
+    /* Ensures 3 boxes per row with space in between */
+    min-width: 500px;
     background-color: white;
     display: flex;
     border-radius: 15px;
-    max-width: 800px;
 }
 
 .memberPic {
@@ -112,10 +123,22 @@
     margin: 32px;
 }
 
+@media (min-width:1750px) {
+    .memberCard{
+        flex: 1 1 calc(33.333% - 50px);
+        max-width: calc(33.333% - 50px);
+    }
+}
+
 @media (max-width:600px) {
     .teamMembers {
         padding: 25px;
     }
+
+    .memberCard {
+        min-width: 300px;
+    }
+
 
     .memberPic {
         max-width: 100px;
