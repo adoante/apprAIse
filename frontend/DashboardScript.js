@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const sidebarWidth = document.querySelector(".dashboardDropdowns").offsetWidth;
 		document.querySelector(".dashboardContent").style.marginLeft = `${sidebarWidth}px`;
 	}
-	
+
 	// Select Content
 	const footer =
 		`
@@ -102,6 +102,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
+						})
 
 					break;
 				case "Firstname":
@@ -123,6 +149,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
+						})
 					break;
 				case "Lastname":
 					api.get_current_user()
@@ -142,6 +194,32 @@ document.addEventListener("DOMContentLoaded", function () {
 							)
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
 						})
 					break;
 				case "Email":
@@ -163,6 +241,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
 						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
+						})
 					break;
 				case "QAI Hub Token":
 					api.get_current_user()
@@ -182,6 +286,32 @@ document.addEventListener("DOMContentLoaded", function () {
 							)
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
 						})
 					break;
 				case "Password":
@@ -210,6 +340,32 @@ document.addEventListener("DOMContentLoaded", function () {
 							)
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
 						})
 					break;
 				case "Disable Account":
@@ -246,6 +402,32 @@ document.addEventListener("DOMContentLoaded", function () {
 							)
 
 							contentContainer.insertAdjacentHTML("beforeend", footer)
+						})
+						.catch(error => {
+							console.log(error)
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<br><div class="formAlert">${error["message"]}</div>`
+							);
+
+							contentContainer.insertAdjacentHTML(
+								"beforebegin",
+								`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+							);
+
+							let seconds = 5;
+							const countdownEl = document.getElementById('redirectCountdown');
+
+							const interval = setInterval(() => {
+								seconds--;
+								countdownEl.textContent = seconds;
+
+								if (seconds === 0) {
+									clearInterval(interval);
+									localStorage.removeItem("access_token");
+									window.location.replace("Login.html");
+								}
+							}, 1000);
 						})
 					break;
 			}
