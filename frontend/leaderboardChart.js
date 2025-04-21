@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     recreateChartBtn.addEventListener("click", function () {
         getAllBenchmarks();
+        console.log("click")
     });
 });
 
@@ -127,7 +128,7 @@ function renderChart(mode = "top3") {
             scales: {
                 y: {
                     beginAtZero: true,
-                    suggestedMax: 100 // Adjust as needed
+                    suggestedMax: 1 // Adjust as needed
                 }
             },
             plugins: {

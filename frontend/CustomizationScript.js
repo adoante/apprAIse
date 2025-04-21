@@ -43,6 +43,8 @@ function applySettings() {
 
     console.log("Chart Colors Saved:", getChartColors());
     console.log("Chart Type Saved:", getChartType());
+
+    window.location.href = "Leaderboard.html";
 }
 
 // Expose functions to be used in the global scope
