@@ -5,7 +5,7 @@ var library = "tflite";
 var sort = "accuracy_top1";
 var order = "desc"; // or "asc"
 
-const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
+const devices = ["Samsung Galaxy S24", "Samsung Galaxy S23", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
 const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
 const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage", "Inference Time"]
 
@@ -155,80 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/*function renderChart(benchmarks, mode = "top3") {
-    let displayedData = []; //: benchmarks.benchmark.slice(0, 3);
-    let i = 0
-
-    for (let benchmark of benchmarks.benchmarks) {
-        i++;
-        displayedData.push(benchmark.accuracy_top1);
-        if (i >= 3) {
-            break;
-        }
-    }
-
-    console.log(displayedData)
-
-    console.log(benchmarks[0])
-
-    if (chart) {
-        chart.destroy();
-    }
-
-    const colors = window.getChartColors();
-
-    chart = new Chart(ctx, {
-        type: window.getChartType(),
-        data: {
-            //labels: displayedData.map(d => d.model),
-            datasets: [{
-                label: sort,
-                data: displayedData,
-                backgroundColor: colors.slice(0, displayedData.length),
-                borderWidth: 0,
-                borderRadius: 15
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false, // Allows height scaling
-            layout: {
-                padding: {
-                    top: 30,
-                    bottom: 30
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: false,
-                    suggestedMax: 1 // Adjust as needed
-                }
-            },
-            plugins: {
-                legend: {
-                    display: true,
-                    labels: {
-                        boxWidth: 20
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            let value = tooltipItem.raw;
-                            if (sort === "inference_time") {
-                                return `${value} ms`;
-                            } else if (sort === "memory_usage") {
-                                return `${value} MB`;
-                            }
-                            return `${value}%`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-}*/
 
 async function renderChart(benchmarks) {
     let displayedData = [];
