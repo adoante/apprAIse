@@ -91,6 +91,7 @@ benchmark_data = [
 	(77.4, 93.57, 2.07, 98, 175, 'Samsung Galaxy S24', 'dla102x', 'tflite'),
 	(76.0, 92.88, 1.04, 45, 245, 'Samsung Galaxy S24', 'efficientnet_b0', 'tflite'),
 	(77.7, 93.66, 2.43, 77, 482, 'Samsung Galaxy S24', 'efficientnet_b4', 'tflite'),
+	(67.09, 87.84, 1.66, 44, 1032, 'Samsung Galaxy S24', 'densenet121_quantized', 'tflite'),
 
 	# ONNX
 	(77.08, 93.25, 15.50, 466, 151, "Samsung Galaxy S24", "wideresnet50_quantized", "onnx"),
@@ -127,6 +128,7 @@ benchmark_data = [
 	(77.7, 93.67, 3.31, 383, 482, 'Samsung Galaxy S23', 'efficientnet_b4', 'tflite'),
 	(80.03, 94.87, 2.68, 324, 508, 'Samsung Galaxy S23', 'efficientnet_v2_s', 'tflite'),
 	(81.15, 95.36, 5.05, 249, 379, 'Samsung Galaxy S23', 'efficientvit_b2_cls', 'tflite'),
+	(67.09, 87.84, 2.31, 18, 1032, 'Samsung Galaxy S23', 'densenet121_quantized', 'tflite'),
 
 	# ONNX
 	(77.09, 93.25, 18.6, 212, 151, 'Samsung Galaxy S23', 'wideresnet50_quantized', 'onnx'),
