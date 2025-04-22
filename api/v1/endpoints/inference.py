@@ -27,7 +27,14 @@ class PredictionResponse(SQLModel):
 def softmax(x):
 	return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
-def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str) -> PredictionResponse:
+def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str, library: str):
+	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+	model_path_name = model_file + "." + library
+	model_path = os.path.join(BASE_DIR, model_path_name)
+
+	if not os.path.exists(model_path):
+		return {"error": f"{model_file} is not yet available on {library}"}
+
 	config_file_path = os.path.join("~/.qai_hub/", f"{user_id}.ini")
 	os.environ['QAIHUB_CLIENT_INI'] = config_file_path
 
@@ -48,9 +55,6 @@ def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str
 	image_array = np.array(img).astype(np.float32) / 255.0
 	image_array = np.expand_dims(image_array, axis=0)
 
-	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-	model_path = os.path.join(BASE_DIR, model_file)
-
 	inference_job = hub.submit_inference_job(
 		model=model_path,
 		device=hub.Device(device),
@@ -62,10 +66,7 @@ def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str
 
 	with h5py.File(output_file, "r") as f:
 		dataset_path = "data/0/batch_0"
-		if dataset_path in f:
-			data = f[dataset_path][()]
-		else:
-			raise HTTPException(status_code=404, detail="Dataset not found in the output file")
+		data = f[dataset_path][()]
 
 	os.remove(dataset_file)
 
@@ -97,10 +98,16 @@ def inference_image(
 	image: bytes = File(...),
 	model_file: str = Form(...),
 	device: str = Form(...),
+	library: str = Form(...),
 ) -> PredictionResponse:
 	try:
-		with Session(database.engine) as session:
-			future = executor.submit(run_inference, image, f"{current_user.id}", model_file, device)
-			return future.result()
+		future = executor.submit(run_inference, image, f"{current_user.id}", model_file, device, library)
+		result = future.result()
+
+		if "error" in result.keys():
+			raise HTTPException(status_code=404, detail=result["error"])
+
+		return future.result()
+
 	except Exception as e:
 		return JSONResponse(status_code=500, content={"error": str(e)})

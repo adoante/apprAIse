@@ -235,7 +235,7 @@ async function get_current_user() {
     }
 }
 
-async function runInference(image, model_file = "shufflenet_v2_quantized.tflite", device="Samsung Galaxy S24 (Family)") {
+async function runInference(image, model_file, device, library) {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
@@ -246,6 +246,7 @@ async function runInference(image, model_file = "shufflenet_v2_quantized.tflite"
     formData.append("image", image);
     formData.append("model_file", model_file)
     formData.append("device", device)
+    formData.append("library", library)
 
     try {
         let url = `${baseURL}/inference`
@@ -259,7 +260,7 @@ async function runInference(image, model_file = "shufflenet_v2_quantized.tflite"
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error || "Inference failed");
+            throw new Error(errorData.error);
         }
 
         const result = await response.json();
@@ -390,7 +391,7 @@ const api = {
     update_user_data: (field, value) => updateUserField(field, value),
     disable_user: () => disableUser(),
     baseURL,
-    run_inference: (image) => runInference(image),
+    run_inference: (image, model_file, device, library) => runInference(image, model_file, device, library),
 };
 
 export default api
