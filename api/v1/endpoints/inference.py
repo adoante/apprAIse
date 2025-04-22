@@ -27,29 +27,29 @@ class PredictionResponse(SQLModel):
 def softmax(x):
 	return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
-def preprocess_image(image_bytes: bytes, library: str, model_file: str):
-	# Open image and account for grey scale
-	image =  Image.open(io.BytesIO(image_bytes)).convert("RGB")
+def preprocess_image(image_bytes: bytes, library: str, model_file: str) -> np.ndarray:
+	# Load image from bytes
+	img = Image.open(io.BytesIO(image_bytes))
 
-	# All image classification models require a size of 224x224
-	image = image.resize((224, 224))
+	# Convert to RGB if needed
+	if img.mode in ("RGBA", "P"):
+		img = img.convert("RGB")
 
-	# Convert to np.array with specific type
+	# Resize to 224x224
+	img = img.resize((224, 224))
+
+	# Convert to numpy array with appropriate dtype
 	if "quantized" in model_file:
-		image = np.array(image).astype(np.uint8)
+		img_array = np.array(img).astype(np.uint8)
 	else:
-		image = np.array(image).astype(np.float32)
+		img_array = np.array(img).astype(np.float32) / 255.0
 
-	# Normalize only if the input spec is NORMAL
-	if "quantized" in model_file:
-		image = image / 255.0  # Normalize to [0, 1]
-	
-	# Rearrange dimensions: (H, W, C) → (C, H, W)
+	# Rearrange channels if needed
 	if library == "onnx":
-		image = np.transpose(image, (2, 0, 1))  # Shape: (3, 224, 224)
+		img_array = np.transpose(img_array, (2, 0, 1))  # HWC to CHW
 
-	image_array = np.array(image).astype(np.float32) / 255.0
-	image_array = np.expand_dims(image_array, axis=0)
+	# Add batch dimension
+	image_array = np.expand_dims(img_array, axis=0)
 
 	return image_array
 
