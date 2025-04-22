@@ -174,7 +174,7 @@ model_data = [
 		"224x224",
 		68.9,
 		66.6,
-		"Images/tulip.PNG",
+		"Images/radio.PNG",
 		"Imagenet classifier and general purpose backbone.",
 		"WideResNet50 is a machine learning model that can classify images from the Imagenet dataset. It can also be used as a backbone in building more complex models for specific use cases.",
 	),
