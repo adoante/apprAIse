@@ -49,14 +49,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById("models").addEventListener("click", function (event) {
 		model_file = event.target.textContent
+		this.parentElement.parentElement.querySelectorAll(".dropdown-btn")[0].textContent = model_file
 	})
 
 	document.getElementById("libraries").addEventListener("click", function (event) {
 		library = event.target.textContent
+		this.parentElement.parentElement.querySelectorAll(".dropdown-btn")[1].textContent = library
 	})
 
 	document.getElementById("devices").addEventListener("click", function (event) {
 		device = event.target.textContent
+		this.parentElement.parentElement.querySelectorAll(".dropdown-btn")[2].textContent = device
 	})
 
 	uploadInput.addEventListener("change", async (event) => {
@@ -123,9 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				],
 			},
 			options: {
-				scales: {
-					y: { display: false, grid: { display: false } },
-				},
+				
 			},
 		});
 
