@@ -107,6 +107,7 @@ async function dropDownSelect(id) {
 
 async function dataGrabAndFill() {
     const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+    renderChart(benchmarks);
     populateTable(benchmarks);
 }
 
@@ -136,3 +137,198 @@ async function populateTable(benchmarks) {
         i++;
     }
 }
+
+var ctx;
+let chart;
+
+document.addEventListener("DOMContentLoaded", function () {
+    ctx = document.getElementById('leaderboardChart').getContext('2d');
+
+
+
+    const chartContainer = document.getElementById("leaderboardChart").parentElement;
+    chartContainer.insertBefore(recreateChartBtn, ctx.canvas);
+
+    recreateChartBtn.addEventListener("click", function () {
+        getAllBenchmarks();
+        console.log("click")
+    });
+});
+
+/*function renderChart(benchmarks, mode = "top3") {
+    let displayedData = []; //: benchmarks.benchmark.slice(0, 3);
+    let i = 0
+
+    for (let benchmark of benchmarks.benchmarks) {
+        i++;
+        displayedData.push(benchmark.accuracy_top1);
+        if (i >= 3) {
+            break;
+        }
+    }
+
+    console.log(displayedData)
+
+    console.log(benchmarks[0])
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    const colors = window.getChartColors();
+
+    chart = new Chart(ctx, {
+        type: window.getChartType(),
+        data: {
+            //labels: displayedData.map(d => d.model),
+            datasets: [{
+                label: sort,
+                data: displayedData,
+                backgroundColor: colors.slice(0, displayedData.length),
+                borderWidth: 0,
+                borderRadius: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allows height scaling
+            layout: {
+                padding: {
+                    top: 30,
+                    bottom: 30
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    suggestedMax: 1 // Adjust as needed
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let value = tooltipItem.raw;
+                            if (sort === "inference_time") {
+                                return `${value} ms`;
+                            } else if (sort === "memory_usage") {
+                                return `${value} MB`;
+                            }
+                            return `${value}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+}*/
+
+async function renderChart(benchmarks) {
+    let displayedData = [];
+    let model_names = [];
+    let i = 0;
+    let suggestedMin = 0;
+    let mode = "";
+
+    for (let benchmark of benchmarks.benchmarks) {
+        i++;
+        switch (sort) {
+            case "inference_time":
+                displayedData.push(benchmark.inference_time);
+                mode = "Inference Time";
+                break;
+            case "accuracy_top1":
+                displayedData.push(benchmark.accuracy_top1);
+                mode = "Accuracy Top 1";
+                break;
+            case "accuracy_top5":
+                displayedData.push(benchmark.accuracy_top5);
+                mode = "Accuracy Top 5";
+                break;
+            case "memory_usage":
+                displayedData.push(benchmark.memory_usage);
+                mode = "Memory Usage";
+                break;
+        }
+        const model = await api.read_model(benchmark.model_id);
+        model_names.push(model.model_name);
+        if (i >= 3) {
+            break;
+        }
+    }
+
+    if (sort == "accuracy_top1" || sort == "accuracy_top5") {
+        suggestedMin = displayedData[displayedData.length - 1] - (displayedData[displayedData.length - 1] % 10)
+    }
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    const colors = window.getChartColors();
+
+    const labels = model_names;
+
+    chart = new Chart(ctx, {
+        type: window.getChartType(),
+        data: {
+            labels: labels,
+            datasets: [{
+                label: mode,
+                data: displayedData,
+                backgroundColor: colors.slice(0, displayedData.length),
+                borderWidth: 0,
+                borderRadius: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 30,
+                    bottom: 30
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    suggestedMax: .5,
+                    suggestedMin: suggestedMin,
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let value = tooltipItem.raw;
+                            if (sort === "inference_time") {
+                                return `${value} ms`;
+                            } else if (sort === "memory_usage") {
+                                return `${value} MB`;
+                            }
+                            return `${value}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
+
