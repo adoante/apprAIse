@@ -1,6 +1,8 @@
 import api from './js/modules/api_wrapper.js';
 
 var ctx;
+var suggestedMax = 1;
+var startAtZero = false;
 
 document.addEventListener("DOMContentLoaded", function () {
     ctx = document.getElementById('leaderboardChart').getContext('2d');
@@ -21,11 +23,24 @@ let fetchedData = [];
 
 async function getAllBenchmarks(selectedMetric = "accuracy_top1") {
     try {
-        const order = selectedMetric === "inference_time" ? "asc" : "desc";
+        var order //= selectedMetric === "inference_time" ? "asc" : "desc";
+        if(selectedMetric == "inference_time"){
+            order = "asc"
+        }else if(selectedMetric == "memory_usage"){
+            order = "asc"
+        }else if(selectedMetric == "accuracy_top1"){
+            order = "desc"
+        }else{
+            order = "desc"
+        }
+
+        console.log(order)
+
+
 
         const response = await fetch(`${api.baseURL}/benchmark/?sort=${selectedMetric}&order=${order}`);
         const data = await response.json();
-
+        console.log(response)
         console.log("Fetched Benchmarks:", data);
 
         let benchmarksData = data.benchmarks || [];
@@ -37,11 +52,15 @@ async function getAllBenchmarks(selectedMetric = "accuracy_top1") {
             }
         });
 
+        console.log(uniqueModels);
+
         let sortedData = Object.values(uniqueModels).sort((a, b) => {
             return selectedMetric === "inference_time"
                 ? a[selectedMetric] - b[selectedMetric]
                 : b[selectedMetric] - a[selectedMetric];
         });
+
+        console.log(sortedData)
 
         fetchedData = await Promise.all(sortedData.slice(0, 3).map(async (b, index) => {
             const modelData = await api.read_model(b.model_id);
@@ -127,7 +146,7 @@ function renderChart(mode = "top3") {
             },
             scales: {
                 y: {
-                    beginAtZero: true,
+                    beginAtZero: false,
                     suggestedMax: 1 // Adjust as needed
                 }
             },

@@ -107,6 +107,7 @@ async function dropDownSelect(id) {
 
 async function dataGrabAndFill() {
     const benchmarks = await api.filter_benchmarks(device, library, sort, order);
+    renderChart(benchmarks,"top3");
     populateTable(benchmarks);
 }
 
@@ -136,3 +137,106 @@ async function populateTable(benchmarks) {
         i++;
     }
 }
+
+var ctx;
+let chart;
+
+function renderChart(benchmarks, mode = "top3") {
+    let displayedData =  [benchmarks[0]]; //: benchmarks.benchmark.slice(0, 3);
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    const colors = window.getChartColors();
+
+
+    /*chart = new Chart(ctx, {
+        type: window.getChartType(),
+        data: {
+            labels: displayedData.map(d => d.model),
+            datasets: [{
+                label: document.getElementById("metricSelector").selectedOptions[0].text,
+                data: displayedData.map(d => d.score),
+                backgroundColor: colors.slice(0, displayedData.length),
+                borderWidth: 0,
+                borderRadius: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let value = tooltipItem.raw;
+                            if (selectedMetric === "inference_time") {
+                                return `${value} ms`;
+                            } else if (selectedMetric === "memory_usage") {
+                                return `${value} MB`;
+                            }
+                            return `${value}%`;
+                        }
+                    }
+                }
+            },
+            layout: { padding: { top: 30, bottom: 30 } }
+        }
+    });*/
+
+    chart = new Chart(ctx, {
+        type: window.getChartType(),
+        data: {
+            labels: displayedData.map(d => d.model),
+            datasets: [{
+                label: sort,
+                data: displayedData.map(d => d.score),
+                backgroundColor: colors.slice(0, displayedData.length),
+                borderWidth: 0,
+                borderRadius: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allows height scaling
+            layout: {
+                padding: {
+                    top: 30,
+                    bottom: 30
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    suggestedMax: 1 // Adjust as needed
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            let value = tooltipItem.raw;
+                            if (sort === "inference_time") {
+                                return `${value} ms`;
+                            } else if (sort === "memory_usage") {
+                                return `${value} MB`;
+                            }
+                            return `${value}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+}
+
+
+
