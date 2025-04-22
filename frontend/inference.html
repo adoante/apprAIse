@@ -50,6 +50,45 @@
             <h1 class="title">Upload Image</h1>
         </div>
 
+		<div class="dropdowns">
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Models
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="models">
+					<p class="dropdownItem" id="model-1">shufflenet_v2_quantized</p>
+					<p class="dropdownItem" id="model-2">shufflenet_v2</p>
+					<p class="dropdownItem" id="model-3">squeezenet1_1_quantized</p>
+					<p class="dropdownItem" id="model-4">squeezenet1_1</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Library
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="libraries">
+					<p class="dropdownItem" id="library-1">tflite</p>
+					<p class="dropdownItem" id="library-2">onnx</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Devices
+					<img class="arrow LD" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="devices">
+					<p class="dropdownItem" id="device-1">Samsung Galaxy S24</p>
+					<p class="dropdownItem" id="device-2">Samsung Galaxy S23</p>
+					<p class="dropdownItem" id="device-3">Snapdragon 8 Elite QRD</p>
+					<p class="dropdownItem" id="device-4">Snapdragon X Elite CRD</p>
+				</div>
+			</div>
+		</div>
+
         <div class="inferenceContainer">
             <form class="upload-form" id="uploadForm">
                 <label for="imageUpload">Upload an Image to inference.</label>

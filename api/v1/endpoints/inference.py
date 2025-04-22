@@ -6,7 +6,7 @@ import urllib.request
 import numpy as np
 from PIL import Image
 from typing import List, Annotated
-from fastapi import Depends, APIRouter, HTTPException, File
+from fastapi import Depends, APIRouter, HTTPException, File, Form
 from fastapi.responses import JSONResponse
 from sqlmodel import Session, SQLModel
 import qai_hub as hub
@@ -27,45 +27,60 @@ class PredictionResponse(SQLModel):
 def softmax(x):
 	return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
 
-def run_inference(image_bytes: bytes, user_id: str) -> PredictionResponse:
+def preprocess_image(image_bytes: bytes, library: str, model_file: str):
+	# Open image and account for grey scale
+	image =  Image.open(io.BytesIO(image_bytes)).convert("RGB")
+
+	# All image classification models require a size of 224x224
+	image = image.resize((224, 224))
+
+	# Convert to np.array with specific type
+	if "quantized" in model_file:
+		image = np.array(image).astype(np.uint8)
+	else:
+		image = np.array(image).astype(np.float32)
+
+	# Normalize only if the input spec is NORMAL
+	if "quantized" in model_file:
+		image = image / 255.0  # Normalize to [0, 1]
+	
+	# Rearrange dimensions: (H, W, C) → (C, H, W)
+	if library == "onnx":
+		image = np.transpose(image, (2, 0, 1))  # Shape: (3, 224, 224)
+
+	image_array = np.array(image).astype(np.float32) / 255.0
+	image_array = np.expand_dims(image_array, axis=0)
+
+	return image_array
+
+def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str, library: str):
+	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+	model_path_name = model_file + "." + library
+	model_path = os.path.join(BASE_DIR, model_path_name)
+
+	if not os.path.exists(model_path):
+		return {"error": f"{model_file} is not yet available on {library}"}
+
 	config_file_path = os.path.join("~/.qai_hub/", f"{user_id}.ini")
 	os.environ['QAIHUB_CLIENT_INI'] = config_file_path
 
-	# Load image from bytes
-	img = Image.open(io.BytesIO(image_bytes))
+	image_array = preprocess_image(image_bytes, library, model_file)
 
-	# Convert to RGB if needed (JPEG doesn't support alpha)
-	if img.mode in ("RGBA", "P"):
-	    img = img.convert("RGB")
-
-	img = img.resize((224, 224))
-
-	# Convert to JPEG in memory
-	jpeg_bytes_io = io.BytesIO()
-	img.save(jpeg_bytes_io, format='JPEG')
-	jpeg_bytes = jpeg_bytes_io.getvalue()
-
-	image_array = np.array(img).astype(np.float32) / 255.0
-	image_array = np.expand_dims(image_array, axis=0)
-
-	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-	model_path = os.path.join(BASE_DIR, "squeezenet1_1_quantized.tflite")
-
-	inference_job = hub.submit_inference_job(
-		model=model_path,
-		device=hub.Device("Samsung Galaxy S24 (Family)"),
-		inputs={"image_tensor": [image_array]}
-	)
+	try:
+		inference_job = hub.submit_inference_job(
+			model=model_path,
+			device=hub.Device(device),
+			inputs={"image_tensor": [image_array]}
+		)
+	except:
+		return{"error": f"{device} does not support {library}"}
 
 	dataset_file = os.path.join(BASE_DIR, f"{user_id}_inference.h5")
 	output_file = inference_job.download_output_data(dataset_file)
 
 	with h5py.File(output_file, "r") as f:
 		dataset_path = "data/0/batch_0"
-		if dataset_path in f:
-			data = f[dataset_path][()]
-		else:
-			raise HTTPException(status_code=404, detail="Dataset not found in the output file")
+		data = f[dataset_path][()]
 
 	os.remove(dataset_file)
 
@@ -95,10 +110,18 @@ executor = ProcessPoolExecutor()
 def inference_image(
 	current_user: Annotated[database.User, Depends(get_current_active_user)],
 	image: bytes = File(...),
+	model_file: str = Form(...),
+	device: str = Form(...),
+	library: str = Form(...),
 ) -> PredictionResponse:
 	try:
-		with Session(database.engine) as session:
-			future = executor.submit(run_inference, image, f"{current_user.id}")
-			return future.result()
+		future = executor.submit(run_inference, image, f"{current_user.id}", model_file, device, library)
+		result = future.result()
+
+		if isinstance(result, dict) and "error" in result:
+			raise HTTPException(status_code=404, detail=result["error"])
+
+		return future.result()
+
 	except Exception as e:
 		return JSONResponse(status_code=500, content={"error": str(e)})
