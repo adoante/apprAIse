@@ -75,6 +75,29 @@ document.addEventListener("DOMContentLoaded", function () {
 			if(inferenceResultsChart) {
 				inferenceResultsChart.destroy()
 			}
+
+			const token = localStorage.getItem("access_token");
+
+			if (!token) {
+
+				document.querySelector(".inferenceContainer").insertAdjacentHTML(
+					"afterbegin",
+					`<div class="customAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+				);
+
+				let seconds = 5;
+				const countdownEl = document.getElementById('redirectCountdown');
+
+				const interval = setInterval(() => {
+					seconds--;
+					countdownEl.textContent = seconds;
+
+					if (seconds === 0) {
+						clearInterval(interval);
+						window.location.href = "Login.html";
+					}
+				}, 1000);
+			}
 		};
 		reader.readAsDataURL(file);
 
@@ -126,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				],
 			},
 			options: {
-				
+
 			},
 		});
 
