@@ -304,12 +304,16 @@
 }
 
 .InferenceExample {
+    background: #2D2D2D;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 300px;
     margin-left: 5vw;
     margin-right: 5vw;
     margin-bottom: 50px;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .inference_label {
@@ -318,6 +322,7 @@
 
 .inference_img {
     justify-self: center;
+    max-width: 220px;
 }
 
 .inference_explanation {
