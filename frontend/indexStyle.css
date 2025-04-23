@@ -323,6 +323,8 @@
 .inference_img {
     justify-self: center;
     max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .inference_explanation {
