@@ -36,7 +36,11 @@ def preprocess_image(image_bytes: bytes, library: str, model_file: str) -> np.nd
 		img = img.convert("RGB")
 
 	# Resize to 224x224
-	img = img.resize((224, 224))
+	# Yeah I know it's hard coded
+	if model_file == "mobile_vit":
+		img = img.resize((256, 256))
+	else:
+		img = img.resize((224, 224))
 
 	# Convert to numpy array with appropriate dtype
 	if "quantized" in model_file:
