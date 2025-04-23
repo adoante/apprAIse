@@ -130,7 +130,20 @@ benchmark_data = [
 	(77.7, 93.67, 3.31, 383, 482, 'Samsung Galaxy S23', 'efficientnet_b4', 'tflite'),
 	(80.03, 94.87, 2.68, 324, 508, 'Samsung Galaxy S23', 'efficientnet_v2_s', 'tflite'),
 	(81.15, 95.36, 5.05, 249, 379, 'Samsung Galaxy S23', 'efficientvit_b2_cls', 'tflite'),
+	(83.78, 96.53,18.9, 27, 675, 'Samsung Galaxy S23', 'efficientvit_l2_cls', 'tflite'),
+	(67.5, 88.0, .914, 83, 84, 'Samsung Galaxy S23', 'googlenet', 'tflite'),
+	(67.28, 87.92, .285, 33, 86,  'Samsung Galaxy S23', 'googlenet_quantized', 'tflite'),
+	(67.78, 87.77, 1.33, 341,129, 'Samsung Galaxy S23', 'inception_v3', 'tflite'),
+	(67.43, 87.61, .661, 112, 142, 'Samsung Galaxy S23', 'inception_v3_quantized', 'tflite'),
+	(71.31, 89.9, 1.09, 76, 306, 'Samsung Galaxy S23', 'levit', 'tflite'),
+	(64.61, 85.35, .721, 45, 71, 'Samsung Galaxy S23', 'mnasnet05', 'tflite'),
+	(63.79, 85.61, 4.74, 12, 577,  'Samsung Galaxy S23', 'mobile_vit', 'tflite'),
+	(69.21, 88.99, .857, 62, 71, 'Samsung Galaxy S23', 'mobilenet_v2', 'tflite'),
+	(67.38, 87.87, .446, 27, 108,  'Samsung Galaxy S23', 'mobilenet_v2_quantized', 'tflite'),
+	(71.63, 90.1, .955, 81, 128, 'Samsung Galaxy S23', 'mobilenet_v3_large', 'tflite'),
+	(70.57, 89.44, .350, 33, 137, 'Samsung Galaxy S23', 'mobilenet_v3_large_quantized', 'tflite'),
 	(67.09, 87.84, 2.31, 18, 1032, 'Samsung Galaxy S23', 'densenet_121_quantized', 'tflite'),
+
 
 	# ONNX
 	(77.09, 93.25, 18.6, 212, 151, 'Samsung Galaxy S23', 'wideresnet50_quantized', 'onnx'),
@@ -172,6 +185,14 @@ benchmark_data = [
 	(55.82, 78.06, 0.231, 18, 175, 'Snapdragon 8 Elite QRD', 'shufflenet_v2_quantized', 'tflite'),
 	(56.2, 78.47, 0.445, 21, 159, 'Snapdragon 8 Elite QRD', 'shufflenet_v2', 'tflite'),
 	(79.87, 94.78, 0.571, 51, 82, 'Snapdragon 8 Elite QRD', 'resnext50_quantized', 'tflite'),
+  (83.79, 96.53, 11.7, 245, 675, 'Snapdragon 8 Elite QRD', 'efficientvit_l2_cls', 'tflite'),
+	(67.47, 88.01, .570, 28, 84, 'Snapdragon 8 Elite QRD', 'googlenet', 'tflite'),
+	(67.28, 87.92, .175, 23, 86, 'Snapdragon 8 Elite QRD', 'googlenet_quantized', 'tflite'),
+	(67.78, 87.77, .944, 58,129, 'Snapdragon 8 Elite QRD', 'inception_v3', 'tflite'),
+	(67.43, 87.61, .431, 38, 142, 'Snapdragon 8 Elite QRD', 'inception_v3_quantized', 'tflite'),
+	(71.32, 89.88, .752, 41, 306,'Snapdragon 8 Elite QRD', 'levit', 'tflite'),
+	(64.59, 85.35, .467, 20,71,'Snapdragon 8 Elite QRD', 'mnasnet05', 'tflite'),
+	(69.21, 88.99, .558,23,71, 'Snapdragon 8 Elite QRD', 'mobilenet_v2', 'tflite')
 
 	## Snapdragon X Elite CRD
 
@@ -187,6 +208,7 @@ benchmark_data = [
 	(55.89, 78.07, 0.785, 0, 189, 'Snapdragon X Elite CRD', 'shufflenet_v2_quantized', 'onnx'),
 	(79.91, 94.76, 1.02, 3, 223, 'Snapdragon X Elite CRD', 'resnext50_quantized', 'onnx'),
 	(56.22, 78.48, 1.29, 28, 83, 'Snapdragon X Elite CRD', 'shufflenet_v2', 'onnx'),
+
 ]
 
 # model_name: str
