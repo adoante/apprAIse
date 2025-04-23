@@ -31,22 +31,22 @@
     height: auto;
 }
 
-@media (max-width: 800px){
-    .TitleAndExample{
+@media (max-width: 800px) {
+    .TitleAndExample {
         display: block;
         margin-top: 100px;
         margin-bottom: 100px;
     }
 
-    .exampleClassification{
+    .exampleClassification {
         margin-top: 20px;
         padding-left: 10vw;
         padding-right: 10vw;
     }
 }
 
-@media (max-width: 500px){
-    .exampleClassification{
+@media (max-width: 500px) {
+    .exampleClassification {
         padding-left: 0vw;
         padding-right: 0vw;
     }
@@ -76,23 +76,33 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    transition: transform 0.3s ease,background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.LeaderboardBtn:hover{
+.LeaderboardBtn:hover {
     transform: scale(1.1);
     background-color: #C94CE6;
 }
 
-.LeaderboardBtn a{
+.LeaderboardBtn a {
     text-decoration: none;
     padding: 7px 25px;
 }
 
-.LeaderboardBtn a:hover{
+.LeaderboardBtn a:hover {
     color: #ffffff;
-    
+
 }
+
+.LeaderboardBtn.inference {
+    background-color: #35BFFF;
+}
+
+.LeaderboardBtn.inference:hover {
+    background-color: #29A9E5;
+}
+
+
 
 .progress-container {
     width: 300px;
@@ -183,7 +193,8 @@
 .Services {
     background-color: #2D2D2D;
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* fallback */
+    grid-template-columns: repeat(1, 1fr);
+    /* fallback */
     column-gap: 50px;
     row-gap: 50px;
     /*margin-bottom: 100px;*/
@@ -266,4 +277,68 @@
 .serviceLink:hover {
     text-decoration: none;
     color: #000000;
+}
+
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    /* 👈 make it taller here */
+    margin: auto;
+    /* You can set height if you're using maintainAspectRatio: false */
+    /* height: 400px; */
+}
+
+@media (max-width:500px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+
+#leaderboardChart {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.InferenceExample {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 300px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 50px;
+}
+
+.inference_label {
+    text-align: center;
+}
+
+.inference_img {
+    justify-self: center;
+}
+
+.inference_explanation {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.title.inference {
+    text-align: center;
+}
+
+.inference_desc {
+    text-align: center;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+@media (max-width: 800px) {
+    .InferenceExample {
+        display: block;
+    }
+
 }
