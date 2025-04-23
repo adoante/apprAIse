@@ -170,3 +170,16 @@ td {
     width: 100%;
     overflow-x: auto;
 }
+
+.customAlert {
+    background: #2D2D2D;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
