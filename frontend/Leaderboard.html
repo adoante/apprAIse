@@ -52,30 +52,6 @@
             <h1 class="title">Leaderboard</h1>
         </div>
 
-        <div class="customization-btn-container">
-            <button class="customization-btn" onclick="redirectToCustomization()">Customization</button>
-        </div>
-
-        <!-- Dropdown to select metric -->
-        <div id="leaderboardChartDropdown">
-            <select id="metricSelector">
-                <option value="accuracy_top1">Accuracy (Top 1)</option>
-                <option value="accuracy_top5">Accuracy (Top 5)</option>
-                <option value="memory_usage">Memory Usage</option>
-                <option value="inference_time">Inference Time</option>
-            </select>
-
-            <!-- Dropdown to toggle Top 1 or Top 3 -->
-            <select id="viewMode">
-                <option value="top3">Top 3</option>
-                <option value="top1">Top 1</option>
-            </select>
-        </div>
-        <div class="chart-container">
-            <canvas id="leaderboardChart"></canvas>
-        </div>
-
-
         <div class="dropdowns">
             <div class="dropdown">
                 <div class="dropdown-btn">
@@ -115,6 +91,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="customization-btn-container">
+            <button class="customization-btn" onclick="redirectToCustomization()">Customization</button>
+        </div>
+
+        <!-- Dropdown to select metric 
+        <div id="leaderboardChartDropdown">
+            <select id="metricSelector">
+                <option value="accuracy_top1">Accuracy (Top 1)</option>
+                <option value="accuracy_top5">Accuracy (Top 5)</option>
+                <option value="memory_usage">Memory Usage</option>
+                <option value="inference_time">Inference Time</option>
+            </select>
+
+            Dropdown to toggle Top 1 or Top 3 
+            <select id="viewMode">
+                <option value="top3">Top 3</option>
+                <option value="top1">Top 1</option>
+            </select>
+        </div>-->
+        <div class="chart-container">
+            <canvas id="leaderboardChart"></canvas>
+        </div>
+
+
+
 
         <div class="table-wrapper">
             <table id="Leaderboard">
