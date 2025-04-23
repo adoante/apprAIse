@@ -116,7 +116,7 @@ async function dataGrabAndFill() {
 
     document.querySelector(".customAlert").insertAdjacentHTML(
         "afterbegin",
-        `Current Benchmarks: <b>${device}</b> on <b>${library}</b> by <b>${sort}</b>`
+        `Current Benchmarks: <b>${device}</b> on <b>${library}</b> by <b>${sort} 😎</b>`
     )
 }
 
