@@ -75,6 +75,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let contentContainer = document.querySelector(".dashboardContent")
 
+	api.get_current_user()
+		.then(data => {
+
+			contentContainer.insertAdjacentHTML(
+				"beforeend",
+				`<div class="dashboardForm">
+								<h2>Change QAI Hub Token</h2>
+								Get your QAI Hub token <a href="https://aihub.qualcomm.com/" target="_blank"
+                    rel="noopener noreferrer">here.</a>
+								<p>Current QAI Hub Token: ${data["qai_hub_api_token"]}</p>
+								<form class="formContainer" id="qai-hub-token">
+									<label for="qai-hub-token">QAI Hub Token</label>
+									<input type="text" id="qai-hub-token" name="qai-hub-token" required>
+	
+										<button class="dashboardBtn" type="submit">Change</button>
+								</form>
+							</div>`
+			)
+
+			contentContainer.insertAdjacentHTML("beforeend", footer)
+		})
+		.catch(error => {
+			console.log(error)
+			contentContainer.insertAdjacentHTML(
+				"beforebegin",
+				`<br><div class="formAlert">${error["message"]}</div>`
+			);
+
+			contentContainer.insertAdjacentHTML(
+				"beforebegin",
+				`<div class="formAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
+			);
+
+			let seconds = 5;
+			const countdownEl = document.getElementById('redirectCountdown');
+
+			const interval = setInterval(() => {
+				seconds--;
+				countdownEl.textContent = seconds;
+
+				if (seconds === 0) {
+					clearInterval(interval);
+					localStorage.removeItem("access_token");
+					window.location.replace("Login.html");
+				}
+			}, 1000);
+		})
+
 	document.getElementById("accountDropdown").addEventListener("click", function (event) {
 		if (event.target.classList.contains("dropdownItem")) {
 			let content = event.target.textContent;
@@ -275,6 +323,8 @@ document.addEventListener("DOMContentLoaded", function () {
 								"beforeend",
 								`<div class="dashboardForm">
 								<h2>Change QAI Hub Token</h2>
+								Get your QAI Hub token <a href="https://aihub.qualcomm.com/" target="_blank"
+                    rel="noopener noreferrer">here.</a>
 								<p>Current QAI Hub Token: ${data["qai_hub_api_token"]}</p>
 								<form class="formContainer" id="qai-hub-token">
 									<label for="qai-hub-token">QAI Hub Token</label>
