@@ -434,6 +434,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	})
 
+	document.getElementById("customizationDropdown").addEventListener("click", function (event) {
+		let content = event.target.textContent;
+
+		switch (content) {
+			case "Charts/Colors":
+				window.location.href = "Customization.html"
+				break
+		}
+	});
+
 	// Handle Submits
 	document.body.addEventListener("submit", function (e) {
 		e.preventDefault();

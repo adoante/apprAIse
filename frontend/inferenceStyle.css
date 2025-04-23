@@ -48,6 +48,9 @@
     padding: 25px;
     max-width: fit-content;
     margin-bottom: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .chart {

@@ -5,8 +5,8 @@ var library = "tflite";
 var sort = "accuracy_top1";
 var order = "desc"; // or "asc"
 
-const devices = ["Samsung Galaxy S24", "Google Pixel", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
-const libraries = ["TFLite", "ONNX", "Qualcomm© AI Engine Direct"]
+const devices = ["Samsung Galaxy S24", "Samsung Galaxy S23", "Snapdragon 8 Elite QRD", "Snapdragon X Elite CRD"]
+const libraries = ["TFLite", "ONNX"]
 const sorts = ["Accuracy Top 1", "Accuracy Top 5", "Memory Usage", "Inference Time"]
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -109,6 +109,14 @@ async function dataGrabAndFill() {
     const benchmarks = await api.filter_benchmarks(device, library, sort, order);
     renderChart(benchmarks);
     populateTable(benchmarks);
+
+    document.querySelector(".customAlert").innerHTML = ``
+
+
+    document.querySelector(".customAlert").insertAdjacentHTML(
+        "afterbegin",
+        `Current Benchmarks: <b>${device}</b> on <b>${library}</b> by <b>${sort}</b>`
+    )
 }
 
 

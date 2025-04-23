@@ -39,7 +39,7 @@ devices_data = [
     ("Snapdragon 8 Elite QRD", "mobile", "Qualcomm", 10),
     #("Xiaomi 12", "mobile", "Xiaomi", 7),
     #("Xiaomi 12 Pro", "mobile", "Xiaomi", 7),
-	("Snapdragon X Elite CRD", "compute", "Qualcomm", 11),
+	("Snapdragon X Elite CRD", "compute", "Qualcomm", 11)
 ]
 
 library_data = [
@@ -185,14 +185,14 @@ benchmark_data = [
 	(55.82, 78.06, 0.231, 18, 175, 'Snapdragon 8 Elite QRD', 'shufflenet_v2_quantized', 'tflite'),
 	(56.2, 78.47, 0.445, 21, 159, 'Snapdragon 8 Elite QRD', 'shufflenet_v2', 'tflite'),
 	(79.87, 94.78, 0.571, 51, 82, 'Snapdragon 8 Elite QRD', 'resnext50_quantized', 'tflite'),
-  (83.79, 96.53, 11.7, 245, 675, 'Snapdragon 8 Elite QRD', 'efficientvit_l2_cls', 'tflite'),
+  	(83.79, 96.53, 11.7, 245, 675, 'Snapdragon 8 Elite QRD', 'efficientvit_l2_cls', 'tflite'),
 	(67.47, 88.01, .570, 28, 84, 'Snapdragon 8 Elite QRD', 'googlenet', 'tflite'),
 	(67.28, 87.92, .175, 23, 86, 'Snapdragon 8 Elite QRD', 'googlenet_quantized', 'tflite'),
 	(67.78, 87.77, .944, 58,129, 'Snapdragon 8 Elite QRD', 'inception_v3', 'tflite'),
 	(67.43, 87.61, .431, 38, 142, 'Snapdragon 8 Elite QRD', 'inception_v3_quantized', 'tflite'),
 	(71.32, 89.88, .752, 41, 306,'Snapdragon 8 Elite QRD', 'levit', 'tflite'),
 	(64.59, 85.35, .467, 20,71,'Snapdragon 8 Elite QRD', 'mnasnet05', 'tflite'),
-	(69.21, 88.99, .558,23,71, 'Snapdragon 8 Elite QRD', 'mobilenet_v2', 'tflite')
+	(69.21, 88.99, .558,23,71, 'Snapdragon 8 Elite QRD', 'mobilenet_v2', 'tflite'),
 
 	## Snapdragon X Elite CRD
 

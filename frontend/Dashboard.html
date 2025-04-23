@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="module" src="CommonScript.js?v=1.0.0"></script>
-	<script type="module" src="DashboardScript.js?v=1.0.1"></script>
+	<script type="module" src="DashboardScript.js?v=1.0.2"></script>
+	<script src="CustomizationScript.js?v=1.0.0"></script>
 	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="vanilla.css?v=1.0.1">
 	<link rel="stylesheet" href="DashboardStyle.css?v=1.0.0">
@@ -67,7 +68,7 @@
 					</div>
 				</div>
 
-				<div class="dropdown">
+				<div class="dropdown" id="customizationDropdown">
 					<div class="dropdown-btn">
 						Customization
 						<img class="arrow LD" src="Images/down-chevron.png" alt="">
@@ -77,7 +78,7 @@
 					</div>
 				</div>
 
-				<div class="dropdown">
+				<div class="dropdown" id="favorites">
 					<div class="dropdown-btn">
 						Favorites
 						<img class="arrow LL" src="Images/down-chevron.png" alt="">
@@ -93,9 +94,30 @@
 
 		<div class="dashboardContent">
 			<!--Content Insert Here-->
-	   </div>
+		</div>
 
 	</div>
+
+	<script>
+		// Event listener to toggle the active state of chart type buttons
+		document.querySelectorAll('.chart-type-btn').forEach(button => {
+			button.addEventListener('click', function () {
+				// Remove active class from all buttons
+				document.querySelectorAll('.chart-type-btn').forEach(btn => btn.classList.remove('active'));
+				// Add active class to the clicked button
+				this.classList.add('active');
+
+				// Update the selected chart type
+				localStorage.setItem("chartType", this.getAttribute("data-type"));
+			});
+
+			// Set the active button based on stored chart type
+			const storedType = localStorage.getItem("chartType") || "bar";
+			if (button.getAttribute("data-type") === storedType) {
+				button.classList.add('active');
+			}
+		});
+	</script>
 
 </body>
 
