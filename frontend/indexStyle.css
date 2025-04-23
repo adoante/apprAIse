@@ -94,6 +94,16 @@
 
 }
 
+.LeaderboardBtn.inference {
+    background-color: #35BFFF;
+}
+
+.LeaderboardBtn.inference:hover {
+    background-color: #29A9E5;
+}
+
+
+
 .progress-container {
     width: 300px;
     /* Adjust as needed */
@@ -291,4 +301,44 @@
     display: block;
     width: 100% !important;
     height: 100% !important;
+}
+
+.InferenceExample {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 300px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 50px;
+}
+
+.inference_label {
+    text-align: center;
+}
+
+.inference_img {
+    justify-self: center;
+}
+
+.inference_explanation {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.title.inference {
+    text-align: center;
+}
+
+.inference_desc {
+    text-align: center;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+@media (max-width: 800px) {
+    .InferenceExample {
+        display: block;
+    }
+
 }
