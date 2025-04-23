@@ -11,7 +11,8 @@ chipsets_data = [
 	("Qualcomm Snapdragon 8 Gen 1", "Qualcomm", "8 Gen 1"),
 	("Qualcomm Snapdragon 8 Gen 2", "Qualcomm", "8 Gen 2"),
 	("Qualcomm Snapdragon 8 Gen 3", "Qualcomm", "8 Gen 3"),
-	("Qualcomm 8 Elite", "Qualcomm", "8 Elite")
+	("Qualcomm 8 Elite", "Qualcomm", "8 Elite"),
+	("Qualcomm X Elite", "Qualcomm", "SM8750")
 ]
 
 # Device Data
@@ -37,7 +38,8 @@ devices_data = [
     #("Samsung Galaxy Tab S8", "tablet", "Samsung", 6),
     ("Snapdragon 8 Elite QRD", "mobile", "Qualcomm", 10),
     #("Xiaomi 12", "mobile", "Xiaomi", 7),
-    #("Xiaomi 12 Pro", "mobile", "Xiaomi", 7)
+    #("Xiaomi 12 Pro", "mobile", "Xiaomi", 7),
+	("Snapdragon X Elite CRD", "compute", "Qualcomm", 11),
 ]
 
 library_data = [
@@ -170,6 +172,21 @@ benchmark_data = [
 	(55.82, 78.06, 0.231, 18, 175, 'Snapdragon 8 Elite QRD', 'shufflenet_v2_quantized', 'tflite'),
 	(56.2, 78.47, 0.445, 21, 159, 'Snapdragon 8 Elite QRD', 'shufflenet_v2', 'tflite'),
 	(79.87, 94.78, 0.571, 51, 82, 'Snapdragon 8 Elite QRD', 'resnext50_quantized', 'tflite'),
+
+	## Snapdragon X Elite CRD
+
+	# ONNX
+	(77.06, 93.25, 18, 77, 87, 'Snapdragon X Elite CRD', 'wideresnet50_quantized', 'onnx'),
+	(77.12, 93.34, 4.48, 132, 128, 'Snapdragon X Elite CRD', 'wideresnet50', 'onnx'),
+	(79.94, 94.77, 15, 171, 988, 'Snapdragon X Elite CRD', 'vit', 'onnx'),
+	(80.68, 95.38, 11.7, 57, 654, 'Snapdragon X Elite CRD', 'swin_tiny', 'onnx'),
+	(82.59, 96.23, 19.1, 100, 1176, 'Snapdragon X Elite CRD', 'swin_small', 'onnx'),
+	(83.04, 96.46, 24.8, 175, 1183, 'Snapdragon X Elite CRD', 'swin_base', 'onnx'),
+	(54.62, 77.93, 0.504, 0, 47, 'Snapdragon X Elite CRD', 'squeezenet1_1_quantized', 'onnx'),
+	(54.83, 78.12, 0.485, 2, 71, 'Snapdragon X Elite CRD', 'squeezenet1_1', 'onnx'),
+	(55.89, 78.07, 0.785, 0, 189, 'Snapdragon X Elite CRD', 'shufflenet_v2_quantized', 'onnx'),
+	(79.91, 94.76, 1.02, 3, 223, 'Snapdragon X Elite CRD', 'resnext50_quantized', 'onnx'),
+	(56.22, 78.48, 1.29, 28, 83, 'Snapdragon X Elite CRD', 'shufflenet_v2', 'onnx'),
 ]
 
 # model_name: str
