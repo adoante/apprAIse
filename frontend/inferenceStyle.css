@@ -4,7 +4,7 @@
 
 .inferenceContainer {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
     background-color: #2D2D2D;
@@ -14,7 +14,24 @@
 .inferenceContainer label {
 	text-align: center;
 	width: 100%;
+}
 
+.inferenceContainer2 {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+    background-color: #2D2D2D;
+    padding: 25px;
+}
+
+.inferenceContainer3 {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+    background-color: #2D2D2D;
+    padding: 25px;
 }
 
 .upload-form {
@@ -55,7 +72,7 @@
 
 .chart {
     max-height: 400px;
-    max-width: 800px;
+    min-width: 800px;
 }
 
 .dropdowns {
@@ -129,4 +146,38 @@
 
 .arrow.rotated {
     transform: rotateX(180deg);
+}
+
+@media(max-width: 700px) {
+    .inferenceContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #2D2D2D;
+        padding: 25px;
+    }
+    
+    .inferenceContainer label {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .inferenceContainer2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #2D2D2D;
+        padding: 25px;
+    }
+    
+    .inferenceContainer3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #2D2D2D;
+        padding: 25px;
+    }
 }

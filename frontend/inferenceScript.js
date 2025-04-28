@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (!token) {
 
-				document.querySelector(".inferenceContainer").insertAdjacentHTML(
+				document.querySelector(".inferenceContainer2").insertAdjacentHTML(
 					"afterbegin",
 					`<div class="customAlert">Redirecting in <span id="redirectCountdown">5</span> seconds...<div>`,
 				);
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		} catch (error) {
 			console.error("Inference failed:", error);
 
-			document.querySelector(".inferenceContainer").insertAdjacentHTML(
+			document.querySelector(".inferenceContainer2").insertAdjacentHTML(
 				"afterbegin",
 				`<div class="customAlert" style="background:red;">
 			${error["message"]}<br>
