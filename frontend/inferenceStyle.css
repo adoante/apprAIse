@@ -184,5 +184,6 @@
     .chart {
         max-height: 400px;
         max-width: 800px;
+        min-width: auto;
     }
 }
