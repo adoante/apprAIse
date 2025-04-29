@@ -49,7 +49,7 @@ def preprocess_image(image_bytes: bytes, library: str, model_file: str) -> np.nd
 		img_array = np.array(img).astype(np.float32) / 255.0
 
 	# Rearrange channels if needed
-	if library == "onnx":
+	if library == "onnx" or model_file == "IsLizzyTheCat":
 		img_array = np.transpose(img_array, (2, 0, 1))  # HWC to CHW
 
 	# Add batch dimension
@@ -100,6 +100,19 @@ def run_inference(image_bytes: bytes, user_id: str, model_file: str, device: str
 	top5_classes = np.argsort(probabilities[0], axis=0)[-5:]
 	top5_labels = [class_idx[str(class_index)][1] for class_index in top5_classes]
 	top5_prop = [round(probabilities[0][class_index] * 100, 2) for class_index in top5_classes]
+
+	# Laughs and goofs
+
+	if model_file == "IsLizzyTheCat":
+		top5_labels = []
+
+		if predicted_class == 0:
+			predicted_label = "Lizzy The Cat"
+
+			top5_labels = ["Not Lizzy The Cat", "Lizzy The Cat"]
+		else:
+			predicted_label = "Not Lizzy The Cat"
+			top5_labels = ["Lizzy The Cat", "Not Lizzy The Cat"]
 
 	return PredictionResponse(
 		predicted_class=predicted_class,
