@@ -180,4 +180,9 @@
         background-color: #2D2D2D;
         padding: 25px;
     }
+
+    .chart {
+        max-height: 400px;
+        max-width: 800px;
+    }
 }
