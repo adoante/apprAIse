@@ -72,6 +72,7 @@ benchmark_data = [
 	(55.82, 78.06, 0.229, 25, 175,  "Samsung Galaxy S24", "shufflenet_v2_quantized", "tflite"),
 	(56.2, 78.47, 0.453, 29, 159, "Samsung Galaxy S24", "shufflenet_v2", "tflite"),
 	(79.87, 94.78, 0.701, 54, 82, "Samsung Galaxy S24", "resnext50_quantized", "tflite"),
+
 	(83.79, 96.54, 13.7, 271, 675, 'Samsung Galaxy S24', 'efficientvit_l2_cls', 'tflite'),
 	(67.49, 88.0, 0.611, 39, 84, 'Samsung Galaxy S24', 'googlenet', 'tflite'),
 	(67.28, 87.92, 0.199, 31, 86, 'Samsung Galaxy S24', 'googlenet_quantized', 'tflite'),
@@ -85,6 +86,7 @@ benchmark_data = [
 	(71.63, 90.1, 0.649, 37, 128, 'Samsung Galaxy S24', 'mobilenet_v3_large', 'tflite'),
 	(70.57, 89.44, .248, 30, 137, 'Samsung Galaxy S24', 'mobilenet_v3_large_quantized', 'tflite'),
 	(80.03, 94.86, 2, 99, 508, 'Samsung Galaxy S24', 'efficientnet_v2_s', 'tflite'),
+
 	(84.37, 97.28, 12.5, 303, 557, 'Samsung Galaxy S24', 'beit', 'tflite'),
 	(83.54, 96.64, 5.56, 272, 598, 'Samsung Galaxy S24', 'convnext_base', 'tflite'),
 	(81.14, 95.36, 3.46, 112, 379, 'Samsung Galaxy S24', 'efficientvit_b2_cls', 'tflite'),
@@ -94,6 +96,14 @@ benchmark_data = [
 	(76.0, 92.88, 1.04, 45, 245, 'Samsung Galaxy S24', 'efficientnet_b0', 'tflite'),
 	(77.7, 93.66, 2.43, 77, 482, 'Samsung Galaxy S24', 'efficientnet_b4', 'tflite'),
 	(67.09, 87.84, 1.66, 44, 1032, 'Samsung Galaxy S24', 'densenet_121_quantized', 'tflite'),
+
+	(64.23, 85.35, 0.506, 36, 115, 'Samsung Galaxy S24', 'mobilenet_v3_small', 'tflite'),
+	(76.94, 93.28, 1.42, 79, 114, 'Samsung Galaxy S24', 'regnet', 'tflite'),
+	(76.91, 93.21, 0.565, 70, 116, 'Samsung Galaxy S24', 'regnet_quantized', 'tflite'),
+	(60.9, 75.16, 1.64, 76, 79, 'Samsung Galaxy S24', 'resnet50', 'tflite'),
+	(75.95, 92.79, 2.43, 117, 147, 'Samsung Galaxy S24', 'resnet101', 'tflite'),
+	(80.1, 94.82, 1.80, 85, 79, 'Samsung Galaxy S24', 'resnext50', 'tflite'),
+	(78.2, 93.97, 4.75, 277, 147, 'Samsung Galaxy S24', 'resnext101', 'tflite'),
 
 	# ONNX
 	(77.08, 93.25, 15.50, 466, 151, "Samsung Galaxy S24", "wideresnet50_quantized", "onnx"),
