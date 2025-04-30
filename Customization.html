@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vanilla.css?v=1.0.0">
+    <link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="CustomizationStyle.css?v=1.0.0">
+    <script src="CustomizationScript.js?v=1.0.0"></script>
+    <script type="module" src="CommonScript.js?v=1.0.0"></script>
+
+    <title>Customization</title>
+</head>
+
+<body>
+
+    <div class="navbarCustom">
+        <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+
+        <ul class="navbarList">
+            <li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+            <li><a class="navMenu" href="Models.html">Models</a></li>
+            <li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+            <li><a class="navMenu" href="About.html">About</a></li>
+            <li><a class="navMenu" href="inference.html">Inference</a></li>
+            <li><a class="navMenu edge" href="Login.html">Login</a></li>
+        </ul>
+
+        <button id="menuToggle">☰</button>
+
+        <nav id="sidebar">
+            <ul class="navbarListMobile">
+                <li>
+                    <h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+                </li>
+                <li><a href="Leaderboard.html">Leaderboard</a></li>
+                <li><a href="Models.html">Models</a></li>
+                <li><a href="Comparison.html">Comparison</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="inference.html">Inference</a></li>
+                <li><a href="Login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="page">
+        <div class="pageTitle">
+            <h1 class="title">Customization</h1>
+        </div>
+
+        <div class="customizationContainer">
+            <h2>Chart Customization</h2>
+
+            <!-- Color Pickers -->
+            <div class="color-picker-section">
+                <label for="colorPicker1">Select Color 1:</label>
+                <input type="color" id="colorPicker1" name="colorPicker1" value="#0000FF">
+
+                <label for="colorPicker2">Select Color 2:</label>
+                <input type="color" id="colorPicker2" name="colorPicker2" value="#FF0000">
+
+                <label for="colorPicker3">Select Color 3:</label>
+                <input type="color" id="colorPicker3" name="colorPicker3" value="#00FF00">
+            </div>
+
+            <!-- Chart Type Selection -->
+            <h3>Select Chart Type:</h3>
+            <div class="chart-type-toggle">
+                <button class="chart-type-btn" data-type="bar">Bar</button>
+                <button class="chart-type-btn" data-type="pie">Pie</button>
+                <button class="chart-type-btn" data-type="doughnut">Doughnut</button>
+            </div>
+
+            <!-- Apply Button -->
+            <button class="apply-btn" onclick="applySettings()">Apply Settings</button>
+            <p id="statusMessage"></p>
+        </div>
+
+        <div class="footer">
+			<div class="footerLogo">
+				<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+			</div>
+			<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+			<div>
+				<ul class="footerMenu">
+
+					<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="inference.html">Inference</a></li>
+					<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+				</ul>
+			</div>
+		</div>
+
+    </div>
+
+    <script>
+        // Event listener to toggle the active state of chart type buttons
+        document.querySelectorAll('.chart-type-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                // Remove active class from all buttons
+                document.querySelectorAll('.chart-type-btn').forEach(btn => btn.classList.remove('active'));
+                // Add active class to the clicked button
+                this.classList.add('active');
+
+                // Update the selected chart type
+                localStorage.setItem("chartType", this.getAttribute("data-type"));
+            });
+
+            // Set the active button based on stored chart type
+            const storedType = localStorage.getItem("chartType") || "bar";
+            if (button.getAttribute("data-type") === storedType) {
+                button.classList.add('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

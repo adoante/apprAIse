@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="vanilla.css?v=1.0.1">
+	<link rel="stylesheet" href="inferenceStyle.css?v=1.0.5">
+	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+	<script type="module" src="inferenceScript.js?v=1.0.4"></script>
+	<script type="module" src="CommonScript.js?v=1.0.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="CustomizationScript.js?v=1.0.0"></script>
+	<title>Upload | ApprAIse</title>
+</head>
+
+<body>
+
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+
+		<ul class="navbarList">
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="inference.html">Inference</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+
+		<button id="menuToggle">☰</button>
+
+		<nav id="sidebar">
+			<ul class="navbarListMobile">
+				<li>
+					<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+				</li>
+				<li><a href="Leaderboard.html">Leaderboard</a></li>
+				<li><a href="Models.html">Models</a></li>
+				<li><a href="Comparison.html">Comparison</a></li>
+				<li><a href="About.html">About</a></li>
+				<li><a href="inference.html">Inference</a></li>
+				<li><a href="Login.html">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="page">
+		<div class="pageTitle">
+			<h1 class="title">Upload Image</h1>
+		</div>
+
+		<div class="customAlert" style="background:#6F9CDE;">Please select a option from every dropdown before uploading
+			an image. 😃</div>
+		<div class="customAlert" style="background:#6F9CDE;">Note: Some configurations between devices and libraries are
+			not supported. 😔</div>
+
+		<div class="dropdowns">
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Models
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="models">
+					<p class="dropdownItem" id="model-1">shufflenet_v2_quantized</p>
+					<p class="dropdownItem" id="model-2">shufflenet_v2</p>
+					<p class="dropdownItem" id="model-3">squeezenet1_1_quantized</p>
+					<p class="dropdownItem" id="model-4">squeezenet1_1</p>
+
+					<p class="dropdownItem" id="model-4">googlenet_quantized</p>
+					<p class="dropdownItem" id="model-4">mnasnet05</p>
+					<p class="dropdownItem" id="model-4">mobile_vit</p>
+					<p class="dropdownItem" id="model-4">mobilenet_v2_quantized</p>
+					<p class="dropdownItem" id="model-4">mobilenet_v3_large_quantized</p>
+					<p class="dropdownItem" id="model-4">mobilenet_v3_small</p>
+					<p class="dropdownItem" id="model-4">resnet18_quantized</p>
+					<p class="dropdownItem" id="model-4">IsLizzyTheCat</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Library
+					<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="libraries">
+					<p class="dropdownItem" id="library-1">tflite</p>
+					<p class="dropdownItem" id="library-2">onnx</p>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<div class="dropdown-btn">
+					Devices
+					<img class="arrow LD" src="Images/down-chevron.png" alt="">
+				</div>
+				<div class="dropdown-content" id="devices">
+					<p class="dropdownItem" id="device-1">Samsung Galaxy S24</p>
+					<p class="dropdownItem" id="device-2">Samsung Galaxy S23</p>
+					<p class="dropdownItem" id="device-3">Snapdragon 8 Elite QRD</p>
+					<p class="dropdownItem" id="device-4">Snapdragon X Elite CRD</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="inferenceContainer">
+			<div class="inferenceContainer2">
+				<form class="upload-form" id="uploadForm">
+					<label for="imageUpload">Upload an Image to inference.</label>
+					<input type="file" id="imageUpload" name="image" accept="image/*">
+				</form>
+
+				<div class="customAlert" style="background:#6F9CDE;">
+					Do not leave page after upload. 🙏
+				</div>
+
+				<div id="imagePreviewContainer">
+					<h3>Image Preview:</h3>
+					<img id="imagePreview" src="">
+				</div>
+			</div>
+
+			<div class="inferenceContainer3">
+				<h3>
+					Check your inference progress <a href="https://app.aihub.qualcomm.com/jobs/" target="_blank"
+						rel="noopener noreferrer">here.</a>
+				</h3>
+				
+				<h3>Results</h3>
+				<div id="loader" class="spinner" style="display: none;"></div>
+
+				<p id="classAndLabel"></p>
+
+				<canvas class="chart" id="inferenceResults"></canvas>
+
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="footerLogo">
+				<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+			</div>
+			<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+			<div>
+				<ul class="footerMenu">
+
+					<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+					<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+					<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+					<li><a class="footerMenuItem" href="About.html">About</a></li>
+					<li><a class="footerMenuItem" href="inference.html">Inference</a></li>
+					<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

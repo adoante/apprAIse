@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="module" src="CommonScript.js?v=1.0.0"></script>
+	<script type="module" src="DashboardScript.js?v=1.0.3"></script>
+	<script src="CustomizationScript.js?v=1.0.0"></script>
+	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="vanilla.css?v=1.0.1">
+	<link rel="stylesheet" href="DashboardStyle.css?v=1.0.0">
+	<title>ApprAIse</title>
+</head>
+
+<body>
+
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+
+		<ul class="navbarList">
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="inference.html">Inference</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+
+		<button id="menuToggle">☰</button>
+
+		<nav id="sidebar">
+			<ul class="navbarListMobile">
+				<li>
+					<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+				</li>
+				<li><a href="Leaderboard.html">Leaderboard</a></li>
+				<li><a href="Models.html">Models</a></li>
+				<li><a href="Comparison.html">Comparison</a></li>
+				<li><a href="About.html">About</a></li>
+				<li><a href="inference.html">Inference</a></li>
+				<li><a href="Login.html">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="page">
+
+		<div class="pageTitle">
+			<h1 class="title">Dashboard</h1>
+		</div>
+
+		<div class="dashboardDropdowns">
+			<div class="dropdowns">
+				<div class="dropdown" id="accountDropdown">
+					<div class="dropdown-btn">
+						Account
+						<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Username</p>
+						<p class="dropdownItem">Firstname</p>
+						<p class="dropdownItem">Lastname</p>
+						<p class="dropdownItem">Email</p>
+						<p class="dropdownItem">QAI Hub Token</p>
+						<p class="dropdownItem">Password</p>
+						<p class="dropdownItem">Disable Account</p>
+					</div>
+				</div>
+
+				<div class="dropdown" id="customizationDropdown">
+					<div class="dropdown-btn">
+						Customization
+						<img class="arrow LD" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Charts/Colors</p>
+					</div>
+				</div>
+
+				<!-- <div class="dropdown" id="favorites">
+					<div class="dropdown-btn">
+						Favorites
+						<img class="arrow LL" src="Images/down-chevron.png" alt="">
+					</div>
+					<div class="dropdown-content">
+						<p class="dropdownItem">Models</p>
+					</div>
+				</div> -->
+
+				<button class="dashboardBtn" id="logout">Logout</button>
+			</div>
+		</div>
+
+		<div class="dashboardContent">
+			<!--Content Insert Here-->
+		</div>
+
+	</div>
+
+	<script>
+		// Event listener to toggle the active state of chart type buttons
+		document.querySelectorAll('.chart-type-btn').forEach(button => {
+			button.addEventListener('click', function () {
+				// Remove active class from all buttons
+				document.querySelectorAll('.chart-type-btn').forEach(btn => btn.classList.remove('active'));
+				// Add active class to the clicked button
+				this.classList.add('active');
+
+				// Update the selected chart type
+				localStorage.setItem("chartType", this.getAttribute("data-type"));
+			});
+
+			// Set the active button based on stored chart type
+			const storedType = localStorage.getItem("chartType") || "bar";
+			if (button.getAttribute("data-type") === storedType) {
+				button.classList.add('active');
+			}
+		});
+	</script>
+
+</body>
+
+</html>

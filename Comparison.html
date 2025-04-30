@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="vanilla.css?v=1.0.1">
+	<link rel="icon" href="./Images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="ComparisonStyle.css?v=1.0.0">
+	<script type="module" src="ComparisonScript.js?v=1.0.0"></script>
+	<script type="module" src="CommonScript.js?v=1.0.0"></script>
+	<script src="CustomizationScript.js?v=1.0.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>Comparison</title>
+</head>
+
+<body>
+	<div class="navbarCustom">
+		<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+
+		<ul class="navbarList">
+			<li><a class="navMenu" href="Leaderboard.html">Leaderboard</a></li>
+			<li><a class="navMenu" href="Models.html">Models</a></li>
+			<li><a class="navMenu" href="Comparison.html">Comparison</a></li>
+			<li><a class="navMenu" href="About.html">About</a></li>
+			<li><a class="navMenu" href="inference.html">Inference</a></li>
+			<li><a class="navMenu edge" href="Login.html">Login</a></li>
+		</ul>
+
+		<button id="menuToggle">☰</button>
+
+		<nav id="sidebar">
+			<ul class="navbarListMobile">
+				<li>
+					<h1 class="title"><a class="navMenu title" href="index.html">ApprAIse</a></h1>
+				</li>
+				<li><a href="Leaderboard.html">Leaderboard</a></li>
+				<li><a href="Models.html">Models</a></li>
+				<li><a href="Comparison.html">Comparison</a></li>
+				<li><a href="About.html">About</a></li>
+				<li><a href="inference.html">Inference</a></li>
+				<li><a href="Login.html">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="page">
+		<div class="pageTitle">
+			<h1 class="title">Comparison</h1>
+		</div>
+
+		<div class="customAlert" style="background:#6F9CDE;">
+			Make sure to select all dropdown options to receive the most accurate data. 😊
+		</div>
+		<div class="customAlert" style="background:#6F9CDE;">
+			Some graphs may appear empty because that specific <br> configuration has not yet been benchmarked. 😔
+		</div>
+		<div class="modelsContainer">
+			<!-- Model 1 -->
+			<div class="model">
+				<div class="dropdowns">
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Model
+							<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-model" id="dropdown-content-model-1"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Devices
+							<img class="arrow LD" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-device" id="dropdown-content-device-1"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Libraries
+							<img class="arrow LL" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-library" id="dropdown-content-library-1"></div>
+						</div>
+					</div>
+				</div>
+
+				<button class="ModelBtn"><a href="" id="Model1link">Model Page Link</a></button>
+			</div>
+
+			<!-- Model 2 -->
+			<div class="model">
+				<div class="dropdowns">
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Model
+							<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-model" id="dropdown-content-model-2"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Devices
+							<img class="arrow LD" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-device" id="dropdown-content-device-2"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Libraries
+							<img class="arrow LL" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-library" id="dropdown-content-library-2"></div>
+						</div>
+					</div>
+				</div>
+
+				<button class="ModelBtn"><a href="" id="Model2link">Model Page Link</a></button>
+			</div>
+
+			<!-- Model 3 -->
+			<div class="model">
+				<div class="dropdowns">
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Model
+							<img class="arrow LSB" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-model" id="dropdown-content-model-3"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Devices
+							<img class="arrow LD" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-device" id="dropdown-content-device-3"></div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div class="dropdown-btn">
+							Libraries
+							<img class="arrow LL" src="Images/down-chevron.png" alt="">
+						</div>
+						<div class="dropdown-content">
+							<div class="dropdown-content-library" id="dropdown-content-library-3"></div>
+						</div>
+					</div>
+				</div>
+
+				<button class="ModelBtn"><a href="" id="Model3link">Model Page Link</a></button>
+			</div>
+		</div>
+
+		<div class="pageTitle">
+			<h2 class="title">Charts</h2>
+		</div>
+
+		<div class="chartContainer">
+			<canvas class="chart" id="accuracyTop1Chart"></canvas>
+			<canvas class="chart" id="accuracyTop5Chart"></canvas>
+			<canvas class="chart" id="inferenceTimeChart"></canvas>
+			<canvas class="chart" id="memoryUsageChart"></canvas>
+		</div>
+
+		<div class="pageTitle">
+			<h2 class="title">Metrics</h2>
+		</div>
+
+		<div class="metricContainer">
+			<div class="pageTitle">
+				<h3 class="title">Accuracy Top 1</h3>
+			</div>
+
+			<div class="metricCardContainer" id="top1Metrics">
+				<div class="metricCard" id="metric1">
+					0%
+				</div>
+				<div class="metricCard" id="metric2">
+					0%
+				</div>
+				<div class="metricCard" id="metric3">
+					0%
+				</div>
+			</div>
+
+			<div class="pageTitle">
+				<h3 class="title">Accuracy Top 5</h3>
+			</div>
+
+			<div class="metricCardContainer" id="top5Metrics">
+				<div class="metricCard" id="metric4">
+					0%
+				</div>
+				<div class="metricCard" id="metric5">
+					0%
+				</div>
+				<div class="metricCard" id="metric6">
+					0%
+				</div>
+			</div>
+
+			<div class="pageTitle">
+				<h3 class="title">Inference Time</h3>
+			</div>
+
+			<div class="metricCardContainer" id="inferenceMetrics">
+				<div class="metricCard" id="metric7">
+					0ms
+				</div>
+				<div class="metricCard" id="metric8">
+					0ms
+				</div>
+				<div class="metricCard" id="metric9">
+					0ms
+				</div>
+			</div>
+
+			<div class="pageTitle">
+				<h3 class="title">Memory Usage</h3>
+			</div>
+
+			<div class="metricCardContainer" id="memoryMetrics">
+				<div class="metricCard" id="metric10">
+					0MB
+				</div>
+				<div class="metricCard" id="metric11">
+					0MB
+				</div>
+				<div class="metricCard" id="metric12">
+					0MB
+				</div>
+			</div>
+
+		</div>
+
+		<div class="pageTitle" style="margin-top: 50px;">
+			<h2 class="title">Technical Details</h2>
+		</div>
+
+		<div class="technicalDetailContainer">
+
+			<ul id="technicalDetails1">
+				<li>Model checkpoint:</li>
+				<li>Input Resolution:</li>
+				<li>Model Size:</li>
+				<li>Parameters:</li>
+			</ul>
+
+			<ul id="technicalDetails2">
+				<li>Model checkpoint:</li>
+				<li>Input Resolution:</li>
+				<li>Model Size:</li>
+				<li>Parameters:</li>
+			</ul>
+
+			<ul id="technicalDetails3">
+				<li>Model checkpoint:</li>
+				<li>Input Resolution:</li>
+				<li>Model Size:</li>
+				<li>Parameters:</li>
+			</ul>
+
+		</div>
+
+	</div>
+	<div class="footer">
+		<div class="footerLogo">
+			<p class="title"><a class="footerTitle" href="index.html">ApprAIse</a></p>
+		</div>
+		<div class="footerDescription">Evaluating and comparing <br>Image Classification AI Models</div>
+		<div>
+			<ul class="footerMenu">
+
+				<li><a class="footerMenuItem" href="Leaderboard.html">Leaderboard</a></li>
+				<li><a class="footerMenuItem" href="Models.html">Models</a></li>
+				<li><a class="footerMenuItem" href="Comparison.html">Comparison</a></li>
+				<li><a class="footerMenuItem" href="About.html">About</a></li>
+				<li><a class="footerMenuItem" href="inference.html">Inference</a></li>
+				<li><a class="footerMenuItem" href="Login.html">Login</a></li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+
+</html>

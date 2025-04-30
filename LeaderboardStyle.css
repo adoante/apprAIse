@@ -1,0 +1,185 @@
+th {
+    text-align: center;
+    padding: 10px 0 !important;
+}
+
+td {
+    text-align: center;
+    word-break: break-word;
+    /* Or use 'break-all' */
+    white-space: normal;
+    padding: 10px 0 !important;
+}
+
+.dropdowns {
+    margin-bottom: 50px;
+    justify-content: space-evenly;
+    display: flex;
+    gap: 5vw;
+    /* Adjusts spacing dynamically */
+    flex-wrap: wrap;
+    /* Allows items to stack if needed */
+}
+
+.dropdown {
+    max-width: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.dropdown-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    max-width: 200px;
+    border-radius: 20px;
+    outline: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-btn:hover {
+    background-color: #4338ca;
+}
+
+.dropdown-btn p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+}
+
+.dropdown-content p {
+    padding: 10px 10px;
+    margin: 0px;
+    text-align: center;
+}
+
+.dropdownItem {
+    color: #564AFF;
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: #d1d1d1;
+}
+
+.arrow {
+    width: 25px;
+    margin: 0;
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+    transform: rotateX(180deg);
+}
+
+/* Chart.js styling */
+#leaderboardChartDropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/*#leaderboardChart {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /*min-height: 180px;*/
+/*min-width: 360px;*/
+/*   width: 100%;
+    height: 100%;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    /* Optional max width */
+/*margin: auto;
+    /* Center it if needed */
+/*}*/
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    /* 👈 make it taller here */
+    margin: auto;
+    /* You can set height if you're using maintainAspectRatio: false */
+    /* height: 400px; */
+}
+
+@media (max-width:500px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+
+#leaderboardChart {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#Leaderboard {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    min-width: 675px;
+    /* optional: forces horizontal scroll on small screens */
+}
+
+/* Customization Button Styling */
+.customization-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.customization-btn {
+    background-color: #564AFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.customization-btn:hover {
+    background-color: #4338ca;
+}
+
+.customization-btn:active {
+    background-color: #362bca;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.customAlert {
+    background: #2D2D2D;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: fit-content;
+    margin-bottom: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
